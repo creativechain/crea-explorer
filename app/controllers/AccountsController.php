@@ -27,12 +27,12 @@ class AccountsController extends ControllerBase
             "followers_mvest" => -1,
           );
           break;
-        case "sbd":
+        case "vbd":
           $sort = array(
             "total_sbd_balance" => -1,
           );
           break;
-        case "steem":
+        case "vit":
           $sort = array(
             "total_balance" => -1,
           );
@@ -57,7 +57,7 @@ class AccountsController extends ControllerBase
           break;
       }
     }
-    $limit = 10;
+    $limit = 20;
     // Determine how many pages of users we have
     $this->view->pages = ceil(Statistics::findFirst(array(
       array('key' => 'users'),

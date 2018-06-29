@@ -98,7 +98,6 @@
       <div class="item">
         <div class="ui warning message">
           <p>This account has not voted for anyone as a witness.</p>
-          <p><a href="https://steemit.com/~witnesses">Witnesses can be voted for here.</a></p>
         </div>
       </div>
       {% endfor %}

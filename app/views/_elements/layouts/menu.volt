@@ -18,12 +18,12 @@
 <!-- Following Menu -->
 <div class="ui blue inverted top fixed mobile hidden menu">
   <div class="ui container">
-    <span class="header item">SteemDB</span>
+    <span class="header item">VITdb</span>
     <a href="/accounts" class="{{ (router.getControllerName() == 'account' or router.getControllerName() == 'accounts') ? 'active' : '' }} item">accounts</a>
     <a href="/witnesses" class="{{ (router.getControllerName() == 'witness') ? 'active' : '' }} item">witnesses</a>
     <div class="right menu">
       <div class="item">
-        <a href="https://steemit.com/?r=jesta">
+        <a href="https://touch.tube">
           <small>Create Account</small>
         </a>
       </div>
@@ -40,9 +40,6 @@
 
 <!-- Sidebar Menu -->
 <div class="ui vertical inverted sidebar menu">
-  <a href="/" class="{{ (router.getControllerName() == 'comment') ? 'active' : '' }} item">posts</a>
   <a href="/accounts" class="{{ (router.getControllerName() == 'account' or router.getControllerName() == 'accounts') ? 'active' : '' }} item">accounts</a>
   <a href="/witnesses" class="{{ (router.getControllerName() == 'witness') ? 'active' : '' }} item">witnesses</a>
-  <a href="https://blog.steemdb.com" class="item">updates</a>
-  <a href="/labs" class="{{ (router.getControllerName() == 'labs') ? 'active' : '' }} item">labs</a>
 </div>

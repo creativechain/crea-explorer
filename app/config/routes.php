@@ -97,8 +97,8 @@ $router->add('/posts', [
 ]);
 
 $router->add('/', [
-  'controller' => 'comments',
-  'action' => 'daily'
+  'controller' => 'accounts',
+  'action' => 'list'
 ]);
 
 $router->add('/posts/{tag}/{sort}/{date}', [
