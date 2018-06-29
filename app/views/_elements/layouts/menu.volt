@@ -37,13 +37,6 @@
         </div>
         <div class="results"></div>
       </div>
-      <div class="ui dropdown item">
-        steem <i class="dropdown icon"></i>
-        <div class="menu">
-          <a class="item" href="https://steemdb.com{{ router.getRewriteUri() }}">steem</a>
-          <a class="item" href="https://golosdb.com{{ router.getRewriteUri() }}">golos</a>
-        </div>
-      </div>
     </div>
   </div>
 </div>
