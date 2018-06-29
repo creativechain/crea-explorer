@@ -3,19 +3,19 @@ services:
   # history:
   #   build: ./docker/history
   #   environment:
-  #     steemnode: "node.steem.ws"
+  #     steemnode: "peer.vit.tube"
   #   links:
   #     - mongo
   # sync:
   #   build: ./docker/sync
   #   environment:
-  #     steemnode: "node.steem.ws"
+  #     steemnode: "peer.vit.tube"
   #   links:
   #     - mongo
   # witnesses:
   #   build: ./docker/witnesses
   #   environment:
-  #     steemnode: "node.steem.ws"
+  #     steemnode: "peer.vit.tube"
   #   links:
   #     - mongo
   development:

@@ -2,7 +2,7 @@ from autobahn.twisted.websocket import WebSocketServerFactory, \
     WebSocketServerProtocol, \
     listenWS
 from datetime import datetime, timedelta
-from steemapi.steemnoderpc import SteemNodeRPC
+from pistonapi.steemnoderpc import SteemNodeRPC
 from piston.steem import Post
 from pprint import pprint
 from twisted.internet import reactor
@@ -15,7 +15,7 @@ import sys
 import os
 import re
 
-rpc = SteemNodeRPC("ws://" + os.environ['steemnode'], "", "", apis=["follow", "database"])
+rpc = SteemNodeRPC("wss://" + os.environ['steemnode'], "", "", apis=["follow", "database"])
 
 class BroadcastServerProtocol(WebSocketServerProtocol):
 
