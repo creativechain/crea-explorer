@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 
 ENV php_conf /etc/php/7.0/fpm/php.ini
 ENV fpm_conf /etc/php/7.0/fpm/php-fpm.conf
-ENV composer_hash 55d6ead61b29c7bdee5cccfb50076874187bd9f21f65d8991d46ec5cc90518f447387fb9f76ebae1fbbacf329e583e30
+ENV composer_hash 544e09ee996cdf60ece3804abc52599c22b1f40f4323403c44d44fdfdd586475ca9813a858088ffbc1f233e9b180f061
 
 RUN apt-get update && apt-get install -y software-properties-common python-software-properties
 
@@ -29,6 +29,7 @@ RUN apt-get install -y bash \
     php7.0-phar \
     php7.0-dom \
     php7.0-phalcon \
+    php7.0-mbstring \
     php-xdebug \
     ca-certificates \
     dialog \
