@@ -119,21 +119,6 @@
           </div>
         </div>
       </div>
-      <div class="four wide column">
-        <div class="ui header">
-          Miner Queue
-        </div>
-        <div class="ui divided list">
-        {% for miner in queue.value %}
-          <div class="ui item">
-            {{ loop.index }}.
-            <a href="/@{{ miner }}">
-              {{ miner }}
-            </a>
-          </div>
-        {% endfor %}
-        </div>
-      </div>
     </div>
   </div>
 </div>
