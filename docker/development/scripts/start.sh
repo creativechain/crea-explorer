@@ -12,5 +12,9 @@ echo '-- Updating composer libraries'
 composer -d/var/www/html install
 composer -d/var/www/html update
 
+echo '-- Creating app cache directory'
+mkdir /var/www/html/cache/volt -p
+chmod 777 /var/www/html/cache -R
+
 echo '* Starting nginx'
 /usr/bin/supervisord -n -c /etc/supervisord.conf
