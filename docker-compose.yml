@@ -1,5 +1,11 @@
 version: '2'
 services:
+  # live:
+  #   build: ./docker/live
+  #   environment:
+  #     steemnode: "peer.vit.tube"
+  #   links:
+  #     - mongo
   history:
     build: ./docker/history
     environment:
