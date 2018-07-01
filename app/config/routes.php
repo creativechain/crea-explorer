@@ -86,6 +86,11 @@ $router->add('/([-a-zA-Z0-9.]+)/@([-a-zA-Z0-9.]+)/([-a-zA-Z0-9.]+)/{action}', [
   lab routes
 */
 
+$router->add('/labs', [
+  'controller' => 'labs',
+  'action' => 'index'
+]);
+
 $router->add('/powerup', [
   'controller' => 'labs',
   'action' => 'powerup'
