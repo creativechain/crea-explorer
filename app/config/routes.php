@@ -54,6 +54,15 @@ $router->add('/block/([a-zA-Z0-9]+)', [
 ])->setName("block-view");
 
 /*
+  charts routes
+*/
+
+$router->add('/stats', [
+  'controller' => 'charts',
+  'action' => 'index'
+]);
+
+/*
   comment viewing routes
 */
 
