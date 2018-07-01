@@ -9,7 +9,7 @@
   <div class="ui middle aligned stackable grid container">
     <div class="row">
       <div class="column">
-        <div class="ui top attached menu">
+        <div class="ui top attached menu seethrough">
           <div class="ui dropdown item">
             Richlist
             <i class="dropdown icon"></i>
@@ -31,7 +31,7 @@
             </div>
           </div>
         </div>
-        <table class="ui attached table">
+        <table class="ui attached table seethrough">
           <thead>
             <tr>
               <th>Account</th>

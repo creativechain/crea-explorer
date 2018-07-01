@@ -4,15 +4,15 @@
 <div class="ui vertical stripe segment">
   <div class="ui top aligned stackable grid container">
     <div class="row">
-      <div class="twelve wide column">
+      <div class="sixteen wide column">
         <div style="overflow-x:auto;">
           <div class="ui top attached tabular menu">
             <a class="item" href="/witnesses">Witnesses</a>
             <a class="active item" href="/witnesses/history">History</a>
           </div>
-          <div class="ui bottom attached segment">
+          <div class="ui bottom attached segment seethrough">
             <div class="ui active tab">
-              <table class="ui table">
+              <table class="ui table" style="background: none;">
                 <thead>
                   <tr>
                     <th>Voter</th>
@@ -58,23 +58,6 @@
               </table>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="four wide column">
-        <div class="ui header">
-          Most Misses (7-Day)
-        </div>
-        <div class="ui divided list">
-        {% for witness in misses %}
-          <div class="ui item">
-            <div class="ui small label">
-              +{{ witness.total }}
-            </div>
-            <a href="/@{{ witness._id }}">
-              {{ witness._id }}
-            </a>
-          </div>
-        {% endfor %}
         </div>
       </div>
     </div>

@@ -7,15 +7,37 @@
   {% if posts is defined and posts[0] is defined %}
   <link rel="canonical" href="https://steemit.com/{{ posts[0].category }}/@{{ posts[0].author }}/{{ posts[0].permlink }}"/>
   {% endif %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css">
   <style>
+    body {
+      color: #fff;
+    }
+    .ui.tabular.menu .item:hover {
+      color: #600DD0;
+    }
     .brand {
       padding-top: .3em !important;
     }
     .ui.vertical.sidebar.menu {
       padding-top: 3em !important;
     }
+    .seethrough {
+      background: rgba(255,255,255,.95) !important;
+    }
+    .pusher {
+      min-height: 400px;
+    }
+    .ui.tabular.menu .item {
+      color: #fff;
+    }
+    .ui.inverted.blue.menu {
+      background: rgba(96,13,208,1);
+    }
     body.pushable>.pusher {
-      background: #efefef;
+      background-image: url('https://vicetoken.com/wp-content/uploads/2018/06/ViceWallpaper-1.jpg') !important;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
     }
     .ui.vertical.stripe {
       padding: 3em 0em;
@@ -44,7 +66,10 @@
       padding-bottom: 5em;
     }
     .footer.segment {
-      padding: 5em 0em;
+      padding: 1em 0em;
+      position: absolute;
+      width: 100%;
+      bottom: 0px;
     }
     .footer.segment a {
       color: #fff;
@@ -116,7 +141,6 @@
       }
     }
   </style>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css">
   <link rel="stylesheet" href="/bower/plottable/plottable.css">
   <link rel="apple-touch-icon" sizes="180x180" href="https://vicetoken.com/wp-content/themes/dist/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="https://vicetoken.com/wp-content/themes/dist/img/favicon/favicon-32x32.png">

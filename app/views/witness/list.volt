@@ -4,15 +4,15 @@
 <div class="ui vertical stripe segment">
   <div class="ui top aligned stackable grid container">
     <div class="row">
-      <div class="twelve wide column">
+      <div class="sixteen wide column">
         <div style="overflow-x:auto;">
           <div class="ui top attached tabular menu">
             <a class="active item" href="/witnesses">Witnesses</a>
             <a class="item" href="/witnesses/history">History</a>
           </div>
-          <div class="ui bottom attached segment">
+          <div class="ui bottom attached segment" style="background: rgba(255,255,255,.9)">
             <div class="ui active tab">
-              <table class="ui small unstackable table">
+              <table class="ui table">
                 <thead>
                   <tr>
                     <th class="right aligned">Rank</th>
