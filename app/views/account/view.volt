@@ -41,7 +41,7 @@
           {% include "account/view/" ~ router.getActionName() %}
         </div>
       </div>
-      <div class="four wide column">
+      <div class="four wide column" style="min-height: 480.469px;">
         <div class="ui sticky">
           {% include '_elements/cards/account.volt' %}
           <div class="ui small indicating progress">
