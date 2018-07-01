@@ -159,7 +159,7 @@ $di->set('logger', function ($filename = null, $format = null) {
 
 $di->set('steemd', function() {
   require_once(APP_PATH . '/libs/steemd.php');
-  return new Steemd('https://jussi.vit.tube');
+  return new Steemd('https://peer.vit.tube');
 });
 
 $di->set('memcached', function() {

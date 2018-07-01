@@ -20,10 +20,13 @@
   <div class="ui container">
     <span class="header item">VITdb</span>
     <a href="/accounts" class="{{ (router.getControllerName() == 'account' or router.getControllerName() == 'accounts') ? 'active' : '' }} item">accounts</a>
+    <a class="{{ (router.getControllerName() == 'comments') ? 'active' : '' }} item" href="/posts">
+      posts
+    </a>
     <a href="/witnesses" class="{{ (router.getControllerName() == 'witness') ? 'active' : '' }} item">witnesses</a>
     <div class="right menu">
       <div class="item">
-        <a href="https://touch.tube">
+        <a href="https://touch.tube" target="_blank" rel="nofollow">
           <small>Create Account</small>
         </a>
       </div>
