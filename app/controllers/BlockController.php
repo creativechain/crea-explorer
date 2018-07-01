@@ -15,7 +15,7 @@ class BlockController extends ControllerBase
       )
     ));
     if(!$this->view->current) {
-      $this->flashSession->error('Block "'.$block.'" does not exist on SteemDB currently.');
+      $this->flashSession->error('Block "'.$height.'" does not exist on SteemDB currently.');
       $this->response->redirect();
       return;
     }
