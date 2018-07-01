@@ -8,6 +8,9 @@
   <link rel="canonical" href="https://steemit.com/{{ posts[0].category }}/@{{ posts[0].author }}/{{ posts[0].permlink }}"/>
   {% endif %}
   <style>
+    .brand {
+      padding-top: .3em !important;
+    }
     .ui.vertical.sidebar.menu {
       padding-top: 3em !important;
     }

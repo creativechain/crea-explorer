@@ -18,7 +18,9 @@
 <!-- Following Menu -->
 <div class="ui blue inverted top fixed mobile hidden menu">
   <div class="ui container">
-    <span class="header item">VITdb</span>
+    <a href="/" class="brand">
+      <span class="header item">VITdb</span>
+    </a>
     <a href="/accounts" class="{{ (router.getControllerName() == 'account' or router.getControllerName() == 'accounts') ? 'active' : '' }} item">accounts</a>
     <a class="{{ (router.getControllerName() == 'comments') ? 'active' : '' }} item" href="/posts">
       posts
