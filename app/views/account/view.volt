@@ -89,7 +89,7 @@
             </tbody>
           </table>
           <div class="ui tiny centered header">
-            <span class="sub header">
+            <span class="sub header" style="color: #fff">
               Account snapshot taken
               <?php echo $this->timeAgo::mongo($account->scanned); ?>
             </span>

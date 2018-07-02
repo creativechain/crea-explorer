@@ -33,6 +33,9 @@
     .ui.inverted.blue.menu {
       background: rgba(96,13,208,1);
     }
+    .ui.indicating.progress.success .label {
+      color: #15DF00 !important;
+    }
     body.pushable>.pusher {
       background-image: url('/img/vicewallpaper.jpg') !important;
       background-position: center;
