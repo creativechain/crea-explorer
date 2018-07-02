@@ -12,7 +12,7 @@
     <div class="ui stackable inverted divided equal height stackable grid">
       <div class="sixteen wide center aligned column">
         <h4 class="ui inverted header">
-          <a href="https://explore.vit.tube.com">VITdb</a>
+          <a href="https://explore.vit.tube">VITdb</a>
           orignally created by
           <a href="https://steemit.com/@jesta">@jesta</a>
         </h4>
