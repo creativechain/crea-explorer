@@ -77,10 +77,7 @@
               </td>
               <td class="collapsing right aligned">
                 <div class="ui small header">
-                  <?php echo number_format($account->total_sbd_balance, 3, ".", ",") ?> VBD
-                  <div class="sub header">
-                    <?php echo number_format($account->total_balance, 3, ".", ",") ?> VIT
-                  </div>
+                  <?php echo number_format($account->total_balance, 3, ".", ",") ?> VIT
                 </div>
               </td>
             </tr>
