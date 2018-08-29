@@ -15,7 +15,7 @@ import sys
 import os
 import re
 
-rpc = SteemNodeRPC("wss://" + os.environ['steemnode'], "", "", apis=["follow", "database"])
+rpc = SteemNodeRPC("https://" + os.environ['steemnode'], "", "", apis=["follow", "database"])
 
 class BroadcastServerProtocol(WebSocketServerProtocol):
 

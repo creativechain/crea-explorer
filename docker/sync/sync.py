@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-from pistonapi.steemnoderpc import SteemNodeRPC
+from beem.steem import Steem
 from piston.steem import Post
 from pymongo import MongoClient
 from pprint import pprint
@@ -9,7 +9,7 @@ import time
 import sys
 import os
 
-rpc = SteemNodeRPC("wss://" + os.environ['steemnode'], "", "", apis=["follow", "database"])
+stm = Steem(nodes=["https://" + os.environ['steemnode']])
 mongo = MongoClient("mongodb://mongo")
 db = mongo.steemdb
 
@@ -61,7 +61,7 @@ def process_op(opObj, block, blockid):
 
 def process_block(block, blockid):
     save_block(block, blockid)
-    ops = rpc.get_ops_in_block(blockid, False)
+    ops = stm.rpc.get_ops_in_block(blockid, False)
     for tx in block['transactions']:
       for opObj in tx['operations']:
         process_op(opObj, block, blockid)
@@ -237,7 +237,7 @@ def update_comment(author, permlink):
     _id = author + '/' + permlink
     if(_id == "xeroc/re-piston-20160818t080811"):
       return
-    comment = rpc.get_content(author, permlink).copy()
+    comment = stm.rpc.get_content(author, permlink).copy()
     comment.update({
         '_id': _id,
     })
@@ -251,7 +251,7 @@ def update_comment(author, permlink):
         active_votes.append(vote)
     comment['active_votes'] = active_votes
 
-    for key in ['author_reputation', 'net_rshares', 'children_abs_rshares', 'abs_rshares', 'children_rshares2', 'vote_rshares']:
+    for key in ['author_reputation', 'net_rshares', 'children_abs_rshares', 'abs_rshares', 'vote_rshares']:
         comment[key] = float(comment[key])
     for key in ['total_pending_payout_value', 'pending_payout_value', 'max_accepted_payout', 'total_payout_value', 'curator_payout_value']:
         comment[key] = float(comment[key].split()[0])
@@ -297,7 +297,7 @@ def queue_update_account(account_name):
 def update_account(account_name):
     # pprint("Update Account: " + account_name)
     # Load State
-    state = rpc.get_accounts([account_name])
+    state = stm.rpc.get_accounts([account_name])
     if not state:
       return
     # Get Account Data
@@ -306,7 +306,7 @@ def update_account(account_name):
     account['followers'] = []
     account['followers_count'] = 0
     account['followers_mvest'] = 0
-    followers_results = rpc.get_followers(account_name, "", "blog", 100)
+    followers_results = stm.rpc.get_followers(account_name, "", "blog", 100)
     while followers_results:
       last_account = ""
       for follower in followers_results:
@@ -316,11 +316,11 @@ def update_account(account_name):
           account['followers_count'] += 1
           if follower['follower'] in mvest_per_account.keys():
             account['followers_mvest'] += float(mvest_per_account[follower['follower']])
-      followers_results = rpc.get_followers(account_name, last_account, "blog", 100)[1:]
+      followers_results = stm.rpc.get_followers(account_name, last_account, "blog", 100)[1:]
     # Get following
     account['following'] = []
     account['following_count'] = 0
-    following_results = rpc.get_following(account_name, -1, "blog", 100)
+    following_results = stm.rpc.get_following(account_name, -1, "blog", 100)
     while following_results:
       last_account = ""
       for following in following_results:
@@ -328,7 +328,7 @@ def update_account(account_name):
         if 'blog' in following['what'] or 'posts' in following['what']:
           account['following'].append(following['following'])
           account['following_count'] += 1
-      following_results = rpc.get_following(account_name, last_account, "blog", 100)[1:]
+      following_results = stm.rpc.get_following(account_name, last_account, "blog", 100)[1:]
     # Convert to Numbers
     account['proxy_witness'] = float(account['proxied_vsf_votes'][0]) / 1000000
     for key in ['lifetime_bandwidth', 'reputation', 'to_withdraw']:
@@ -351,7 +351,7 @@ def update_account(account_name):
 
 if __name__ == '__main__':
     # Let's find out how often blocks are generated!
-    config = rpc.get_config()
+    config = stm.rpc.get_config()
     block_interval = config["STEEMIT_BLOCK_INTERVAL"]
     load_accounts()
     # We are going to loop indefinitely
@@ -400,12 +400,12 @@ if __name__ == '__main__':
             update_account(item['_id'])
 
         # Process New Blocks
-        props = rpc.get_dynamic_global_properties()
+        props = stm.rpc.get_dynamic_global_properties()
         block_number = props['last_irreversible_block_num']
         while (block_number - last_block) > 0:
             last_block += 1
             # Get full block
-            block = rpc.get_block(last_block)
+            block = stm.rpc.get_block(last_block)
             # Process block
             process_block(block, last_block)
             # Update our block height

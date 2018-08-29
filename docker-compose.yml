@@ -2,26 +2,26 @@ version: '2'
 services:
   # live:
   #   build: ./docker/live
-  #   environment:
-  #     steemnode: "peer.vit.tube"
+  # environment:
+  #   steemnode: "jussi.proto.vit.tube"
   #   links:
   #     - mongo
   history:
     build: ./docker/history
     environment:
-      steemnode: "peer.vit.tube"
+      steemnode: "jussi.proto.vit.tube"
     links:
       - mongo
   sync:
     build: ./docker/sync
     environment:
-      steemnode: "peer.vit.tube"
+      steemnode: "jussi.proto.vit.tube"
     links:
       - mongo
   witnesses:
     build: ./docker/witnesses
     environment:
-      steemnode: "peer.vit.tube"
+      steemnode: "jussi.proto.vit.tube"
     links:
       - mongo
   development:
@@ -35,7 +35,7 @@ services:
   mongodata:
     image: mongo:3.3.10
     volumes:
-      - /data/db
+      - /data/db:/data/db
     command: --break-mongo
   mongo:
     image: mongo:3.3.10
