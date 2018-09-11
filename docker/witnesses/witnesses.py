@@ -1,6 +1,5 @@
 from datetime import datetime
-from steemapi.steemnoderpc import SteemNodeRPC
-from piston.steem import Post
+from beem import Steem
 from pymongo import MongoClient
 from pprint import pprint
 from time import gmtime, strftime
@@ -10,7 +9,15 @@ import time
 import sys
 import os
 
-rpc = SteemNodeRPC("ws://" + os.environ['steemnode'], "", "", apis=["follow", "database"])
+stm = Steem(node=["wss://" + os.environ['steemnode']], custom_chains={"VIT":
+    {'chain_assets': [{'asset': 'VIT', 'id': 0, 'precision': 3, 'symbol': 'VIT'},
+                      {'asset': 'VESTS', 'id': 1, 'precision': 6, 'symbol': 'VESTS'}],
+     'chain_id': '73f14dd4b7b07a8663be9d84300de0f65ef2ee7e27aae32bbe911c548c08f000',
+     'min_version': '0.0.0',
+     'prefix': 'VIT'}
+    }
+)
+
 mongo = MongoClient("mongodb://mongo")
 db = mongo.steemdb
 
@@ -19,7 +26,7 @@ misses = {}
 # Command to check how many blocks a witness has missed
 def check_misses():
     global misses
-    witnesses = rpc.get_witnesses_by_vote('', 100)
+    witnesses = stm.rpc.get_witnesses_by_vote('', 100)
     for witness in witnesses:
         owner = str(witness['owner'])
         # Check if we have a status on the current witness
@@ -45,7 +52,7 @@ def update_witnesses():
     now = datetime.now().date()
 
     pprint("SteemDB - Update Miner Queue")
-    miners = rpc.get_miner_queue()
+    miners = stm.rpc.get_miner_queue()
     db.statistics.update({
       '_id': 'miner_queue'
     }, {
@@ -54,7 +61,7 @@ def update_witnesses():
       'value': miners
     }, upsert=True)
     scantime = datetime.now()
-    users = rpc.get_witnesses_by_vote('', 100)
+    users = stm.rpc.get_witnesses_by_vote('', 100)
     pprint("SteemDB - Update Witnesses (" + str(len(users)) + " accounts)")
     db.witness.remove({})
     for user in users:

@@ -1,23 +1,23 @@
 version: '2'
 services:
-  # history:
-  #   build: ./docker/history
-  #   environment:
-  #     steemnode: "node.steem.ws"
-  #   links:
-  #     - mongo
-  # sync:
-  #   build: ./docker/sync
-  #   environment:
-  #     steemnode: "node.steem.ws"
-  #   links:
-  #     - mongo
-  # witnesses:
-  #   build: ./docker/witnesses
-  #   environment:
-  #     steemnode: "node.steem.ws"
-  #   links:
-  #     - mongo
+  history:
+    build: ./docker/history
+    environment:
+      steemnode: "jussi.vit.tube"
+    links:
+      - mongo
+  sync:
+    build: ./docker/sync
+    environment:
+      steemnode: "jussi.vit.tube"
+    links:
+      - mongo
+  witnesses:
+    build: ./docker/witnesses
+    environment:
+      steemnode: "jussi.vit.tube"
+    links:
+      - mongo
   development:
     build: ./docker/development
     links:
@@ -26,15 +26,15 @@ services:
       - .:/var/www/html
     ports:
       - "80:80"
-  mongodata:
-    image: mongo:3.3.10
-    volumes:
-      - /data/db
-    command: --break-mongo
-  mongo:
-    image: mongo:3.3.10
-    volumes_from:
-      - mongodata
-    ports:
-      - "27017:27017"
-    command: --smallfiles --rest
+  # mongodata:
+  #   image: mongo:3.3.10
+  #   volumes:
+  #     - /data/db
+  #   command: --break-mongo
+  # mongo:
+  #   image: mongo:3.3.10
+  #   volumes_from:
+  #     - mongodata
+  #   ports:
+  #     - "27017:27017"
+  #   command: --smallfiles --rest
