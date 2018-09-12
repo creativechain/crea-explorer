@@ -10,21 +10,6 @@
     <div class="row">
       <div class="column">
         <div class="ui top attached menu seethrough">
-          <div class="ui dropdown item">
-            Richlist
-            <i class="dropdown icon"></i>
-            <div class="menu">
-              <a class="{{ filter == 'vest' ? 'active' : '' }} item" href="/accounts/vest">
-                Vests/SP
-              </a>
-              <a class="{{ filter == 'sbd' ? 'active' : '' }} item" href="/accounts/sbd">
-                VBD
-              </a>
-              <a class="{{ filter == 'steem' ? 'active' : '' }} item" href="/accounts/steem">
-                VIT
-              </a>
-            </div>
-          </div>
           <div class="right menu">
             <div class="item">
               Data updated <?php echo $this->timeAgo::mongo($accounts[0]->scanned); ?>
