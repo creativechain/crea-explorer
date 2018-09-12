@@ -9,7 +9,7 @@ import time
 import sys
 import os
 
-stm = Steem(node=["wss://" + os.environ['steemnode']], custom_chains={"VIT":
+stm = Steem(node=["https://" + os.environ['steemnode']], custom_chains={"VIT":
     {'chain_assets': [{'asset': 'VIT', 'id': 0, 'precision': 3, 'symbol': 'VIT'},
                       {'asset': 'VESTS', 'id': 1, 'precision': 6, 'symbol': 'VESTS'}],
      'chain_id': '73f14dd4b7b07a8663be9d84300de0f65ef2ee7e27aae32bbe911c548c08f000',
