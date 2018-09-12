@@ -29,7 +29,7 @@ class Convert extends Tag
     return $cached;
   }
 
-  static public function vest2sp($value, $label = ' SP', $round = 3)
+  static public function vest2sp($value, $label = ' VP', $round = 3)
   {
     $values = static::getConversionRate('convert_vest2sp');
     $return = $values['total_vest_steem'] * ($value / $values['total_vests']);

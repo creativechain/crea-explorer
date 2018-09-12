@@ -211,9 +211,9 @@ class AccountController extends ControllerBase
   public function blocksAction()
   {
     $account = $this->getAccount();
-    $this->view->mining = Pow::find(array(
+    $this->view->mining = Block::find(array(
       array(
-        'work.1.input.worker_account' => $account,
+        'witness' => $account,
       ),
       'sort' => array('_ts' => -1),
       'limit' => 100

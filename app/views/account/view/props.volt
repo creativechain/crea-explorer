@@ -12,7 +12,7 @@
       <th>Base</th>
       <th>Bias</th>
       <th>Creation Fee</th>
-      <th>SBD Interest</th>
+      <th>VBD Interest</th>
       <th>Block Size</th>
     </tr>
   </thead>

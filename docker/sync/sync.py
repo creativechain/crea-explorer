@@ -258,7 +258,7 @@ def update_comment(author, permlink):
         active_votes.append(vote)
     comment['active_votes'] = active_votes
 
-    for key in ['author_reputation', 'net_rshares', 'children_abs_rshares', 'abs_rshares', 'children_rshares2', 'vote_rshares']:
+    for key in ['author_reputation', 'net_rshares', 'children_abs_rshares', 'abs_rshares', 'vote_rshares']:
         comment[key] = float(comment[key])
     for key in ['total_pending_payout_value', 'pending_payout_value', 'max_accepted_payout', 'total_payout_value', 'curator_payout_value']:
         comment[key] = float(comment[key].split()[0])
@@ -313,7 +313,7 @@ def update_account(account_name):
     account['followers'] = []
     account['followers_count'] = 0
     account['followers_mvest'] = 0
-    followers_results = stm.rpc.get_followers(account_name, "", "blog", 100, api="follow")
+    followers_results = stm.rpc.get_followers(account_name, "", "blog", 100)
     while followers_results:
       last_account = ""
       for follower in followers_results:
@@ -323,11 +323,11 @@ def update_account(account_name):
           account['followers_count'] += 1
           if follower['follower'] in mvest_per_account.keys():
             account['followers_mvest'] += float(mvest_per_account[follower['follower']])
-      followers_results = stm.rpc.get_followers(account_name, last_account, "blog", 100, api="follow")[1:]
+      followers_results = stm.rpc.get_followers(account_name, last_account, "blog", 100)[1:]
     # Get following
     account['following'] = []
     account['following_count'] = 0
-    following_results = stm.rpc.get_following(account_name, -1, "blog", 100, api="follow")
+    following_results = stm.rpc.get_following(account_name, -1, "blog", 100)
     while following_results:
       last_account = ""
       for following in following_results:
@@ -335,7 +335,7 @@ def update_account(account_name):
         if 'blog' in following['what'] or 'posts' in following['what']:
           account['following'].append(following['following'])
           account['following_count'] += 1
-      following_results = stm.rpc.get_following(account_name, last_account, "blog", 100, api="follow")[1:]
+      following_results = stm.rpc.get_following(account_name, last_account, "blog", 100)[1:]
     # Convert to Numbers
     account['proxy_witness'] = float(account['proxied_vsf_votes'][0]) / 1000000
     for key in ['lifetime_bandwidth', 'reputation', 'to_withdraw']:

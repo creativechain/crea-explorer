@@ -1,18 +1,46 @@
 <head>
   <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no,minimal-ui' />
-  <title>steemdb</title>
+  <title>VITdb</title>
   {% if post is defined %}
   <link rel="canonical" href="https://steemit.com/{{ post.category }}/@{{ post.author }}/{{ post.permlink }}"/>
   {% endif %}
   {% if posts is defined and posts[0] is defined %}
   <link rel="canonical" href="https://steemit.com/{{ posts[0].category }}/@{{ posts[0].author }}/{{ posts[0].permlink }}"/>
   {% endif %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css">
   <style>
+    body {
+      color: #fff;
+    }
+    .ui.tabular.menu .item:hover {
+      color: #600DD0;
+    }
+    .brand {
+      padding-top: .3em !important;
+    }
     .ui.vertical.sidebar.menu {
       padding-top: 3em !important;
     }
+    .seethrough {
+      background: rgba(255,255,255,.95) !important;
+    }
+    .pusher {
+      min-height: 400px;
+    }
+    .ui.tabular.menu .item {
+      color: #fff;
+    }
+    .ui.inverted.blue.menu {
+      background: rgba(96,13,208,1);
+    }
+    .ui.indicating.progress.success .label {
+      color: #15DF00 !important;
+    }
     body.pushable>.pusher {
-      background: #efefef;
+      background-image: url('/img/vicewallpaper.jpg') !important;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
     }
     .ui.vertical.stripe {
       padding: 3em 0em;
@@ -41,7 +69,10 @@
       padding-bottom: 5em;
     }
     .footer.segment {
-      padding: 5em 0em;
+      padding: 1em 0em;
+      position: absolute;
+      width: 100%;
+      bottom: 0px;
     }
     .footer.segment a {
       color: #fff;
@@ -113,6 +144,12 @@
       }
     }
   </style>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css">
   <link rel="stylesheet" href="/bower/plottable/plottable.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+  <link rel="manifest" href="/img/site.webmanifest">
+  <link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
 </head>

@@ -40,18 +40,18 @@
           <a class="active item" data-tab="op">Operations</a>
           <a class="item" data-tab="tx">Transactions</a>
           {% endif %}
-          <a class="item" data-tab="block">Block Data</a>
+          <a class="{{ current.transactions | length ? '' : 'active' }} item" data-tab="block">Block Data</a>
           <a class="item" data-tab="json">JSON</a>
         </div>
         <div class="ui bottom attached padded segment">
           {% if current.transactions | length %}
-          <div class="ui active tab" data-tab="op">
+          <div class="ui tab active" data-tab="op">
             <table class="ui table">
             {% for tx in current.transactions %}
               <tr>
                 <td class="three wide">
                   <div class="ui small header">
-                    <?php echo $this->opName::string($tx->operations[0]) ?>
+                    <?php echo $this->opName::string($tx['operations'][0]) ?>
                     <div class="sub header">
                       <?php echo $this->timeAgo::string($current->timestamp); ?>
                       <br><a href="/block/{{ current._id }}"><small style="color: #bbb">Block #{{ current._id }}</small></a>
@@ -59,7 +59,7 @@
                   </div>
                 </td>
                 <td>
-                  {% include "_elements/definition_table" with ['data': tx.operations[0][1]] %}
+                  {% include "_elements/definition_table" with ['data': tx['operations'][0][1]] %}
                 </td>
               </tr>
             {% endfor %}
@@ -80,9 +80,9 @@
               {% endfor %}
               </tbody>
             </table>
-            {% endif %}
           </div>
-          <div class="ui tab" data-tab="block">
+          {% endif %}
+          <div class="ui tab {{ current.transactions | length ? '' : 'active' }}" data-tab="block">
             {% include '_elements/definition_table' with ['data': current] %}
           </div>
           <div class="ui tab" data-tab="json">

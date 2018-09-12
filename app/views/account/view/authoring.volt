@@ -22,9 +22,9 @@
       <thead>
         <tr>
           <th>Content</th>
-          <th class="collapsing right aligned">SBD</th>
-          <th class="collapsing right aligned">STEEM</th>
-          <th class="collapsing right aligned">SP</th>
+          <th class="collapsing right aligned">VBD</th>
+          <th class="collapsing right aligned">VIT</th>
+          <th class="collapsing right aligned">VP</th>
           <th class="collapsing right aligned">VEST</th>
         </tr>
       </thead>
@@ -39,13 +39,13 @@
             <?php echo $this->timeAgo::mongo($reward->_ts); ?>
           </td>
           <td class="collapsing right aligned">
-            <?php echo $this->largeNumber::format($reward->sbd_payout); ?> SBD
+            <?php echo $this->largeNumber::format($reward->sbd_payout); ?> VBD
           </td>
           <td class="collapsing right aligned">
-            <?php echo $this->largeNumber::format($reward->steem_payout); ?> STEEM
+            <?php echo $this->largeNumber::format($reward->steem_payout); ?> VIT
           </td>
           <td class="collapsing right aligned">
-            ~<?php echo $this->convert::vest2sp($reward->vesting_payout, ""); ?> SP*
+            ~<?php echo $this->convert::vest2sp($reward->vesting_payout, ""); ?> VP*
           </td>
           <td class="collapsing right aligned">
             <div class="ui <?php echo $this->largeNumber::color($reward->vesting_payout)?> label" data-popup data-content="<?php echo number_format($reward->vesting_payout, 3, ".", ",") ?> VESTS" data-variation="inverted" data-position="left center">

@@ -9,7 +9,7 @@
   <div class="ui middle aligned stackable grid container">
     <div class="row">
       <div class="column">
-        <div class="ui top attached menu">
+        <div class="ui top attached menu seethrough">
           <div class="ui dropdown item">
             Richlist
             <i class="dropdown icon"></i>
@@ -18,41 +18,20 @@
                 Vests/SP
               </a>
               <a class="{{ filter == 'sbd' ? 'active' : '' }} item" href="/accounts/sbd">
-                SBD
+                VBD
               </a>
               <a class="{{ filter == 'steem' ? 'active' : '' }} item" href="/accounts/steem">
-                STEEM
-              </a>
-              <a class="{{ filter == 'powerdown' ? 'active' : '' }} item" href="/accounts/powerdown">
-                Power Down
+                VIT
               </a>
             </div>
           </div>
-          <a class="{{ filter == 'posts' ? 'active' : '' }} item" href="/accounts/posts">
-            Posts
-          </a>
-          <div class="ui dropdown item">
-            Social
-            <i class="dropdown icon"></i>
-            <div class="menu">
-              <a class="{{ filter == 'followers' ? 'active' : '' }} item" href="/accounts/followers">
-                Followers
-              </a>
-              <a class="{{ filter == 'followers_mvest' ? 'active' : '' }} item" href="/accounts/followers_mvest">
-                Value of Followers
-              </a>
-            </div>
-          </div>
-          <a class="{{ filter == 'reputation' ? 'active' : '' }} item" href="/accounts/reputation">
-            Reputation
-          </a>
           <div class="right menu">
             <div class="item">
               Data updated <?php echo $this->timeAgo::mongo($accounts[0]->scanned); ?>
             </div>
           </div>
         </div>
-        <table class="ui attached table">
+        <table class="ui attached table seethrough">
           <thead>
             <tr>
               <th>Account</th>
@@ -98,10 +77,7 @@
               </td>
               <td class="collapsing right aligned">
                 <div class="ui small header">
-                  <?php echo number_format($account->total_sbd_balance, 3, ".", ",") ?> SBD
-                  <div class="sub header">
-                    <?php echo number_format($account->total_balance, 3, ".", ",") ?> STEEM
-                  </div>
+                  <?php echo number_format($account->total_balance, 3, ".", ",") ?> VIT
                 </div>
               </td>
             </tr>

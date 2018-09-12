@@ -51,15 +51,6 @@ def check_misses():
 def update_witnesses():
     now = datetime.now().date()
 
-    pprint("SteemDB - Update Miner Queue")
-    miners = stm.rpc.get_miner_queue()
-    db.statistics.update({
-      '_id': 'miner_queue'
-    }, {
-      'key': 'miner_queue',
-      'updated': datetime.combine(now, datetime.min.time()),
-      'value': miners
-    }, upsert=True)
     scantime = datetime.now()
     users = stm.rpc.get_witnesses_by_vote('', 100)
     pprint("SteemDB - Update Witnesses (" + str(len(users)) + " accounts)")

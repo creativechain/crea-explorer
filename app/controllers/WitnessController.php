@@ -72,7 +72,7 @@ class WitnessController extends ControllerBase
         $witness->last_sbd_exchange_update_late = true;
       }
       // Highlight Red if the signing key is invalid
-      if(!$witness->signing_key || $witness->signing_key == "" || $witness->signing_key == "STM1111111111111111111111111111111114T1Anm") {
+      if(!$witness->signing_key || $witness->signing_key == "" || $witness->signing_key == "VIT1111111111111111111111111111111114T1Anm") {
         $witness->row_status = "negative";
         $witness->invalid_signing_key = true;
       }

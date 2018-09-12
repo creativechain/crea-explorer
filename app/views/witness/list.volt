@@ -4,15 +4,15 @@
 <div class="ui vertical stripe segment">
   <div class="ui top aligned stackable grid container">
     <div class="row">
-      <div class="twelve wide column">
+      <div class="sixteen wide column">
         <div style="overflow-x:auto;">
           <div class="ui top attached tabular menu">
             <a class="active item" href="/witnesses">Witnesses</a>
             <a class="item" href="/witnesses/history">History</a>
           </div>
-          <div class="ui bottom attached segment">
+          <div class="ui bottom attached segment" style="background: rgba(255,255,255,.9)">
             <div class="ui active tab">
-              <table class="ui small unstackable table">
+              <table class="ui table">
                 <thead>
                   <tr>
                     <th class="right aligned">Rank</th>
@@ -23,7 +23,6 @@
                       &amp; Total<br>
                       Misses
                     </th>
-                    <th>Price Feed</th>
                     <th>
                       Reg Fee<br>
                       APR<br>
@@ -80,25 +79,6 @@
                         </a>
                       </td>
                       <td>
-                        <div class="ui header">
-                          {% if witness.sbd_exchange_rate.base === "0.000 STEEM" or witness.last_sbd_exchange_update_late %}<i class="warning sign icon" data-popup data-title="Outdated Price Feed" data-content="This witness has not submitted a price feed update in over a week."></i>{% endif %}
-                          <div class="content">
-                            {{ witness.sbd_exchange_rate.base }}
-                            {% if witness.sbd_exchange_rate.quote != "1.000 STEEM" %}
-                            (<?php echo round((1 - 1/explode(" ", $witness->sbd_exchange_rate['quote'])[0]) * 100, 1) ?>%)
-                            {% endif %}
-                            <div class="sub header">
-                              {{ witness.sbd_exchange_rate.quote }}<br>
-                              {% if "" ~ witness.last_sbd_exchange_update > 0 %}
-                                <?php echo $this->timeAgo::mongo($witness->last_sbd_exchange_update); ?>
-                              {% else %}
-                                Never
-                              {% endif %}
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
                         {{ witness.props.account_creation_fee }}
                         <br>
                         {{ witness.props.sbd_interest_rate / 100 }}<small>%</small> APR
@@ -117,21 +97,6 @@
               </table>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="four wide column">
-        <div class="ui header">
-          Miner Queue
-        </div>
-        <div class="ui divided list">
-        {% for miner in queue.value %}
-          <div class="ui item">
-            {{ loop.index }}.
-            <a href="/@{{ miner }}">
-              {{ miner }}
-            </a>
-          </div>
-        {% endfor %}
         </div>
       </div>
     </div>
