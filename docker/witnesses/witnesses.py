@@ -59,9 +59,6 @@ def update_witnesses():
         # Convert to Numbers
         for key in ['virtual_last_update', 'virtual_position', 'virtual_scheduled_time', 'votes']:
             user[key] = float(user[key])
-        # Convert to Date
-        for key in ['last_sbd_exchange_update']:
-            user[key] = datetime.strptime(user[key], "%Y-%m-%dT%H:%M:%S")
         # Save current state of account
         db.witness.update({'_id': user['owner']}, user, upsert=True)
         # Create our Snapshot dict
