@@ -25,7 +25,7 @@ services:
     volumes:
       - .:/var/www/html
     ports:
-      - "80:80"
+      - "8063:80"
   mongodata:
     image: mongo:3.3.10
     volumes:
