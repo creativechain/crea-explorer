@@ -22,7 +22,6 @@
       <thead>
         <tr>
           <th>Content</th>
-          <th class="collapsing right aligned">VBD</th>
           <th class="collapsing right aligned">VIT</th>
           <th class="collapsing right aligned">VP</th>
           <th class="collapsing right aligned">VEST</th>
@@ -37,9 +36,6 @@
             </a>
             <br>
             <?php echo $this->timeAgo::mongo($reward->_ts); ?>
-          </td>
-          <td class="collapsing right aligned">
-            <?php echo $this->largeNumber::format($reward->sbd_payout); ?> VBD
           </td>
           <td class="collapsing right aligned">
             <?php echo $this->largeNumber::format($reward->steem_payout); ?> VIT

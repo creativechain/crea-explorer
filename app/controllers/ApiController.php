@@ -302,9 +302,6 @@ class ApiController extends ControllerBase
           'sbd' => [
             '$sum' => '$sbd_balance'
           ],
-          'sbd_savings' => [
-            '$sum' => '$savings_sbd_balance'
-          ],
           'steem' => [
             '$sum' => '$balance'
           ],
