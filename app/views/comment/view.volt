@@ -5,9 +5,9 @@
   <div class="ui stackable grid container">
     <div class="row">
       <div class="twelve wide column">
-        <div class="ui huge header">
+        <div class="ui huge header" style="color: #f6f6f6;">
           {{ comment.title }}
-          <div class="sub header">
+          <div class="sub header" style="color: #f6f6f6;">
             by
             <a href="/@{{ comment.author }}">
               {{ comment.author }}
