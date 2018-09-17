@@ -61,7 +61,7 @@
                       </td>
                       <td class="center aligned">
                         <a href="/@{{ witness.owner }}/missed" class="ui small header">
-                          {% if witness.invalid_signing_key %}
+                          {% if witness AND witness.invalid_signing_key %}
                           <i class="warning sign icon" data-popup data-title="Witness Disabled" data-content="This witness does not have a signing key either at the owners request or because too many blocks have been missed."></i>
                           {% endif %}
                           <div class="content">
@@ -80,8 +80,6 @@
                       </td>
                       <td>
                         {{ witness.props.account_creation_fee }}
-                        <br>
-                        {{ witness.props.sbd_interest_rate / 100 }}<small>%</small> APR
                         <br>
                         {{ witness.props.maximum_block_size }}
                       </td>
