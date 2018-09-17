@@ -70,7 +70,7 @@
                       <span class="mobile hidden">&mdash;</span>
                       <br class="mobile visible">
                       <span class="ui small left floated green header mobile visible">
-                        ${{ comment.total_payout_value }}
+                        {{ comment.total_payout_value }} VIT
                         <span class="sub header">
                           (+<?php echo $this->largeNumber::format($comment->total_pending_payout_value); ?> Pending)
                         </span>
