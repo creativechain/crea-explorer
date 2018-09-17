@@ -6,7 +6,7 @@
     </tr>
     <tr>
       <td>Pending</td>
-      <td><?php echo $this->largeNumber::format($comment->total_pending_payout_value); ?> VIT</td>
+      <td>{{ comment.pending_payout_value }} VIT</td>
     </tr>
   </tbody>
 </table>

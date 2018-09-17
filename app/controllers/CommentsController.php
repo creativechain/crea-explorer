@@ -56,7 +56,7 @@ class CommentsController extends ControllerBase
         '$match' => [
           'depth' => 0,
           'mode' => 'first_payout',
-          'total_pending_payout_value' => ['$lte' => 10],
+          'pending_payout_value' => ['$lte' => 10],
           'created' => [
             '$lte' => new UTCDateTime(strtotime('-6 hours') * 1000),
             '$gte' => new UTCDateTime(strtotime('-20 hours') * 1000),
@@ -116,9 +116,9 @@ class CommentsController extends ControllerBase
         'author_reputation' => '$author_reputation',
         'category' => '$category',
         'net_votes' => '$net_votes',
-        'combined_payout' => ['$add' => ['$total_payout_value', '$total_pending_payout_value']],
+        'combined_payout' => ['$add' => ['$total_payout_value', '$pending_payout_value']],
         'total_payout_value' => '$total_payout_value',
-        'total_pending_payout_value' => '$total_pending_payout_value',
+        'pending_payout_value' => '$pending_payout_value',
         'children' => '$children',
       ]],
       ['$sort' => $sortFields],

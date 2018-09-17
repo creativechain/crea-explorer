@@ -35,7 +35,7 @@
             <span class="ui small left floated green header mobile visible">
               ${{ comment.total_payout_value }}
               <span class="sub header">
-                (+<?php echo $this->largeNumber::format($comment->total_pending_payout_value); ?> Pending)
+                Pending:<br/>{{ comment.pending_payout_value }} VIT
               </span>
             </span>
 
@@ -45,9 +45,9 @@
       </div>
       <div class="three wide center mobile hidden aligned column">
         <div class="ui green header">
-          ${{ comment.total_payout_value }}
+          {{ comment.total_payout_value }} VIT
           <div class="sub header">
-            +<?php echo $this->largeNumber::format($comment->total_pending_payout_value); ?> Pending
+             Pending:<br/>{{ comment.pending_payout_value }} VIT
           </div>
         </div>
       </div>

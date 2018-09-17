@@ -38,7 +38,7 @@
             <?php echo $this->timeAgo::mongo($reward->_ts); ?>
           </td>
           <td class="collapsing right aligned">
-            <?php echo $this->largeNumber::format($reward->steem_payout); ?> VIT
+            {{ reward.steem_payout }} VIT
           </td>
           <td class="collapsing right aligned">
             ~<?php echo $this->convert::vest2sp($reward->vesting_payout, ""); ?> VP*
