@@ -8,11 +8,7 @@
   <thead>
     <tr>
       <th>Date</th>
-      <th>Quote</th>
-      <th>Base</th>
-      <th>Bias</th>
       <th>Creation Fee</th>
-      <th>VBD Interest</th>
       <th>Block Size</th>
     </tr>
   </thead>
@@ -21,26 +17,11 @@
     <tr>
       <td>
         {{ props.created.toDateTime().format('Y-m-d') }}
+      <td>
+        {{ props.props['account_creation_fee'] }}
       </td>
       <td>
-        {{ props.sbd_exchange_rate.quote }}
-      </td>
-      <td>
-        {{ props.sbd_exchange_rate.base }}
-      </td>
-      <td>
-        {% if props.sbd_exchange_rate.quote != "1.000 STEEM" %}
-        <?php echo round((1 - 1/explode(" ", $props->sbd_exchange_rate->quote)[0]) * 100, 1) ?>%
-        {% endif %}
-      </td>
-      <td>
-        {{ props.props.account_creation_fee }}
-      </td>
-      <td>
-        {{ props.props.sbd_interest_rate }}
-      </td>
-      <td>
-        {{ props.props.maximum_block_size }}
+        {{ props.props['maximum_block_size'] }}
       </td>
     </tr>
     {% endfor %}
