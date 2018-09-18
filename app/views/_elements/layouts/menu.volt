@@ -22,9 +22,7 @@
       <span class="header item">VITdb</span>
     </a>
     <a href="/accounts" class="{{ (router.getControllerName() == 'account' or router.getControllerName() == 'accounts') ? 'active' : '' }} item">accounts</a>
-    <!-- <a class="{{ (router.getControllerName() == 'comments') ? 'active' : '' }} item" href="/posts">
-      posts
-    </a> -->
+    <a class="{{ (router.getControllerName() == 'comments') ? 'active' : '' }} item" href="/posts">posts</a>
     <a href="/witnesses" class="{{ (router.getControllerName() == 'witness') ? 'active' : '' }} item">witnesses</a>
     <div class="right menu">
       <div class="item">
