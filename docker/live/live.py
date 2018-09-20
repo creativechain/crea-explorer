@@ -207,7 +207,7 @@ if __name__ == '__main__':
 
     ServerFactory = BroadcastServerFactory
 
-    factory = ServerFactory(u"ws://127.0.0.1:8861")
+    factory = ServerFactory(u"ws://127.0.0.1:8681")
     factory.protocol = BroadcastServerProtocol
     listenWS(factory)
 

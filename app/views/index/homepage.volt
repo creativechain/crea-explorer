@@ -318,7 +318,7 @@
       ellog = document.getElementById('log');
 
       if (window.location.hostname === "localhost") {
-         wsuri = "ws://localhost:8861";
+         wsuri = "ws://localhost:8681";
       } else {
          wsuri = "wss://" + window.location.hostname + ":443/ws";
       }
