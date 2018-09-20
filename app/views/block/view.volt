@@ -6,9 +6,9 @@
   <div class="ui vertically divided grid">
     <div class="row">
       <div class="column">
-        <div class="ui large header">
+        <div class="ui large header" style="color: #f3f3f3">
           Block {{ height }}
-          <div class="sub header">
+          <div class="sub header" style="color: #f3f3f3">
             {% if current %}
             &#x21b3; Witnessed by
             <a href="/@{{ current['witness']}} ">
@@ -52,7 +52,7 @@
           {% endif %}
           <a class="item" data-tab="json">JSON</a>
         </div>
-        <div class="ui bottom attached padded segment">
+        <div class="ui bottom attached padded segment" style="color: #000">
           {% if current['transactions'] | length %}
           <div class="ui active tab" data-tab="op">
             <table class="ui table">

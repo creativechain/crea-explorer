@@ -2,7 +2,7 @@
 Description=SteemDB.com Live Service
 
 [Service]
-Environment=steemnode=peer.vit.tube
+Environment=steemnode=jussi.vit.tube
 WorkingDirectory=/var/www/com_steemdb/docker/live
 ExecStart=/usr/bin/python3 live.py
 Restart=always

@@ -9,7 +9,7 @@
   <div class="ui stackable grid">
     <div class="row">
       <div class="sixteen wide column">
-        <h1 class="ui header">
+        <h1 class="ui header offwhite">
           Recent Blocks
         </h1>
         <table class="ui table">

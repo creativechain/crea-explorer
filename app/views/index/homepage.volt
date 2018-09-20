@@ -18,21 +18,21 @@
 </style>
 
 <div class="ui body container">
-  <h1 class="ui header">
-    SteemDB.com
-    <div class="sub header">
-      Block explorer and database for the STEEM blockchain.
+  <h1 class="ui header offwhite">
+    VitDB
+    <div class="sub header offwhite">
+      Block explorer and database for the VIT blockchain.
     </div>
   </h1>
   <div class="ui stackable grid">
     <div class="row">
-      <div class="sixteen wide column">
-        <!-- TradingView Widget BEGIN -->
+      <div class="four wide column centered">
+        <!-- TradingView Widget BEGIN
         <script type="text/javascript" src="https://d33t3vvu2t2yu5.cloudfront.net/tv.js"></script>
         <script type="text/javascript">
         new TradingView.widget({
           "autosize": true,
-          "symbol": "POLONIEX:STEEMBTC",
+          "symbol": "HITBTC:BTCVIT",
           "interval": "120",
           "timezone": "Etc/UTC",
           "theme": "White",
@@ -45,84 +45,86 @@
           "hideideas": true
         });
         </script>
-        <!-- TradingView Widget END -->
+        TradingView Widget END -->
       </div>
     </div>
     <div class="row">
       <div class="ten wide column">
+        {% if (renderChart > 0) %}
+          <div class="ui small dividing header offwhite">
+            {#<a class="ui tiny blue basic button" href="/stats" style="float:right">
+              View more details
+            </a>#}
+            30-Day MVest Distribution
+            <div class="sub header offwhite">
+              Distribution of stake by the blockchain through various channels over 30 days.
+            </div>
+          </div>
+          <div class="ui horizontal stacked segments">
+            <div class="ui center aligned segment">
+              <div class="ui <?php echo $this->largeNumber::color($totals['curation'])?> label" data-popup data-content="<?php echo number_format($totals['curation'], 3, ".", ",") ?> VESTS" data-variation="inverted" data-position="left center">
+                <?php echo $this->largeNumber::format($totals['curation']); ?>
+              </div>
+              <div class="ui small header" style="margin-top: 0.5em;">
+                <?php echo round($totals['curation'] / array_sum($totals) * 100, 1) ?>%<br>
+                <a href="/labs/curation?grouping=monthly">
+                  <small>Curation</small>
+                </a>
+              </div>
+            </div>
+            <div class="ui center aligned segment">
+              <div class="ui <?php echo $this->largeNumber::color($totals['author_rewards']['posts'])?> label" data-popup data-content="<?php echo number_format($totals['author_rewards']['posts'], 3, ".", ",") ?> VESTS" data-variation="inverted" data-position="left center">
+                <?php echo $this->largeNumber::format($totals['author_rewards']['posts']); ?>
+              </div>
+              <div class="ui small header" style="margin-top: 0.5em;">
+                <?php echo round($totals['author_rewards']['posts'] / array_sum($totals) * 100, 1) ?>%<br>
+                <a href="/labs/author">
+                  <small>Authors</small>
+                </a>
+              </div>
+            </div>
+            <div class="ui center aligned segment">
+              <div class="ui <?php echo $this->largeNumber::color($totals['author_rewards']['replies'])?> label" data-popup data-content="<?php echo number_format($totals['author_rewards']['replies'], 3, ".", ",") ?> VESTS" data-variation="inverted" data-position="left center">
+                <?php echo $this->largeNumber::format($totals['author_rewards']['replies']); ?>
+              </div>
+              <div class="ui small header" style="margin-top: 0.5em;">
+                <?php echo round($totals['author_rewards']['replies'] / array_sum($totals) * 100, 1) ?>%<br>
+                <a href="/labs/author">
+                  <small>Commenters</small>
+                </a>
+              </div>
+            </div>
+            <div class="ui center aligned segment">
+              <div class="ui <?php echo $this->largeNumber::color($totals['interest'])?> label" data-popup data-content="<?php echo number_format($totals['interest'], 3, ".", ",") ?> VESTS" data-variation="inverted" data-position="left center">
+                <?php echo $this->largeNumber::format($totals['interest']); ?>
+              </div>
+              <div class="ui small header" style="margin-top: 0.5em;">
+                <?php echo round($totals['interest'] / array_sum($totals) * 100, 1) ?>%<br>
+                <a href="/accounts">
+                  <small>Interest</small>
+                </a>
+              </div>
+            </div>
+            <div class="ui center aligned segment">
+              <div class="ui <?php echo $this->largeNumber::color($totals['witnesses'])?> label" data-popup data-content="<?php echo number_format($totals['witnesses'], 3, ".", ",") ?> VESTS" data-variation="inverted" data-position="left center">
+                <?php echo $this->largeNumber::format($totals['witnesses']); ?>
+              </div>
+              <div class="ui small header" style="margin-top: 0.5em;">
+                <?php echo round($totals['witnesses'] / array_sum($totals) * 100, 1) ?>%<br>
+                <a href="/witnesses">
+                  <small>Witnesses</small>
+                </a>
+              </div>
+            </div>
+          </div>
+        {% endif %}
 
-        <div class="ui small dividing header">
-          {#<a class="ui tiny blue basic button" href="/stats" style="float:right">
-            View more details
-          </a>#}
-          30-Day MVest Distribution
-          <div class="sub header">
-            Distribution of stake by the blockchain through various channels over 30 days.
-          </div>
-        </div>
-        <div class="ui horizontal stacked segments">
-          <div class="ui center aligned segment">
-            <div class="ui <?php echo $this->largeNumber::color($totals['curation'])?> label" data-popup data-content="<?php echo number_format($totals['curation'], 3, ".", ",") ?> VESTS" data-variation="inverted" data-position="left center">
-              <?php echo $this->largeNumber::format($totals['curation']); ?>
-            </div>
-            <div class="ui small header" style="margin-top: 0.5em;">
-              <?php echo round($totals['curation'] / array_sum($totals) * 100, 1) ?>%<br>
-              <a href="/labs/curation?grouping=monthly">
-                <small>Curation</small>
-              </a>
-            </div>
-          </div>
-          <div class="ui center aligned segment">
-            <div class="ui <?php echo $this->largeNumber::color($totals['author_rewards']['posts'])?> label" data-popup data-content="<?php echo number_format($totals['author_rewards']['posts'], 3, ".", ",") ?> VESTS" data-variation="inverted" data-position="left center">
-              <?php echo $this->largeNumber::format($totals['author_rewards']['posts']); ?>
-            </div>
-            <div class="ui small header" style="margin-top: 0.5em;">
-              <?php echo round($totals['author_rewards']['posts'] / array_sum($totals) * 100, 1) ?>%<br>
-              <a href="/labs/author">
-                <small>Authors</small>
-              </a>
-            </div>
-          </div>
-          <div class="ui center aligned segment">
-            <div class="ui <?php echo $this->largeNumber::color($totals['author_rewards']['replies'])?> label" data-popup data-content="<?php echo number_format($totals['author_rewards']['replies'], 3, ".", ",") ?> VESTS" data-variation="inverted" data-position="left center">
-              <?php echo $this->largeNumber::format($totals['author_rewards']['replies']); ?>
-            </div>
-            <div class="ui small header" style="margin-top: 0.5em;">
-              <?php echo round($totals['author_rewards']['replies'] / array_sum($totals) * 100, 1) ?>%<br>
-              <a href="/labs/author">
-                <small>Commenters</small>
-              </a>
-            </div>
-          </div>
-          <div class="ui center aligned segment">
-            <div class="ui <?php echo $this->largeNumber::color($totals['interest'])?> label" data-popup data-content="<?php echo number_format($totals['interest'], 3, ".", ",") ?> VESTS" data-variation="inverted" data-position="left center">
-              <?php echo $this->largeNumber::format($totals['interest']); ?>
-            </div>
-            <div class="ui small header" style="margin-top: 0.5em;">
-              <?php echo round($totals['interest'] / array_sum($totals) * 100, 1) ?>%<br>
-              <a href="/accounts">
-                <small>Interest</small>
-              </a>
-            </div>
-          </div>
-          <div class="ui center aligned segment">
-            <div class="ui <?php echo $this->largeNumber::color($totals['witnesses'])?> label" data-popup data-content="<?php echo number_format($totals['witnesses'], 3, ".", ",") ?> VESTS" data-variation="inverted" data-position="left center">
-              <?php echo $this->largeNumber::format($totals['witnesses']); ?>
-            </div>
-            <div class="ui small header" style="margin-top: 0.5em;">
-              <?php echo round($totals['witnesses'] / array_sum($totals) * 100, 1) ?>%<br>
-              <a href="/witnesses">
-                <small>Witnesses</small>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="ui small dividing header">
-          <a class="ui tiny blue basic button" href="/blocks" style="float:right">
+        <div class="ui small dividing header offwhite">
+          <a class="ui tiny blue button" href="/blocks" style="float:right">
             View more blocks
           </a>
           Recent Blockchain Activity
-          <div class="sub header">
+          <div class="sub header offwhite">
             Displaying most recent irreversible blocks.
           </div>
         </div>
@@ -165,9 +167,20 @@
         </table>
       </div>
       <div class="six wide centered column">
-        <div class="ui small dividing header">
+        <div id="hitbtc-ticker" class="hit-medium" style=";width:275px;height:160px;" data-hue="93"></div>
+        <script type="text/javascript">
+            (function() {
+                var po = document.createElement("script");
+                po.type = "text/javascript";
+                po.async = true;
+                po.src = "https://hitbtc.com/get_widget?pair=vitusd";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(po, s);
+            })();
+        </script>
+        <div class="ui small dividing header offwhite">
           Metrics
-          <div class="sub header">
+          <div class="sub header offwhite">
             Witness Parameters, global properties and statistics
           </div>
         </div>
@@ -178,28 +191,13 @@
                 {{ props['steem_per_mvests'] }}
               </div>
               <div class="label">
-                STEEM per MVest
-              </div>
-            </div>
-          </div>
-          <div class="ui center aligned segment">
-            <div class="ui tiny statistic">
-              <div class="value">
-                <span data-state-feed="base">
-                  <i class="notched circle loading icon"></i>
-                </span>
-              </div>
-              <div class="label">
-                per
-                <span data-state-feed="quote">
-                  <i class="notched circle loading icon"></i>
-                </span>
+                VIT per MVest
               </div>
             </div>
           </div>
         </div>
         <div class="ui divider"></div>
-        <div class="ui small header">
+        <div class="ui small header offwhite">
           Network Performance
         </div>
         <table class="ui small definition table" id="state">
@@ -242,13 +240,13 @@
             </tr>
           </tbody>
         </table>
-        <div class="ui small header">
+        <div class="ui small header offwhite">
           Consensus State
         </div>
         <table class="ui small definition table" id="state">
           <tbody>
             <tr>
-              <td class="eight wide">Steem Inflation Rate</td>
+              <td class="eight wide">VIT Inflation Rate</td>
               <td>
                 {{ inflation }}
               </td>
@@ -269,17 +267,9 @@
                 </span>
               </td>
             </tr>
-            <tr>
-              <td>SBD Interest Rate</td>
-              <td>
-                <span data-state-witness-median="sbd_interest_rate">
-                  <i class="notched circle loading icon"></i>
-                </span>
-              </td>
-            </tr>
           </tbody>
         </table>
-        <div class="ui small header">
+        <div class="ui small header offwhite">
           Reward Pool
         </div>
         <table class="ui small definition table" id="global_props">
@@ -294,8 +284,7 @@
             {% endfor %}
           </tbody>
         </table>
-
-        <div class="ui small header">
+        <div class="ui small header offwhite">
           Global Properties
         </div>
         <table class="ui small definition table" id="global_props">

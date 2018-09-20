@@ -8,7 +8,7 @@ use SteemDB\Models\Account;
 use SteemDB\Models\AccountHistory;
 use SteemDB\Models\AuthorReward;
 use SteemDB\Models\BenefactorReward;
-use SteemDB\Models\Block;
+use SteemDB\Models\Block30d;
 use SteemDB\Models\Comment;
 use SteemDB\Models\CurationReward;
 use SteemDB\Models\Follow;
@@ -222,7 +222,7 @@ class AccountController extends ControllerBase
       'limit' => 100
     );
     // var_dump($query); exit;
-    $this->view->mining = Block::find($query);
+    $this->view->mining = Block30d::find($query);
     $this->view->chart = true;
     $this->view->pick("account/view");
   }

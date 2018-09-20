@@ -7,8 +7,8 @@
       <div class="twelve wide column">
         <div style="overflow-x:auto;">
           <div class="ui top attached tabular menu">
-            <a class="item" href="/witnesses">Witnesses</a>
-            <a class="item" href="/witness/history">History</a>
+            <a class="item item-alt" href="/witnesses">Witnesses</a>
+            <a class="item item-alt" href="/witness/history">History</a>
             <a class="active item" href="/witness/misses">Misses</a>
           </div>
           <div class="ui bottom attached segment">
@@ -48,7 +48,7 @@
         </div>
       </div>
       <div class="four wide column">
-        <div class="ui header">
+        <div class="ui header offwhite">
           Most Misses (7-Day)
         </div>
         <div class="ui divided list">

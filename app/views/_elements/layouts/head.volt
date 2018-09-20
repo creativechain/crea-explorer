@@ -15,6 +15,9 @@
     .ui.tabular.menu .item:hover {
       color: #600DD0;
     }
+    .offwhite {
+      color: #f3f3f3 !important;
+    }
     .brand {
       padding-top: .3em !important;
     }
@@ -28,7 +31,10 @@
       min-height: 400px;
     }
     .ui.tabular.menu .item {
-      color: #fff;
+      color: #000;
+    }
+    .ui.tabular.menu .item-alt {
+      color: #f3f3f3;
     }
     .ui.inverted.blue.menu {
       background: rgba(96,13,208,1);

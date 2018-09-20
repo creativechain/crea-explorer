@@ -5,17 +5,17 @@
   <div class="ui top aligned stackable grid container">
     <div class="row">
       <div class="sixteen wide column">
-        <div class="ui huge header">
+        <div class="ui huge header offwhite">
           Witnesses
-          <div class="sub header">
+          <div class="sub header offwhite">
             DPOS elected witnesses and relevant historical information.
           </div>
         </div>
         <div style="overflow-x:auto;">
           <div class="ui top attached tabular menu">
             <a class="active item" href="/witnesses">Witnesses</a>
-            <a class="item" href="/witness/history">History</a>
-            <a class="item" href="/witness/misses">Misses</a>
+            <a class="item item-alt" href="/witness/history">History</a>
+            <a class="item item-alt" href="/witness/misses">Misses</a>
           </div>
           <div class="ui bottom attached segment" style="background: rgba(255,255,255,.9)">
             <div class="ui active tab">

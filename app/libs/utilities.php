@@ -27,7 +27,6 @@ class Utilities
     $start = new UTCDateTime(strtotime("-30 days") * 1000);
     $end = new UTCDateTime(strtotime("midnight") * 1000);
     // Author Rewards
-    // Author Rewards
     $authors = AuthorReward::aggregate([
       ['$match' => [
         '_ts' => [
@@ -37,15 +36,11 @@ class Utilities
       ]],
       ['$project' => [
         'prefix' => ['$substr' => ['$permlink', 0, 3]],
-        'steem_payout' => '$steem_payout',
         'vesting_payout' => '$vesting_payout',
-        'sbd_payout' => '$sbd_payout',
       ]],
       ['$group' => [
         '_id' => 'author',
-        'steem' => ['$sum' => '$steem_payout'],
         'vests' => ['$sum' => '$vesting_payout'],
-        'sbd' => ['$sum' => 'sbd_payout'],
         'op' => [
           '$sum' => ['$cond' => [
             ['$eq' => ['$prefix', 're-']],

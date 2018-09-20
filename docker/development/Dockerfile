@@ -4,9 +4,9 @@ ENV php_conf /etc/php/7.0/fpm/php.ini
 ENV fpm_conf /etc/php/7.0/fpm/php-fpm.conf
 ENV composer_hash 544e09ee996cdf60ece3804abc52599c22b1f40f4323403c44d44fdfdd586475ca9813a858088ffbc1f233e9b180f061
 
-RUN apt-get update && apt-get install -y software-properties-common python-software-properties
+RUN apt-get update -y && apt-get install -y software-properties-common python-software-properties
 
-RUN apt-add-repository ppa:phalcon/stable && apt-get update
+RUN apt-add-repository ppa:phalcon/stable && apt-get update -y
 
 RUN apt-get install -y bash \
     openssh-client \

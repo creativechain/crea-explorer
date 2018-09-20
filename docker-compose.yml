@@ -7,13 +7,15 @@ services:
     restart: on-failure
     volumes:
       - ./docker/history:/src
-    # links:
-    #   - mongo
+    links:
+      - mongo
   live:
     build: ./docker/live
+    environment:
+        steemnode: "jussi.vit.tube"
     restart: on-failure
-    # links:
-    #   - mongo
+    links:
+      - mongo
     ports:
       - "8888:8888"
   sync:
@@ -29,34 +31,37 @@ services:
     build: ./docker/witnesses
     environment:
         steemnode: "jussi.vit.tube"
-    # links:
-    #   - mongo
-  # lucky:
-  #   build: ./docker/lucky
-  #   environment:
-  #     steemnode: "steemd.steemit.com"
+    links:
+      - mongo
+
   development:
     build: ./docker/development
-    # links:
-    #   - mongo
-    external_links:
-      - mongo:steemdb_mongo_1
+    environment:
+        steemnode: "jussi.vit.tube"
+    links:
+      - mongo
+    # external_links:
+      # - mongo:steemdb_mongo_1
     volumes:
       - .:/var/www/html
     ports:
       - "8880:80"
-  # mongodata:
-  #   image: mongo:3.3.10
-  #   volumes:
-#     - /data/db:/data/db
-  #   command: --break-mongo
-  # mongo:
-  #   image: mongo:3.3.10
-  #   volumes_from:
-  #     - mongodata
-  #   # ports:
-  #   #   - "27017:27017"
-  #   command: --smallfiles --rest
+  mongodata:
+    image: mongo:3.3.10
+    volumes:
+    - /data/db:/data/db
+    command: --break-mongo
+  mongo:
+    image: mongo:3.3.10
+    volumes_from:
+      - mongodata
+    # ports:
+    #   - "27017:27017"
+    command: --smallfiles --rest
+  # lucky:
+  #   build: ./docker/lucky
+  #   environment:
+  #     steemnode: "jussi.vit.com"
 
 networks:
     dockernet:

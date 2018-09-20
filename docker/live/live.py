@@ -2,8 +2,7 @@ from autobahn.twisted.websocket import WebSocketServerFactory, \
     WebSocketServerProtocol, \
     listenWS
 from datetime import datetime, timedelta
-from pistonapi.steemnoderpc import SteemNodeRPC
-from piston.steem import Post
+from beem import Steem
 from pprint import pprint
 from twisted.internet import reactor
 from twisted.python import log
@@ -15,7 +14,14 @@ import sys
 import os
 import re
 
-rpc = SteemNodeRPC("https://" + os.environ['steemnode'], "", "", apis=["follow", "database"])
+stm = Steem(node=["https://" + os.environ['steemnode']], custom_chains={"VIT":
+    {'chain_assets': [{'asset': 'VIT', 'id': 0, 'precision': 3, 'symbol': 'VIT'},
+                      {'asset': 'VESTS', 'id': 1, 'precision': 6, 'symbol': 'VESTS'}],
+     'chain_id': '73f14dd4b7b07a8663be9d84300de0f65ef2ee7e27aae32bbe911c548c08f000',
+     'min_version': '0.0.0',
+     'prefix': 'VIT'}
+    }
+)
 
 class BroadcastServerProtocol(WebSocketServerProtocol):
 
@@ -40,7 +46,7 @@ class BroadcastServerFactory(WebSocketServerFactory):
 
     def __init__(self, url):
         WebSocketServerFactory.__init__(self, url)
-        props = rpc.get_dynamic_global_properties()
+        props = stm.rpc.get_dynamic_global_properties()
         self.clients = []
         self.channels = {}
         self.tickcount = 0
@@ -50,8 +56,8 @@ class BroadcastServerFactory(WebSocketServerFactory):
         self.tick()
 
     def tick(self):
-        props = rpc.get_dynamic_global_properties()
-        state = rpc.get_state('@jesta')
+        props = stm.rpc.get_dynamic_global_properties()
+        state = stm.rpc.get_state('@jesta')
         irreversible = props['last_irreversible_block_num']
 
         if props['head_block_number'] != self.last_block:
@@ -78,13 +84,12 @@ class BroadcastServerFactory(WebSocketServerFactory):
 
     def publishState(self, state):
         partial = {
-          'witness_schedule': state['witness_schedule'],
-          'feed_price': state['feed_price']
+          'witness_schedule': state['witness_schedule']
         }
         self.publish("state", "state", partial)
 
     def publishBlock(self, height):
-        block = rpc.get_block(height)
+        block = stm.rpc.get_block(height)
         data = {
             'height': height,
             'accounts': set([]),
@@ -106,7 +111,7 @@ class BroadcastServerFactory(WebSocketServerFactory):
         self.publish("blocks", "block", data)
 
     def publishOps(self, block):
-        ops = rpc.get_ops_in_block(block, False)
+        ops = stm.rpc.get_ops_in_block(block, False)
         for op in ops:
             opType = op['op'][0]
             opData = op['op'][1]

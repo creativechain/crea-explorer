@@ -19,6 +19,7 @@ class IndexController extends ControllerBase
     $this->view->props = $props = $this->steemd->getProps();
     $this->view->inflation = round(max((978 - $props['head_block_number'] / 250000), 95) / 100, 4);
     $this->view->totals = $totals = $this->util->distribution($props);
+    $this->view->renderChart = $renderChart = array_sum($totals);
     # Transactions
     $tx = $results = Status::findFirst([['_id' => 'transactions-24h']]);
     $tx1h = Status::findFirst([['_id' => 'transactions-1h']]);

@@ -15,13 +15,13 @@
           </div>
         </div>
         <div class="ui top attached tabular menu">
-          {{ link_to(["for": "comment-view", "category": comment.category, "author": comment.author, "permlink": comment.permlink], "Content", "class": "item" ~ (router.getActionName() == "view" ? " active" : "")) }}
-          {{ link_to(["for": "comment-view-section", "category": comment.category, "author": comment.author, "permlink": comment.permlink, "action": "tags"], "Tags", "class": "item" ~ (router.getActionName() == "tags" ? " active" : "")) }}
-          {{ link_to(["for": "comment-view-section", "category": comment.category, "author": comment.author, "permlink": comment.permlink, "action": "replies"], "Replies", "class": "item" ~ (router.getActionName() == "replies" ? " active" : "")) }}
-          {{ link_to(["for": "comment-view-section", "category": comment.category, "author": comment.author, "permlink": comment.permlink, "action": "reblogs"], "Reblogs", "class": "item" ~ (router.getActionName() == "reblogs" ? " active" : "")) }}
-          {{ link_to(["for": "comment-view-section", "category": comment.category, "author": comment.author, "permlink": comment.permlink, "action": "votes"], "Votes", "class": "item" ~ (router.getActionName() == "votes" ? " active" : "")) }}
-          {{ link_to(["for": "comment-view-section", "category": comment.category, "author": comment.author, "permlink": comment.permlink, "action": "edits"], "Edit History (" ~ (edits | length) ~ ")", "class": "item" ~ (router.getActionName() == "edits" ? " active" : "")) }}
-          {{ link_to(["for": "comment-view-section", "category": comment.category, "author": comment.author, "permlink": comment.permlink, "action": "data"], "Data", "class": "item" ~ (router.getActionName() == "data" ? " active" : "")) }}
+          {{ link_to(["for": "comment-view", "category": comment.category, "author": comment.author, "permlink": comment.permlink], "Content", "class": "item item-alt" ~ (router.getActionName() == "view" ? " active" : "")) }}
+          {{ link_to(["for": "comment-view-section", "category": comment.category, "author": comment.author, "permlink": comment.permlink, "action": "tags"], "Tags", "class": "item item-alt" ~ (router.getActionName() == "tags" ? " active" : "")) }}
+          {{ link_to(["for": "comment-view-section", "category": comment.category, "author": comment.author, "permlink": comment.permlink, "action": "replies"], "Replies", "class": "item item-alt" ~ (router.getActionName() == "replies" ? " active" : "")) }}
+          {{ link_to(["for": "comment-view-section", "category": comment.category, "author": comment.author, "permlink": comment.permlink, "action": "reblogs"], "Reblogs", "class": "item item-alt" ~ (router.getActionName() == "reblogs" ? " active" : "")) }}
+          {{ link_to(["for": "comment-view-section", "category": comment.category, "author": comment.author, "permlink": comment.permlink, "action": "votes"], "Votes", "class": "item item-alt" ~ (router.getActionName() == "votes" ? " active" : "")) }}
+          {{ link_to(["for": "comment-view-section", "category": comment.category, "author": comment.author, "permlink": comment.permlink, "action": "edits"], "Edit History (" ~ (edits | length) ~ ")", "class": "item item-alt" ~ (router.getActionName() == "edits" ? " active" : "")) }}
+          {{ link_to(["for": "comment-view-section", "category": comment.category, "author": comment.author, "permlink": comment.permlink, "action": "data"], "Data", "class": "item item-alt" ~ (router.getActionName() == "data" ? " active" : "")) }}
         </div>
         <div class="ui bottom attached padded segment">
           <div class="ui active tab">
@@ -54,7 +54,7 @@
         {% include '_elements/cards/account' with ['account': author] %}
         <div class="ui list">
           <div class="item">
-            <a href="https://touch.tube/@{{comment.author}}/{{comment.permlink}}" class="ui fluid primary icon basic small button" target="_blank">
+            <a href="https://touch.tube/@{{comment.author}}/{{comment.permlink}}" class="ui fluid primary icon small button" target="_blank">
               <i class="external icon"></i>
               View Post on Touch.Tube
             </a>

@@ -111,7 +111,7 @@ def update_history():
     # sys.stdout.flush()
 
     # Load all accounts
-    users = rpc.lookup_accounts(-1, 1000)
+    users = stm.rpc.lookup_accounts(-1, 1000)
     more = True
     while more:
         newUsers = stm.rpc.lookup_accounts(users[-1], 1000)
@@ -419,7 +419,7 @@ if __name__ == '__main__':
     update_props_history()
     load_accounts()
     update_stats()
-    # update_history()
+    update_history()
     sys.stdout.flush()
 
     # Schedule it to run every 6 hours

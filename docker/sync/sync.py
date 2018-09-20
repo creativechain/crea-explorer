@@ -138,7 +138,7 @@ def save_author_reward(op, block, blockid):
         '_id': _id,
         '_ts': datetime.strptime(block['timestamp'], "%Y-%m-%dT%H:%M:%S")
     })
-    for key in ['steem_payout', 'vesting_payout']:
+    for key in ['vesting_payout']:
         reward[key] = float(reward[key].split()[0])
     # Save the reward
     db.author_reward.update({'_id': _id}, reward, upsert=True)
@@ -305,65 +305,63 @@ def update_comment(author, permlink, op=None, block=None, blockid=None):
     # Generate our unique permlink
     _id = author + '/' + permlink
 
-      # if this is a diff, save a copy of the diff into the comment_diff collection
-      if op and 'body' in op and op['body'].startswith("@@ "):
-        diffid = str(blockid) + '/' + op['author'] + '/' + op['permlink']
-        diff = op.copy()
-        query = {'_id': diffid}
-        diff.update({
-          '_id': diffid,
-          '_ts': datetime.strptime(block['timestamp'], "%Y-%m-%dT%H:%M:%S"),
-          'block': int(blockid),
-        })
-        db.comment_diff.update(query, diff, upsert=True)
-
-      # get the post as it currently exists
-      comment = rpc.get_content(author, permlink).copy()
-      comment.update({
-          '_id': _id,
+    # if this is a diff, save a copy of the diff into the comment_diff collection
+    if op and 'body' in op and op['body'].startswith("@@ "):
+      diffid = str(blockid) + '/' + op['author'] + '/' + op['permlink']
+      diff = op.copy()
+      query = {'_id': diffid}
+      diff.update({
+        '_id': diffid,
+        '_ts': datetime.strptime(block['timestamp'], "%Y-%m-%dT%H:%M:%S"),
+        'block': int(blockid),
       })
+      db.comment_diff.update(query, diff, upsert=True)
 
-      # fix all values on active votes
-      active_votes = []
-      for vote in comment['active_votes']:
-          vote['rshares'] = float(vote['rshares'])
-          vote['weight'] = float(vote['weight'])
-          vote['time'] = datetime.strptime(vote['time'], "%Y-%m-%dT%H:%M:%S")
-          active_votes.append(vote)
-      comment['active_votes'] = active_votes
+    # get the post as it currently exists
+    comment = stm.rpc.get_content(author, permlink).copy()
+    comment.update({
+        '_id': _id,
+    })
 
-      for key in ['author_reputation', 'net_rshares', 'children_abs_rshares', 'abs_rshares', 'vote_rshares']:
-          comment[key] = float(comment[key])
-      for key in ['total_pending_payout_value', 'pending_payout_value', 'max_accepted_payout', 'total_payout_value', 'curator_payout_value']:
-          comment[key] = float(comment[key].split()[0])
-      for key in ['active', 'created', 'cashout_time', 'last_payout', 'last_update', 'max_cashout_time']:
-          comment[key] = datetime.strptime(comment[key], "%Y-%m-%dT%H:%M:%S")
-      for key in ['json_metadata']:
-          try:
-            comment[key] = json.loads(comment[key])
-          except ValueError:
-            comment[key] = comment[key]
+    # fix all values on active votes
+    active_votes = []
+    for vote in comment['active_votes']:
+        vote['rshares'] = float(vote['rshares'])
+        vote['weight'] = float(vote['weight'])
+        vote['time'] = datetime.strptime(vote['time'], "%Y-%m-%dT%H:%M:%S")
+        active_votes.append(vote)
+    comment['active_votes'] = active_votes
 
-      comment['scanned'] = datetime.now()
-      results = db.comment.update({'_id': _id}, {'$set': comment}, upsert=True)
+    for key in ['author_reputation', 'net_rshares', 'children_abs_rshares', 'abs_rshares', 'vote_rshares']:
+        comment[key] = float(comment[key])
+    for key in ['total_pending_payout_value', 'pending_payout_value', 'max_accepted_payout', 'total_payout_value', 'curator_payout_value']:
+        comment[key] = float(comment[key].split()[0])
+    for key in ['active', 'created', 'cashout_time', 'last_payout', 'last_update', 'max_cashout_time']:
+        comment[key] = datetime.strptime(comment[key], "%Y-%m-%dT%H:%M:%S")
+    for key in ['json_metadata']:
+        try:
+          comment[key] = json.loads(comment[key])
+        except ValueError:
+          comment[key] = comment[key]
 
-      if comment['depth'] > 0 and not results['updatedExisting'] and comment['url'] != '':
-          url = comment['url'].split('#')[0]
-          parts = url.split('/')
-          original_id = parts[2].replace('@', '') + '/' + parts[3]
-          db.comment.update(
-              {
-                  '_id': original_id
-              },
-              {
-                  '$set': {
-                      'last_reply': comment['created'],
-                      'last_reply_by': comment['author']
-                  }
-              }
-          )
-    except:
-      pass
+    comment['scanned'] = datetime.now()
+    results = db.comment.update({'_id': _id}, {'$set': comment}, upsert=True)
+
+    if comment['depth'] > 0 and not results['updatedExisting'] and comment['url'] != '':
+        url = comment['url'].split('#')[0]
+        parts = url.split('/')
+        original_id = parts[2].replace('@', '') + '/' + parts[3]
+        db.comment.update(
+            {
+                '_id': original_id
+            },
+            {
+                '$set': {
+                    'last_reply': comment['created'],
+                    'last_reply_by': comment['author']
+                }
+            }
+        )
 
 def update_comment_options(op, block, blockid):
     _id = op['author'] + '/' + op['permlink']

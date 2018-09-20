@@ -2,7 +2,7 @@
 Description=SteemDB.com Sync Service
 
 [Service]
-Environment=steemnode=peer.vit.tube
+Environment=steemnode=jussi.vit.tube
 WorkingDirectory=/var/www/com_steemdb/docker/sync
 ExecStart=/usr/bin/python3 sync.py
 Restart=always

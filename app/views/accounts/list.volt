@@ -9,9 +9,9 @@
   <div class="ui middle aligned stackable grid container">
     <div class="row">
       <div class="column">
-        <div class="ui huge header seethrough">
+        <div class="ui huge header offwhite">
           Accounts
-          <div class="sub header">
+          <div class="sub header offwhite">
             Accounts sorted by various metrics (richlist by default)
           </div>
         </div>
@@ -23,11 +23,8 @@
               <a class="{{ filter == 'vest' ? 'active' : '' }} item" href="/accounts/vest">
                 Vests/SP
               </a>
-              <a class="{{ filter == 'sbd' ? 'active' : '' }} item" href="/accounts/sbd">
-                SBD
-              </a>
-              <a class="{{ filter == 'steem' ? 'active' : '' }} item" href="/accounts/steem">
-                STEEM
+              <a class="{{ filter == 'vit' ? 'active' : '' }} item" href="/accounts/vit">
+                VIT
               </a>
               <a class="{{ filter == 'powerdown' ? 'active' : '' }} item" href="/accounts/powerdown">
                 Power Down

@@ -53,7 +53,7 @@
         {% include '_elements/cards/account' with ['account': author] %}
         <div class="ui list">
           <div class="item">
-            <a href="https://touch.tube/@{{comment.author}}/{{comment.permlink}}" class="ui fluid primary icon basic small button" target="_blank">
+            <a href="https://touch.tube/@{{comment.author}}/{{comment.permlink}}" class="ui fluid primary icon small button" target="_blank">
               <i class="external icon"></i>
               View Post on Touch.Tube
             </a>

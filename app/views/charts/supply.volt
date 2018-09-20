@@ -21,17 +21,9 @@
       return new Date(dateString);
     };
 
-    var pSBD = function(d) { return +d.sbd; };
     var pSTEEM = function(d) { return +d.steem; };
     var pSP = function(d) { return +d.sp; };
 
-    // Chart SBD
-    var lSBD = new Plottable.Plots.Line();
-    lSBD.addDataset(dataset);
-    lSBD.x(pDate, xScale)
-         .y(pSBD, yScale)
-         .attr("stroke", "#EF320B")
-         ;
 
     // Chart Replies
     var lSTEEM = new Plottable.Plots.Line();
@@ -49,8 +41,8 @@
              .attr("stroke", "#58DC0A");
 
     var cs = new Plottable.Scales.Color();
-    cs.range(["#EF320B", "#0A46D6", "#58DC0A", "#58DC0A"]);
-    cs.domain(["SBD","STEEM","STEEM POWER"]);
+    cs.range(["#0A46D6", "#58DC0A", "#58DC0A"]);
+    cs.domain(["VIT","VIT POWER"]);
     var legend = new Plottable.Components.Legend(cs);
     legend.maxEntriesPerRow(3);
 
@@ -67,7 +59,7 @@
     var yLabel = new Plottable.Components.AxisLabel("", "270");
     var xLabel = new Plottable.Components.TitleLabel("Supply History", "0");
 
-    var plots = new Plottable.Components.Group([lSBD, lSTEEM, lSP]);
+    var plots = new Plottable.Components.Group([lSTEEM, lSP]);
     var table = new Plottable.Components.Table([
       [null, null, xLabel, null, null],
       [null, null, legend, null, null],
