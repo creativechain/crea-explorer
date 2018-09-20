@@ -151,6 +151,11 @@ $router->add('/posts', [
 //   'action' => 'homepage'
 // ]);
 
+$router->add('/live', [
+  'controller' => 'index',
+  'action' => 'homepage'
+]);
+
 $router->add('/', [
   'controller' => 'accounts',
   'action' => 'list'
