@@ -146,9 +146,14 @@ $router->add('/posts', [
   'action' => 'list'
 ]);
 
+// $router->add('/', [
+//   'controller' => 'index',
+//   'action' => 'homepage'
+// ]);
+
 $router->add('/', [
-  'controller' => 'index',
-  'action' => 'homepage'
+  'controller' => 'accounts',
+  'action' => 'list'
 ]);
 
 $router->add('/posts/{tag}/{sort}/{date}', [
