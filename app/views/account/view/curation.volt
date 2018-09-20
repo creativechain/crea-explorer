@@ -15,7 +15,7 @@
     <div class="three wide center aligned column">
       <div class="ui segment">
         <div class="ui header">
-        +<?php echo $this->largeNumber::format($stats[0]->day); ?>
+        +<?php if($stats[0]){echo $this->largeNumber::format($stats[0]->day);} else {echo $this->largeNumber::format(0);} ?>
         <div class="sub header">Last 24 hrs</div>
       </div>
       </div>
