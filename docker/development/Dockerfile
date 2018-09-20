@@ -29,8 +29,9 @@ RUN apt-get install -y bash \
     php7.0-phar \
     php7.0-dom \
     php7.0-phalcon \
-    php7.0-mbstring \
+    php7.0-zip \
     php-xdebug \
+    php7.0-mbstring \
     ca-certificates \
     dialog \
     gcc \
@@ -53,6 +54,13 @@ RUN mkdir -p /etc/nginx/sites-available/ && \
     rm -Rf /var/www/*
 RUN ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/default.conf
 
+RUN apt-get update && apt-get install -y php-pear libcurl4-openssl-dev pkg-config libssl-dev libsslcommon2-dev && \
+    pecl install mongodb && \
+    echo "extension=mongodb.so" > /etc/php/7.0/fpm/conf.d/30-mongo.ini && \
+    echo "extension=mongodb.so" > /etc/php/7.0/cli/conf.d/30-mongo.ini
+
+RUN apt-get install -y memcached php-memcached
+
 # tweak php-fpm config
 RUN mkdir -p /run/php &&\
     sed -i -e "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g" ${php_conf} && \
@@ -71,19 +79,14 @@ RUN mkdir -p /run/php &&\
     sed -i -e "s/;listen.mode = 0660/listen.mode = 0666/g" /etc/php/7.0/fpm/pool.d/www.conf && \
     sed -i -e "s/;listen.owner = nobody/listen.owner = nginx/g" /etc/php/7.0/fpm/pool.d/www.conf && \
     sed -i -e "s/;listen.group = nobody/listen.group = nginx/g" /etc/php/7.0/fpm/pool.d/www.conf && \
-    sed -i -e "s/listen = 127.0.0.1:9000/listen = \/run\/php\/php7.0-fpm.sock/g" /etc/php/7.0/fpm/pool.d/www.conf && \
+    sed -i -e "s/;php_admin_value[memory_limit] = 32M/php_admin_value[memory_limit] = 512M/g" /etc/php/7.0/fpm/pool.d/www.conf && \
     sed -i -e "s/^;clear_env = no$/clear_env = no/" /etc/php/7.0/fpm/pool.d/www.conf &&\
+    sed -i -e "s/memory_limit = 128M/memory_limit = 512M/" /etc/php/7.0/fpm/php.ini &&\
     ln -s /etc/php/7.0/fpm/php.ini /etc/php/7.0/fpm/conf.d/php.ini && \
     find /etc/php/7.0/fpm/conf.d/ -name "*.ini" -exec sed -i -re 's/^(\s*)#(.*)/\1;\2/g' {} \; && \
+    sed -i -e "s/memory_limit = 128M/memory_limit = 512M/" /etc/php/7.0/fpm/conf.d/php.ini &&\
     echo "extension=phalcon.so" > /etc/php/7.0/fpm/conf.d/30-phalcon.ini && \
     echo "extension=phalcon.so" > /etc/php/7.0/cli/conf.d/30-phalcon.ini
-
-RUN apt-get install -y php-pear libcurl4-openssl-dev pkg-config libssl-dev libsslcommon2-dev && \
-    pecl install mongodb && \
-    echo "extension=mongodb.so" > /etc/php/7.0/fpm/conf.d/30-mongo.ini && \
-    echo "extension=mongodb.so" > /etc/php/7.0/cli/conf.d/30-mongo.ini
-
-RUN apt-get install -y memcached php-memcached
 
 # Add Scripts
 ADD scripts/start.sh /start.sh

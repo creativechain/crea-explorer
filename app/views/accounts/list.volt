@@ -9,7 +9,49 @@
   <div class="ui middle aligned stackable grid container">
     <div class="row">
       <div class="column">
-        <div class="ui top attached menu seethrough">
+        <div class="ui huge header seethrough">
+          Accounts
+          <div class="sub header">
+            Accounts sorted by various metrics (richlist by default)
+          </div>
+        </div>
+        <div class="ui top attached menu">
+          <div class="ui dropdown item">
+            Richlist
+            <i class="dropdown icon"></i>
+            <div class="menu">
+              <a class="{{ filter == 'vest' ? 'active' : '' }} item" href="/accounts/vest">
+                Vests/SP
+              </a>
+              <a class="{{ filter == 'sbd' ? 'active' : '' }} item" href="/accounts/sbd">
+                SBD
+              </a>
+              <a class="{{ filter == 'steem' ? 'active' : '' }} item" href="/accounts/steem">
+                STEEM
+              </a>
+              <a class="{{ filter == 'powerdown' ? 'active' : '' }} item" href="/accounts/powerdown">
+                Power Down
+              </a>
+            </div>
+          </div>
+          <a class="{{ filter == 'posts' ? 'active' : '' }} item" href="/accounts/posts">
+            Posts
+          </a>
+          <div class="ui dropdown item">
+            Social
+            <i class="dropdown icon"></i>
+            <div class="menu">
+              <a class="{{ filter == 'followers' ? 'active' : '' }} item" href="/accounts/followers">
+                Followers
+              </a>
+              <a class="{{ filter == 'followers_mvest' ? 'active' : '' }} item" href="/accounts/followers_mvest">
+                Value of Followers
+              </a>
+            </div>
+          </div>
+          <a class="{{ filter == 'reputation' ? 'active' : '' }} item" href="/accounts/reputation">
+            Reputation
+          </a>
           <div class="right menu">
             <div class="item">
               Data updated <?php echo $this->timeAgo::mongo($accounts[0]->scanned); ?>

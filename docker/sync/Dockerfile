@@ -1,10 +1,7 @@
 FROM python:3.6.6
 
-RUN apt-get update && \
-    apt-get install -y git make gcc libssl-dev libgmp-dev python-dev libxml2-dev libxslt1-dev zlib1g-dev
+RUN apt-get update && apt-get install -y make gcc libssl-dev
 
 RUN pip3 install beem pymongo scrypt
-
-COPY . /src
 
 CMD ["python", "/src/sync.py"]

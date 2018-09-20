@@ -53,7 +53,7 @@ def update_witnesses():
 
     scantime = datetime.now()
     users = stm.rpc.get_witnesses_by_vote('', 100)
-    pprint("SteemDB - Update Witnesses (" + str(len(users)) + " accounts)")
+    pprint("VitDB - Update Witnesses (" + str(len(users)) + " accounts)")
     db.witness.remove({})
     for user in users:
         # Convert to Numbers
@@ -71,13 +71,16 @@ def update_witnesses():
         # Save Snapshot in Database
         db.witness_history.update({'_id': _id}, snapshot, upsert=True)
 
+def run():
+    update_witnesses()
+    check_misses()
+
 if __name__ == '__main__':
     # Start job immediately
-    update_witnesses()
+    run()
     # Schedule it to run every 1 minute
     scheduler = BackgroundScheduler()
-    scheduler.add_job(update_witnesses, 'interval', minutes=1, id='update_witnesses')
-    scheduler.add_job(check_misses, 'interval', minutes=1, id='check_misses')
+    scheduler.add_job(run, 'interval', seconds=30, id='run')
     scheduler.start()
     # Loop
     try:

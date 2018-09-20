@@ -16,8 +16,8 @@
     {% for b in mining %}
     <tr>
       <td class="collapsing">
-        <a href="/block/<?php echo $b->block ?>">
-          {{ b._id }}
+        <a href="/block/<?php echo $b->_id ?>">
+          <?php echo $b->_id ?>
         </a>
       </td>
       <td class="collapsing">
