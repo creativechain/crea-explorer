@@ -12,9 +12,9 @@
             ellog = document.getElementById('log');
 
             if (window.location.protocol === "file:") {
-               wsuri = "ws://localhost:8888";
+               wsuri = "ws://localhost:8861";
             } else {
-               wsuri = "ws://" + window.location.hostname + ":8888";
+               wsuri = "ws://" + window.location.hostname + ":8861";
             }
 
             if ("WebSocket" in window) {
