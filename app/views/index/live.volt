@@ -14,7 +14,11 @@
             if (window.location.protocol === "file:") {
                wsuri = "ws://localhost:8681";
             } else {
-               wsuri = "ws://" + window.location.hostname + ":8681";
+               if (window.location.hostname == 'explore.vit.tube') {
+                  wsuri = "ws://live.vit.tube";
+               } else {
+                  wsuri = "ws://" + window.location.hostname + ":8681";
+               }
             }
 
             if ("WebSocket" in window) {

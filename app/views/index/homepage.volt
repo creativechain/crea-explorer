@@ -319,8 +319,10 @@
 
       if (window.location.hostname === "localhost") {
          wsuri = "ws://localhost:8681";
+      } else if (window.location.hostname == 'explore.vit.tube') {
+          wsuri = "wss://live.vit.tube";
       } else {
-         wsuri = "wss://" + window.location.hostname + ":443/ws";
+          wsuri = "ws://" + window.location.hostname + ":8681";
       }
 
       if ("WebSocket" in window) {

@@ -17,7 +17,7 @@ services:
     links:
       - mongo
     ports:
-      - "8681:8888"
+      - "8681:8681"
   sync:
     build: ./docker/sync
     restart: on-failure
