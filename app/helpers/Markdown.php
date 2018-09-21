@@ -46,7 +46,7 @@ class Markdown
     // Prefix all images with steemit's image processor
     foreach($dom->getElementsByTagName("img") as $img) {
       $original = $img->getAttribute("src");
-      $img->setAttribute( "src" , "https://steemitimages.com/0x0/" . $original );
+      $img->setAttribute( "src" , "https://media.vit.tube/resize/0x0/" . $original );
     }
 
     // Format all line breaks to semantic styling

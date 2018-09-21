@@ -2,10 +2,10 @@
   <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no,minimal-ui' />
   <title>VITdb - VIT Blockchain Explorer</title>
   {% if post is defined %}
-  <link rel="canonical" href="https://steemit.com/{{ post.category }}/@{{ post.author }}/{{ post.permlink }}"/>
+  <link rel="canonical" href="https://touch.tube/@{{ post.author }}/{{ post.permlink }}"/>
   {% endif %}
   {% if posts is defined and posts[0] is defined %}
-  <link rel="canonical" href="https://steemit.com/{{ posts[0].category }}/@{{ posts[0].author }}/{{ posts[0].permlink }}"/>
+  <link rel="canonical" href="https://touch.tube/@{{ posts[0].author }}/{{ posts[0].permlink }}"/>
   {% endif %}
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css">
   <style>

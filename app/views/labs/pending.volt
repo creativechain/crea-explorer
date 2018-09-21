@@ -57,9 +57,7 @@
                       </span>
                       payout in <?php echo $this->timeAgo::mongo($comment->cashout_time); ?>
                       &mdash;
-                      <a target="_blank" href="https://steemit.com{{ comment.url }}">steemit.com</a>
-                      &mdash;
-                      <a target="_blank" href="https://beta.chainbb.com{{ comment.url }}">chainbb.com</a>
+                      <a target="_blank" href="https://touch.tube/@{{ comment.author }}/{{ comment.permlink }}">touch.tube</a>
                     </div>
                   </div>
                 </div>
