@@ -489,7 +489,7 @@ if __name__ == '__main__':
     # We are going to loop indefinitely
     while True:
         # Update the Queue
-        # update_queue()
+        update_queue()
         # Process New Blocks
         props = stm.rpc.get_dynamic_global_properties()
         block_number = props['last_irreversible_block_num']
