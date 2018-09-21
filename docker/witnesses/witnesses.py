@@ -53,7 +53,7 @@ def update_witnesses():
 
     scantime = datetime.now()
     users = stm.rpc.get_witnesses_by_vote('', 100)
-    pprint("VitDB - Update Witnesses (" + str(len(users)) + " accounts)")
+    pprint("VITdb - Update Witnesses (" + str(len(users)) + " accounts)")
     db.witness.remove({})
     for user in users:
         # Convert to Numbers

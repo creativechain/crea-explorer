@@ -8,9 +8,9 @@
 
 <div class="ui vertical stripe segment">
   <div class="ui middle aligned stackable grid container">
-    <h1 class="ui header">
+    <h1 class="ui header offwhite">
       Author Rewards Leaderboard
-      <div class="sub header">
+      <div class="sub header offwhite">
         Total rewards earnings by date and display of the top 500.
       </div>
     </h1>
@@ -71,25 +71,17 @@
             {% endif %}
           </div>
         </div>
-        <div class="ui attached basic segment">
+        <div class="ui attached basic segment seethrough">
           <div class="ui small center aligned header">
             Totals (based on {{leaderboard | length}} authors)
           </div>
           <div class="ui divided grid">
-            <div class="four column row">
+            <div class="three column row">
               <div class="center aligned column">
                 <div class="ui header">
                   {{ totals['steem'] }}
                   <div class="sub header">
-                    STEEM
-                  </div>
-                </div>
-              </div>
-              <div class="center aligned column">
-                <div class="ui header">
-                  {{ totals['sbd'] }}
-                  <div class="sub header">
-                    SBD
+                    VIT
                   </div>
                 </div>
               </div>
@@ -97,7 +89,7 @@
                 <div class="ui header">
                   {{ totals['sp'] }}
                   <div class="sub header">
-                    Steem Power
+                    VIT Power
                   </div>
                 </div>
               </div>
@@ -130,34 +122,25 @@
             <thead>
               <tr>
                 <th colspan="2"></th>
-                <th colspan="5" class='center aligned'>Total</th>
-                <th colspan="3" class='center aligned'>Posts</th>
-                <th colspan="3" class='center aligned'>Replies</th>
+                <th colspan="4" class='center aligned'>Total</th>
               </tr>
               <tr>
                 <th class="collapsing">#</th>
                 <th>Account</th>
-                <th class="collapsing center aligned">VESTS/SP</th>
-                <th class="collapsing center aligned">STEEM</th>
-                <th class="collapsing center aligned">SBD</th>
-                <th class="collapsing center aligned">Posts<br/>/Replies</th>
-                <th class="collapsing center aligned">SP/Post</th>
-                <th class="collapsing center aligned">VESTS/SP</th>
-                <th class="collapsing center aligned">STEEM</th>
-                <th class="collapsing center aligned">SBD</th>
-                <th class="collapsing center aligned">VESTS/SP</th>
-                <th class="collapsing center aligned">STEEM</th>
-                <th class="collapsing center aligned">SBD</th>
+                <th class="collapsing center aligned">VESTS/VP</th>
+                <th class="collapsing center aligned">VIT</th>
+                <th class="collapsing center aligned">Posts</th>
+                <th class="collapsing center aligned">VP/Post</th>
               </tr>
             </thead>
             <tbody></tbody>
           {% for account in leaderboard %}
             {% if loop.index > 500 %}{% continue %}{% endif %}
-            <tr>
-              <td>
+            <tr style="text-align: right">
+              <td style="text-align: left">
                 #{{ loop.index }}
               </td>
-              <td>
+              <td style="width:20%;min-width:100px;max-width:200px;text-align:left">
                 <a href="/@{{ account._id }}">
                   {{ account._id }}
                 </a>
@@ -168,50 +151,17 @@
                 </div>
                 <br>
                 <small>
-                  ~<?php echo $this->convert::vest2sp($account->vest, ""); ?> SP*
+                  ~<?php echo $this->convert::vest2sp($account->vest, ""); ?> VP*
                 </small>
               </td>
               <td>
                 {{ account.steem }}
               </td>
               <td>
-                {{ account.sbd }}
-              </td>
-              <td>
-                {{ account.posts }}/{{ account.replies }}
+                {{ account.posts }}
               </td>
               <td>
                 ~<?php echo $this->convert::vest2sp($account->vest / $account->count, ""); ?>&nbsp;SP*
-              </td>
-              <td class="right aligned">
-                <div class="ui <?php echo $this->largeNumber::color($account->postVest)?> label" data-popup data-content="<?php echo number_format($account->postVest, 3, ".", ",") ?> VESTS" data-variation="inverted" data-position="left center">
-                  <?php echo $this->largeNumber::format($account->postVest); ?>
-                </div>
-                <br>
-                <small>
-                  ~<?php echo $this->convert::vest2sp($account->postVest, ""); ?> SP*
-                </small>
-              </td>
-              <td>
-                {{ account.postSteem }}
-              </td>
-              <td>
-                {{ account.postSbd }}
-              </td>
-              <td class="right aligned">
-                <div class="ui <?php echo $this->largeNumber::color($account->replyVest)?> label" data-popup data-content="<?php echo number_format($account->replyVest, 3, ".", ",") ?> VESTS" data-variation="inverted" data-position="left center">
-                  <?php echo $this->largeNumber::format($account->replyVest); ?>
-                </div>
-                <br>
-                <small>
-                  ~<?php echo $this->convert::vest2sp($account->replyVest, ""); ?> SP*
-                </small>
-              </td>
-              <td>
-                {{ account.replySteem }}
-              </td>
-              <td>
-                {{ account.replySbd }}
               </td>
             </tr>
           {% else %}

@@ -15,9 +15,9 @@
   <div class="ui middle aligned stackable grid container">
     <div class="row">
       <div class="column">
-        <div class="ui huge header">
-          SteemDB Labs
-          <div class="sub header">
+        <div class="ui huge header offwhite">
+          VITdb Labs
+          <div class="sub header offwhite">
             Experimental projects and testing grounds for various concepts.
           </div>
         </div>
@@ -121,32 +121,19 @@
                 </div>
               </div>
             </div>
-            <div class="item">
-              <div class="ui header">
-                <i class="list icon"></i>
-                <div class="content">
-                  <a href="/labs/conversions">
-                    SBD Conversion History
-                  </a>
-                  <div class="sub header">
-                    Most recent SBD -> STEEM Conversions
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="item">
+            {#<div class="item">
               <div class="ui header">
                 <i class="list icon"></i>
                 <div class="content">
                   <a href="/labs/clients">
-                    Steem Client Usage
+                    VIT Client Usage
                   </a>
                   <div class="sub header">
                     Which steem clients are being used
                   </div>
                 </div>
               </div>
-            </div>
+            </div>#}
           </div>
         </div>
         <div class="ui segment seethrough">
@@ -239,16 +226,16 @@
                 </div>
               </div>
             </div>
-            <div class="item">
+            {#<div class="item">
               <div class="ui header">
                 <a href="/api/topwitnesses">
-                  STEEM -> VESTS per Day
+                  VIT -> VESTS per Day
                 </a>
                 <div class="sub header">
-                  Total amount of STEEM powered up per day over the last 30 days
+                  Total amount of VIT powered up per day over the last 30 days
                 </div>
               </div>
-            </div>
+            </div>#}
           </div>
         </div>
       </div>

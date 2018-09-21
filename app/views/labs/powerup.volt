@@ -9,9 +9,9 @@
   <div class="ui middle aligned stackable grid container">
     <div class="row">
       <div class="column">
-        <div class="ui large header">
+        <div class="ui large header offwhite">
           Biggest Account Power Ups
-          <div class="sub header">
+          <div class="sub header offwhite">
             Largest total steem powered up per account
           </div>
         </div>

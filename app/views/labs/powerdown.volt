@@ -9,33 +9,33 @@
   <div class="ui stackable grid container">
     <div class="row">
       <div class="column">
-        <div class="ui huge dividing header">
+        <div class="ui huge dividing header offwhite">
           Power Down Statistics
-          <div class="sub header">
+          <div class="sub header offwhite">
             Analysis of the accounts currently powering down (using UTC time)
           </div>
         </div>
         <div class="ui small three statistics">
           <div class="statistic">
-            <div class="label">
-              Liquid Steem
+            <div class="label offwhite">
+              Liquid VIT
             </div>
-            <div class="value">
+            <div class="value offwhite">
               <?php echo number_format($props['liquid'], 0, ".", ",") ?>
             </div>
           </div>          <div class="statistic">
-            <div class="label">
+            <div class="label offwhite">
               Current Supply
             </div>
-            <div class="value">
+            <div class="value offwhite">
               <?php echo number_format($props['current'], 0, ".", ",") ?>
             </div>
           </div>
           <div class="statistic">
-            <div class="label">
+            <div class="label offwhite">
               Total Vesting Fund
             </div>
-            <div class="value">
+            <div class="value offwhite">
               <?php echo number_format($props['vesting'], 0, ".", ",") ?>
             </div>
           </div>
@@ -46,9 +46,9 @@
     </div>
     <div class="row">
       <div class="seven wide column">
-        <div class="ui centered header">
+        <div class="ui centered header offwhite">
           Pending Power Downs
-          <div class="sub header">
+          <div class="sub header offwhite">
             Total powering down in the next week
           </div>
         </div>
@@ -57,7 +57,7 @@
             <tr>
               <th>Total (Weekly)</th>
               <th class="right aligned"><?php echo number_format($upcoming_total, 0, ".", ",") ?> VESTS</th>
-              <th class="right aligned">~<?php echo $this->convert::vest2sp($upcoming_total, " STEEM", 0); ?></th>
+              <th class="right aligned">~<?php echo $this->convert::vest2sp($upcoming_total, " VIT", 0); ?></th>
             </tr>
           </thead>
           <tbody>
@@ -72,16 +72,16 @@
                 {% endif %}
               </td>
               <td class="right aligned"><?php echo number_format($day->withdrawn, 0, ".", ",") ?> VESTS</td>
-              <td class="right aligned">~<?php echo $this->convert::vest2sp($day->withdrawn, " STEEM", 0); ?></td>
+              <td class="right aligned">~<?php echo $this->convert::vest2sp($day->withdrawn, " VIT", 0); ?></td>
             </tr>
             {% endfor %}
           </tbody>
         </table>
       </div>
       <div class="two wide column">
-        <div class="ui centered header">
+        <div class="ui centered header offwhite">
           Difference
-          <div class="sub header">
+          <div class="sub header offwhite">
             % Change
           </div>
         </div>
@@ -128,9 +128,9 @@
         </table>
       </div>
       <div class="seven wide column">
-        <div class="ui centered header">
+        <div class="ui centered header offwhite">
           Completed Power Downs
-          <div class="sub header">
+          <div class="sub header offwhite">
             Total powered down in the last week
           </div>
         </div>
@@ -139,7 +139,7 @@
             <tr>
               <th>Total</th>
               <th class="right aligned"><?php echo number_format($previous_total, 0, ".", ",") ?> VESTS</th>
-              <th class="right aligned">~<?php echo $this->convert::vest2sp($previous_total, " STEEM", 0); ?></th>
+              <th class="right aligned">~<?php echo $this->convert::vest2sp($previous_total, " VIT", 0); ?></th>
             </tr>
           </thead>
           <tbody>
@@ -151,7 +151,7 @@
                 {{ day['_id']['month'] }}-{{ day['_id']['day'] }}
               </td>
               <td class="right aligned"><?php echo number_format($day->withdrawn, 0, ".", ",") ?> VESTS</td>
-              <td class="right aligned">~<?php echo $this->convert::vest2sp($day->withdrawn, " STEEM", 0); ?></td>
+              <td class="right aligned">~<?php echo $this->convert::vest2sp($day->withdrawn, " VIT", 0); ?></td>
             </tr>
             {% endfor %}
           </tbody>
@@ -161,9 +161,9 @@
     <div class="row">
       <div class="column">
         <div class="ui divider"></div>
-        <div class="ui header">
+        <div class="ui header offwhite">
           Largest Liquidity Increases
-          <div class="sub header">
+          <div class="sub header offwhite">
             30 days worth of powerdowns combined per account
           </div>
         </div>
@@ -171,7 +171,7 @@
           <thead>
             <tr>
               <th></th>
-              <th class="right aligned">Steem Deposited</th>
+              <th class="right aligned">VIT Deposited</th>
               <th class="right aligned">Vests Withdrawn</th>
               <th>Vests Remaining</th>
               <th>Account Withdrawing</th>
@@ -185,7 +185,7 @@
               <td class="collapsing">{{ loop.index }}</td>
               <td class="collapsing right aligned">
                 <div class="ui header">
-                  +<?php echo $this->largeNumber::format($powerdown->deposited, '', " STEEM", 0); ?>
+                  +<?php echo $this->largeNumber::format($powerdown->deposited, '', " VIT", 0); ?>
                   <div class="sub header">
                     {{ powerdown.count }}x Power Downs
                   </div>

@@ -8,9 +8,9 @@
 
 <div class="ui vertical stripe segment">
   <div class="ui middle aligned stackable grid container">
-    <h1 class="ui header">
+    <h1 class="ui header offwhite">
       Curation Rewards Leaderboard
-      <div class="sub header">
+      <div class="sub header offwhite">
         The top earning curators by date
       </div>
     </h1>

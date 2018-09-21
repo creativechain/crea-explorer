@@ -9,14 +9,14 @@
 <div class="ui vertical stripe segment">
   <div class="ui middle aligned stackable grid container">
     <div class="row">
-      <div class="column">
-        <div class="ui large header">
+      <div class="eight wide centered column">
+        <div class="ui large header offwhite">
           Vote Focusing
-          <div class="sub header">
+          <div class="sub header offwhite">
             Voters who focus their votes on specific authors in the last 30 days.
           </div>
         </div>
-        <table class="ui collapsing table">
+        <table class="ui collapsing table seethrough">
           <thead>
             <tr>
               <th>Account Weight</th>

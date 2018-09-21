@@ -5,10 +5,10 @@
 {% endblock %}
 
 {% block content %}
-  <div class="ui container">
+  <div class="ui container" style="padding-top:40px;">
     <div class="ui grid">
       <div class="one column row">
-        <div class="column">
+        <div class="column seethrough">
           <div class="ui large header" style="margin-top: 50px">
             Pending Payout Review
             <div class="sub header">
@@ -50,9 +50,9 @@
                       <span class="mobile hidden">&mdash;</span>
                       <br class="mobile visible">
                       <span class="ui small left floated green header mobile visible">
-                        ${{ comment.total_payout_value }}
+                        {{ comment.total_payout_value }} VIT
                         <span class="sub header">
-                          (+<?php echo $this->largeNumber::format($comment->pending_payout_value); ?> Pending)
+                          (+<?php echo $comment->pending_payout_value; ?> Pending)
                         </span>
                       </span>
                       payout in <?php echo $this->timeAgo::mongo($comment->cashout_time); ?>
@@ -63,9 +63,9 @@
                 </div>
                 <div class="three wide center mobile hidden aligned column">
                   <div class="ui green header">
-                    ${{ comment.total_payout_value }}
+                    {{ comment.total_payout_value }} VIT
                     <div class="sub header">
-                      +<?php echo $this->largeNumber::format($comment->pending_payout_value); ?> Pending
+                      +<?php echo $comment->pending_payout_value; ?> Pending
                     </div>
                   </div>
                 </div>

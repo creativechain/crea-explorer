@@ -344,13 +344,10 @@ class ApiController extends ControllerBase
             'month' => ['$month' => '$date'],
             'day' => ['$dayOfMonth' => '$date'],
           ],
-          'sbd' => [
-            '$sum' => '$sbd_balance'
-          ],
-          'steem' => [
+          'vit' => [
             '$sum' => '$balance'
           ],
-          'steem_savings' => [
+          'vit_savings' => [
             '$sum' => '$savings_balance'
           ],
           'vests' => [
@@ -368,9 +365,10 @@ class ApiController extends ControllerBase
         '$limit' => 30
       ],
     ])->toArray();
-    foreach($data as $idx => $date) {
-      $data[$idx]->sp = (float) $this->convert->vest2sp($data[$idx]->vests, null);
-    }
+    // TODO: Figure out why VP shows as a small number
+    // foreach($data as $idx => $date) {
+    //   $data[$idx]->vp = (float) $this->convert->vest2sp($data[$idx]->vests, null);
+    // }
     echo json_encode($data, JSON_PRETTY_PRINT);
   }
 

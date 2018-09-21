@@ -137,6 +137,11 @@ $router->add('/powerdown', [
   'action' => 'powerdown'
 ]);
 
+$router->add('/labs/focus', [
+  'controller' => 'labs',
+  'action' => 'votefocusing'
+]);
+
 /*
   comment aggregation routes
 */

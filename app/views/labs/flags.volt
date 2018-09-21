@@ -9,9 +9,9 @@
   <div class="ui middle aligned stackable grid container">
     <div class="row">
       <div class="column">
-        <div class="ui large header">
+        <div class="ui large header offwhite">
           Account List by Flags Received
-          <div class="sub header">
+          <div class="sub header offwhite">
             Displaying the top 200 most-flagged accounts
           </div>
         </div>

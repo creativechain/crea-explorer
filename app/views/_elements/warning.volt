@@ -3,10 +3,10 @@
     <i class="notched circle loading icon"></i>
     <div class="content">
       <div class="header">
-        STEEM blockchain upgrade in progress
+        VITdb blockchain upgrade in progress
       </div>
       <p>
-        The upgrade to v0.18.0 has been started and some data will be out of date until it's completed. This message will be removed once completed.
+        VITdb is experiencing degraded service at this time. Please standby.
       </p>
     </div>
   </div>

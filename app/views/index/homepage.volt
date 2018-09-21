@@ -19,7 +19,7 @@
 
 <div class="ui body container">
   <h1 class="ui header offwhite">
-    VitDB
+    VITdb
     <div class="sub header offwhite">
       Block explorer and database for the VIT blockchain.
     </div>
@@ -83,17 +83,17 @@
                 </a>
               </div>
             </div>
-            <div class="ui center aligned segment">
+            {#<div class="ui center aligned segment">
               <div class="ui <?php echo $this->largeNumber::color($totals['author_rewards']['replies'])?> label" data-popup data-content="<?php echo number_format($totals['author_rewards']['replies'], 3, ".", ",") ?> VESTS" data-variation="inverted" data-position="left center">
                 <?php echo $this->largeNumber::format($totals['author_rewards']['replies']); ?>
               </div>
               <div class="ui small header" style="margin-top: 0.5em;">
-                <?php echo round($totals['author_rewards']['replies'] / array_sum($totals) * 100, 1) ?>%<br>
+                <?php echo round($totals['author_rewards'][0] / array_sum($totals) * 100, 1) ?>%<br>
                 <a href="/labs/author">
                   <small>Commenters</small>
                 </a>
               </div>
-            </div>
+            </div>#}
             <div class="ui center aligned segment">
               <div class="ui <?php echo $this->largeNumber::color($totals['interest'])?> label" data-popup data-content="<?php echo number_format($totals['interest'], 3, ".", ",") ?> VESTS" data-variation="inverted" data-position="left center">
                 <?php echo $this->largeNumber::format($totals['interest']); ?>

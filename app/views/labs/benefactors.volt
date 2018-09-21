@@ -10,7 +10,7 @@
     <div class="row">
       <div class="column">
         <div class="ui large header">
-          Steem Benefactors
+          VIT Benefactors
           <div class="sub header">
             Top Earning Benefactors by Date
           </div>
