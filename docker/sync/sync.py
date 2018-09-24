@@ -69,6 +69,8 @@ def process_op(opObj, block, blockid):
         save_vesting_deposit(op, block, blockid)
     if opType == "fill_vesting_withdraw":
         save_vesting_withdraw(op, block, blockid)
+    if opType == "claim_reward_balance":
+        save_claim_reward_balance(op, block, blockid)
 
 def process_block(block, blockid):
     save_block(block, blockid)
@@ -300,6 +302,11 @@ def save_witness_vote(op, block, blockid):
     queue_update_account(witness_vote['account'])
     if witness_vote['account'] != witness_vote['witness']:
         queue_update_account(witness_vote['witness'])
+
+def save_claim_reward_balance(op, block, blockid):
+    # just trigger account update when claimed to update snapshot
+    claim_balance = op.copy()
+    queue_update_account(claim_balance['account'])
 
 def update_comment(author, permlink, op=None, block=None, blockid=None):
     # Generate our unique permlink
