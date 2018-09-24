@@ -253,7 +253,10 @@ def update_stats():
       }
     }
   ])
-  db.status.update({'_id': 'transactions-1h'}, {'$set': {'data' : list(results)[0]['tx']}}, upsert=True)
+  try:
+    db.status.update({'_id': 'transactions-1h'}, {'$set': {'data' : list(results)[0]['tx']}}, upsert=True)
+  except IndexError:
+    db.status.update({'_id': 'transactions-1h'}, {'$set': {'data' : 0}}, upsert=True)
 
   # Calculate Operations
   results = db.block_30d.aggregate([
@@ -311,8 +314,10 @@ def update_stats():
       }
     }
   ])
-  db.status.update({'_id': 'operations-1h'}, {'$set': {'data' : list(results)[0]['tx']}}, upsert=True)
-
+  try:
+    db.status.update({'_id': 'operations-1h'}, {'$set': {'data' : list(results)[0]['tx']}}, upsert=True)
+  except:
+    db.status.update({'_id': 'operations-1h'}, {'$set': {'data' : 0}}, upsert=True)
 
 def update_clients():
   try:
