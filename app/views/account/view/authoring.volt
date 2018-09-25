@@ -47,10 +47,7 @@
     <tr>
       <th class="right aligned">Date</th>
       <th class="right aligned">Posts</th>
-      <th class="right aligned">SBD</th>
-      <th class="right aligned">STEEM</th>
-      <th class="right aligned">VESTS Inc.</th>
-      <th class="center aligned">Est. SP</th>
+      <th class="right aligned">VIT</th>
     </tr>
   </thead>
   <tbody>
@@ -65,15 +62,7 @@
             {{ reward.posts }}
           </td>
           <td class="collapsing right aligned">
-            <?php echo $this->largeNumber::format($reward->steem_payout); ?> VIT
-          </td>
-          <td class="collapsing right aligned">
-            <div class="ui <?php echo $this->largeNumber::color($reward->reward)?> label" data-popup data-content="<?php echo number_format($reward->reward, 3, ".", ",") ?> VESTS" data-variation="inverted" data-position="left center">
-              <?php echo $this->largeNumber::format($reward->vesting_payout); ?>
-            </div>
-          </td>
-          <td class="collapsing right aligned">
-            ~<?php echo $this->convert::vest2sp($reward->vesting_payout, ""); ?> VP*
+            ~<?php echo $this->convert::vest2sp($reward->vesting_payout, ""); ?> VIT
           </td>
         </tr>
     {% else %}
