@@ -1,6 +1,8 @@
 <?php
 namespace SteemDB\Controllers;
 
+use \Datetime;
+
 use MongoDB\BSON\Regex;
 use MongoDB\BSON\UTCDateTime;
 
@@ -46,6 +48,13 @@ class AccountController extends ControllerBase
       // Use cache
       $this->view->live = $cached;
     }
+    // Calculate actual voting power
+    $current_time = new DateTime();
+    $last_vote_power = $this->view->live[0]['voting_power'];
+    $last_vote_time = new DateTime($this->view->live[0]['last_vote_time']);
+    $secondsago = $current_time->getTimestamp() - $last_vote_time->getTimestamp();
+    $calculated_power = $last_vote_power + (10000 * $secondsago / 432000);
+    $this->view->actual_voting_power = min(round($calculated_power / 10000 * 100, 2), 100);
     return $account;
   }
 
