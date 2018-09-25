@@ -429,7 +429,7 @@ if __name__ == '__main__':
 
     # Schedule it to run every 6 hours
     scheduler = BackgroundScheduler()
-    scheduler.add_job(update_history, 'interval', hours=24, id='update_history')
+    scheduler.add_job(update_history, 'interval', hours=6, id='update_history')
     scheduler.add_job(update_clients, 'interval', hours=1, id='update_clients')
     scheduler.add_job(update_stats, 'interval', minutes=5, id='update_stats')
     scheduler.start()
