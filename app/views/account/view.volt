@@ -45,8 +45,8 @@
         <div class="ui sticky">
           {% include '_elements/cards/account.volt' %}
           <div class="ui small indicating progress">
-            <div class="label">
-              {{ live[0]['voting_power'] / 10000 * 100 }}% Voting Power
+            <div class="label offwhite">
+              {{ actual_voting_power }}% Voting Power
             </div>
             <div class="bar">
               <div class="progress"></div>
@@ -98,7 +98,7 @@
   <script>
     $('.ui.indicating.progress')
       .progress({
-        percent: {{ live[0]['voting_power'] / 100 }}
+        percent: {{ actual_voting_power }}
       });
     $('.tabular.menu .item')
       .tab({
