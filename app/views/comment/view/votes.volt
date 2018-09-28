@@ -12,15 +12,15 @@
     {% for voter in votes %}
     <tr>
       <td class="mobile hidden">
-        {{ voter.percent / 100 }}%
+        {{ voter['percent'] / 100 }}%
       </td>
       <td>
-        <a href="/@{{ voter.voter }}">
-          {{ voter.voter }}
+        <a href="/@{{ voter['voter'] }}">
+          {{ voter['voter'] }}
         </a>
       </td>
       <td class="mobile hidden">
-        {{ date("Y-m-d H:i:s", voter.time / 1000) }}
+        <?php echo $voter['time']->toDateTime()->format('Y-m-d H:i:s') ;?>
       </td>
       <td class="mobile hidden right aligned">
         {% include "_elements/voter_weight.volt" %}
