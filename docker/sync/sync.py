@@ -446,10 +446,10 @@ def update_account(account_name):
 def update_queue():
     # -- Process Queue
     queue_length = 100
-    # Don't update automatically if it's older than 3 days (let it update when votes occur)
-    max_date = datetime.now() + timedelta(-3)
-    # Don't update if it's been scanned within the six hours
-    scan_ignore = datetime.now() - timedelta(hours=6)
+    # Don't update automatically if it's older than 6 days (let it update when votes occur)
+    max_date = datetime.now() + timedelta(-6)
+    # Don't update if it's been scanned within the three hours
+    scan_ignore = datetime.now() - timedelta(hours=3)
 
     # -- Process Queue - Find 100 previous comments to update
     queue = db.comment.find({
