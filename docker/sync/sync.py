@@ -47,7 +47,7 @@ def process_op(opObj, block, blockid):
         update_comment_options(op, block, blockid)
     if opType == "vote":
         # Update the comment and vote
-        # update_comment(op['author'], op['permlink'])
+        update_comment(op['author'], op['permlink'])
         save_vote(op, block, blockid)
     if opType =="convert":
         save_convert(op, block, blockid)
