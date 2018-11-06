@@ -26,6 +26,16 @@ class LargeNumber extends Tag
       return number_format(($n/1000000),$dec,".",",").'&nbsp;<strong>M'.$unit.'</strong>';
     else if($n>1000)
       return number_format(($n/1000),$dec,".",",").'&nbsp;<strong>k'.$unit.'</strong>';
+    else if($n<-1000000000000000)
+      return number_format(($n/1000000000000000),$dec,".",",").'&nbsp;<strong>P'.$unit.'</strong>';
+    else if($n<-1000000000000)
+      return number_format(($n/1000000000000),$dec,".",",").'&nbsp;<strong>T'.$unit.'</strong>';
+    else if($n<-1000000000)
+      return number_format(($n/1000000000),$dec,".",",").'&nbsp;<strong>G'.$unit.'</strong>';
+    else if($n<-1000000)
+      return number_format(($n/1000000),$dec,".",",").'&nbsp;<strong>M'.$unit.'</strong>';
+    else if($n<-1000)
+      return number_format(($n/1000),$dec,".",",").'&nbsp;<strong>k'.$unit.'</strong>';
     return number_format($n, $dec);
   }
 
@@ -38,6 +48,14 @@ class LargeNumber extends Tag
     } elseif($n >= 1000) {
       return "blue";
     } elseif($n > 0) {
+      return "green";
+    } elseif($n <= -1000000000) {
+      return "orange";
+    } elseif($n <= -1000000) {
+      return "purple";
+    } elseif($n <= -1000) {
+      return "blue";
+    } elseif($n < 0) {
       return "green";
     } else {
       return "";
