@@ -9,6 +9,7 @@ RUN apt-get update -y && apt-get install -y software-properties-common python-so
 RUN apt-add-repository ppa:phalcon/stable && apt-get update -y
 
 RUN apt-get install -y bash \
+    vim \
     openssh-client \
     wget \
     nginx \
