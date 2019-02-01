@@ -151,7 +151,6 @@ def update_history():
             last_account = follower['follower']
             if 'blog' in follower['what'] or 'posts' in follower['what']:
               account['followers'].append(follower['follower'])
-              account['followers_count'] += 1
               if follower['follower'] in mvest_per_account.keys():
                 account['followers_mvest'] += float(mvest_per_account[follower['follower']])
           followers_results = stm.rpc.get_followers({"account": user, "start": last_account, "type": "blog", "limit": 100}, api="follow")['followers'][1:]
@@ -164,7 +163,6 @@ def update_history():
             last_account = following['following']
             if 'blog' in following['what'] or 'posts' in following['what']:
               account['following'].append(following['following'])
-              account['following_count'] += 1
           following_results = stm.rpc.get_following({"account": user, "start": last_account, "type": "blog", "limit": 100}, api="follow")['following'][1:]
         # Convert to Numbers
         account['proxy_witness'] = sum(float(i) for i in account['proxied_vsf_votes']) / 1000000
@@ -183,7 +181,7 @@ def update_history():
         account['scanned'] = datetime.now()
         db.account.update({'_id': user}, account, upsert=True)
         # Create our Snapshot dict
-        wanted_keys = ['name', 'proxy', 'activity_shares', 'average_bandwidth', 'average_market_bandwidth', 'savings_balance', 'balance', 'comment_count', 'curation_rewards', 'lifetime_bandwidth', 'lifetime_vote_count', 'next_vesting_withdrawal', 'reputation', 'post_bandwidth', 'post_count', 'posting_rewards', 'to_withdraw', 'vesting_balance', 'vesting_shares', 'vesting_withdraw_rate', 'voting_power', 'withdraw_routes', 'withdrawn', 'witnesses_voted_for']
+        wanted_keys = ['name', 'proxy_witness', 'activity_shares', 'average_bandwidth', 'average_market_bandwidth', 'savings_balance', 'balance', 'comment_count', 'curation_rewards', 'lifetime_bandwidth', 'lifetime_vote_count', 'next_vesting_withdrawal', 'reputation', 'post_bandwidth', 'post_count', 'posting_rewards', 'to_withdraw', 'vesting_balance', 'vesting_shares', 'vesting_withdraw_rate', 'voting_power', 'withdraw_routes', 'withdrawn', 'witnesses_voted_for']
         snapshot = dict((k, account[k]) for k in wanted_keys if k in account)
         snapshot.update({
           'account': user,
