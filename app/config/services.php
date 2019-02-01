@@ -157,9 +157,9 @@ $di->set('logger', function ($filename = null, $format = null) {
   return $logger;
 });
 
-$di->set('cread', function() {
-  require_once(APP_PATH . '/libs/cread.php');
-  return new Steemd('https://node1.creary.net');
+$di->set('Cread', function() {
+  require_once(APP_PATH . '/libs/Cread.php');
+  return new Cread('https://node1.creary.net');
 });
 
 $di->set('memcached', function() {

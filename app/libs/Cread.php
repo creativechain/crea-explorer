@@ -5,7 +5,7 @@ use JsonRPC\HttpClient;
 
 use CrearyDB\Models\Status;
 
-class cread
+class Cread
 {
 
   protected $host;

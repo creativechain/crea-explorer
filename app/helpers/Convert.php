@@ -11,7 +11,7 @@ class Convert extends Tag
   }
 
   static private function getProps() {
-    return static::getDI()->getShared('cread')->getProps();
+    return static::getDI()->getShared('Cread')->getProps();
   }
 
   static public function getConversionRate($key) {
