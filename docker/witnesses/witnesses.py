@@ -1,5 +1,5 @@
 from datetime import datetime
-from beem import Steem
+from crea import Crea
 from pymongo import MongoClient
 from pprint import pprint
 from time import gmtime, strftime
@@ -9,10 +9,10 @@ import time
 import sys
 import os
 
-stm = Steem(node=["https://" + os.environ['crearynode']], custom_chains={"CREA":
+stm = Crea(node=["https://" + os.environ['crearynode']], custom_chains={"CREA":
     {'chain_assets': [{'asset': 'CREA', 'id': 0, 'precision': 3, 'symbol': 'CREA'},
                       {'asset': 'VESTS', 'id': 1, 'precision': 6, 'symbol': 'VESTS'}],
-     'chain_id': '73f14dd4b7b07a8663be9d84300de0f65ef2ee7e27aae32bbe911c548c08f000',
+     'chain_id': '0000000000000000000000000000000000000000000000000000000000000000',
      'min_version': '0.0.0',
      'prefix': 'CREA'}
     }
