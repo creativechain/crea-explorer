@@ -491,7 +491,7 @@ if __name__ == '__main__':
     sys.stdout.flush()
     # Let's find out how often blocks are generated!
     config = stm.rpc.get_config()
-    block_interval = config["CREARY_BLOCK_INTERVAL"]
+    block_interval = config["CREA_BLOCK_INTERVAL"]
     load_accounts()
     # We are going to loop indefinitely
     while True:
