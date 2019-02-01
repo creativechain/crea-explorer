@@ -144,7 +144,7 @@ def update_history():
         # Get followers
         account['followers'] = []
         account['followers_mvest'] = 0
-        followers_results = stm.rpc.get_followers({"account": user, "start": "", "type": "blog", "limit": 100}, api="follow")
+        followers_results = stm.rpc.get_followers({"account": user, "start": "", "type": "blog", "limit": 100}, api="follow")['followers']
         while followers_results:
           last_account = ""
           for follower in followers_results:
@@ -154,10 +154,10 @@ def update_history():
               account['followers_count'] += 1
               if follower['follower'] in mvest_per_account.keys():
                 account['followers_mvest'] += float(mvest_per_account[follower['follower']])
-          followers_results = stm.rpc.get_followers({"account": user, "start": last_account, "type": "blog", "limit": 100}, api="follow")[1:]
+          followers_results = stm.rpc.get_followers({"account": user, "start": last_account, "type": "blog", "limit": 100}, api="follow")['followers'][1:]
         # Get following
         account['following'] = []
-        following_results = stm.rpc.get_following({"account": user, "start": -1, "type": "blog", "limit": 100}, api="follow")
+        following_results = stm.rpc.get_following({"account": user, "start": -1, "type": "blog", "limit": 100}, api="follow")['following']
         while following_results:
           last_account = ""
           for following in following_results:
@@ -165,7 +165,7 @@ def update_history():
             if 'blog' in following['what'] or 'posts' in following['what']:
               account['following'].append(following['following'])
               account['following_count'] += 1
-          following_results = stm.rpc.get_following({"account": user, "start": last_account, "type": "blog", "limit": 100}, api="follow")[1:]
+          following_results = stm.rpc.get_following({"account": user, "start": last_account, "type": "blog", "limit": 100}, api="follow")['following'][1:]
         # Convert to Numbers
         account['proxy_witness'] = sum(float(i) for i in account['proxied_vsf_votes']) / 1000000
         for key in ['lifetime_bandwidth', 'reputation', 'to_withdraw']:
