@@ -143,9 +143,8 @@ def update_history():
         account = collections.OrderedDict(sorted(state[0].items()))
         # Get followers
         account['followers'] = []
-        account['followers_count'] = 0
         account['followers_mvest'] = 0
-        followers_results = stm.rpc.get_followers(user, "", "blog", 100, api="follow")
+        followers_results = stm.rpc.get_followers({"account": user, "start": "", "type": "blog", "limit": 100}, api="follow")
         while followers_results:
           last_account = ""
           for follower in followers_results:
@@ -155,11 +154,10 @@ def update_history():
               account['followers_count'] += 1
               if follower['follower'] in mvest_per_account.keys():
                 account['followers_mvest'] += float(mvest_per_account[follower['follower']])
-          followers_results = stm.rpc.get_followers(user, last_account, "blog", 100, api="follow")[1:]
+          followers_results = stm.rpc.get_followers({"account": user, "start": last_account, "type": "blog", "limit": 100}, api="follow")[1:]
         # Get following
         account['following'] = []
-        account['following_count'] = 0
-        following_results = stm.rpc.get_following(user, -1, "blog", 100, api="follow")
+        following_results = stm.rpc.get_following({"account": user, "start": -1, "type": "blog", "limit": 100}, api="follow")
         while following_results:
           last_account = ""
           for following in following_results:
@@ -167,7 +165,7 @@ def update_history():
             if 'blog' in following['what'] or 'posts' in following['what']:
               account['following'].append(following['following'])
               account['following_count'] += 1
-          following_results = stm.rpc.get_following(user, last_account, "blog", 100, api="follow")[1:]
+          following_results = stm.rpc.get_following({"account": user, "start": last_account, "type": "blog", "limit": 100}, api="follow")[1:]
         # Convert to Numbers
         account['proxy_witness'] = sum(float(i) for i in account['proxied_vsf_votes']) / 1000000
         for key in ['lifetime_bandwidth', 'reputation', 'to_withdraw']:
@@ -175,7 +173,7 @@ def update_history():
         for key in ['balance', 'savings_balance', 'vesting_balance', 'vesting_shares', 'vesting_withdraw_rate']:
             account[key] = float(account[key].split()[0])
         # Convert to Date
-        for key in ['created','last_account_recovery','last_account_update','last_active_proved','last_bandwidth_update','last_market_bandwidth_update','last_owner_proved','last_owner_update','last_post','last_root_post','last_vote_time','next_vesting_withdrawal']:
+        for key in ['created','last_account_recovery','last_account_update','last_bandwidth_update','last_market_bandwidth_update','last_owner_update','last_post','last_root_post','last_vote_time','next_vesting_withdrawal']:
             account[key] = datetime.strptime(account[key], "%Y-%m-%dT%H:%M:%S")
         # Combine Savings + Balance
         account['total_balance'] = account['balance'] + account['savings_balance']
@@ -185,7 +183,7 @@ def update_history():
         account['scanned'] = datetime.now()
         db.account.update({'_id': user}, account, upsert=True)
         # Create our Snapshot dict
-        wanted_keys = ['name', 'proxy_witness', 'activity_shares', 'average_bandwidth', 'average_market_bandwidth', 'savings_balance', 'balance', 'comment_count', 'curation_rewards', 'lifetime_bandwidth', 'lifetime_vote_count', 'next_vesting_withdrawal', 'reputation', 'post_bandwidth', 'post_count', 'posting_rewards', 'to_withdraw', 'vesting_balance', 'vesting_shares', 'vesting_withdraw_rate', 'voting_power', 'withdraw_routes', 'withdrawn', 'witnesses_voted_for']
+        wanted_keys = ['name', 'proxy', 'activity_shares', 'average_bandwidth', 'average_market_bandwidth', 'savings_balance', 'balance', 'comment_count', 'curation_rewards', 'lifetime_bandwidth', 'lifetime_vote_count', 'next_vesting_withdrawal', 'reputation', 'post_bandwidth', 'post_count', 'posting_rewards', 'to_withdraw', 'vesting_balance', 'vesting_shares', 'vesting_withdraw_rate', 'voting_power', 'withdraw_routes', 'withdrawn', 'witnesses_voted_for']
         snapshot = dict((k, account[k]) for k in wanted_keys if k in account)
         snapshot.update({
           'account': user,
