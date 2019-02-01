@@ -1,5 +1,5 @@
 <?php
-namespace SteemDB\Models;
+namespace CrearyDB\Models;
 
 use MongoDB\BSON\UTCDateTime;
 

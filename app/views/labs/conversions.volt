@@ -10,7 +10,7 @@
     <div class="row">
       <div class="column">
         <div class="ui large header">
-          Recent SBD -> STEEM Conversions
+          Recent CBD -> CREA Conversions
           <div class="sub header">
             Ordered chronologically, limited to 1000 conversions.
           </div>
@@ -38,7 +38,7 @@
                 </a>
               </td>
               <td class="collapsing right aligned">
-                <?php echo number_format($current->amount, 3, ".", ",") ?>&nbsp;SBD
+                <?php echo number_format($current->amount, 3, ".", ",") ?>&nbsp;CBD
               </td>
               <td>
                 {{ current.requestid }}

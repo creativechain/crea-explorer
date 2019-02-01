@@ -1,7 +1,7 @@
 <?php
-namespace SteemDB\Controllers;
+namespace CrearyDB\Controllers;
 
-use SteemDB\Models\Block30d;
+use CrearyDB\Models\Block30d;
 
 class BlocksController extends ControllerBase
 {

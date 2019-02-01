@@ -1,19 +1,19 @@
 <?php
-namespace SteemDB\Controllers;
+namespace CrearyDB\Controllers;
 
 use MongoDB\BSON\UTCDateTime;
 
-use SteemDB\Models\Account;
-use SteemDB\Models\AuthorReward;
-use SteemDB\Models\BenefactorReward;
-use SteemDB\Models\Block30d;
-use SteemDB\Models\Comment;
-use SteemDB\Models\Convert;
-use SteemDB\Models\CurationReward;
-use SteemDB\Models\Status;
-use SteemDB\Models\Vote;
-use SteemDB\Models\VestingDeposit;
-use SteemDB\Models\VestingWithdraw;
+use CrearyDB\Models\Account;
+use CrearyDB\Models\AuthorReward;
+use CrearyDB\Models\BenefactorReward;
+use CrearyDB\Models\Block30d;
+use CrearyDB\Models\Comment;
+use CrearyDB\Models\Convert;
+use CrearyDB\Models\CurationReward;
+use CrearyDB\Models\Status;
+use CrearyDB\Models\Vote;
+use CrearyDB\Models\VestingDeposit;
+use CrearyDB\Models\VestingWithdraw;
 
 class LabsController extends ControllerBase
 {
@@ -63,10 +63,10 @@ class LabsController extends ControllerBase
   }
 
   public function powerdownAction() {
-    $props = $this->steemd->getProps();
+    $props = $this->cread->getProps();
     $converted = array(
       'current' => (float) explode(" ", $props['current_supply'])[0],
-      'vesting' => (float) explode(" ", $props['total_vesting_fund_steem'])[0],
+      'vesting' => (float) explode(" ", $props['total_vesting_fund_crea'])[0],
     );
     $converted['liquid'] = $converted['current'] - $converted['vesting'];
     $this->view->props = $converted;
@@ -280,7 +280,7 @@ class LabsController extends ControllerBase
   public function photochallengeAction() {
     $query = array(
       'depth' => 0,
-      'json_metadata.tags' => 'steemitphotochallenge'
+      'json_metadata.tags' => 'crearyphotochallenge'
     );
     $sort = array('created' => -1);
     $posts = Comment::find(array(
@@ -460,7 +460,7 @@ class LabsController extends ControllerBase
         'prefix' => ['$substr' => ['$permlink', 0, 3]],
         'author' => '$author',
         'permlink' => '$permlink',
-        'steem_payout' => '$steem_payout',
+        'crea_payout' => '$crea_payout',
         'vesting_payout' => '$vesting_payout',
         'sbd_payout' => '$sbd_payout',
       ]],
@@ -500,7 +500,7 @@ class LabsController extends ControllerBase
             '$sum' => ['$cond' => [
               ['$eq' => ['$prefix', 're-']],
               0,
-              '$steem_payout',
+              '$crea_payout',
             ]],
           ],
           'replyVest' => [
@@ -520,12 +520,12 @@ class LabsController extends ControllerBase
           'replySteem' => [
             '$sum' => ['$cond' => [
               ['$eq' => ['$prefix', 're-']],
-              '$steem_payout',
+              '$crea_payout',
               0,
             ]],
           ],
           'sbd' => ['$sum' => '$sbd_payout'],
-          'steem' => ['$sum' => '$steem_payout'],
+          'crea' => ['$sum' => '$crea_payout'],
           'vest' => ['$sum' => '$vesting_payout'],
           'permlinks' => ['$addToSet' => [
             '$concat' => ['$author','/','$permlink']
@@ -546,13 +546,13 @@ class LabsController extends ControllerBase
     // var_dump($leaderboard); exit;
     $totals = array(
       'sbd' => 0,
-      'steem' => 0,
+      'crea' => 0,
       'sp' => 0,
       'vest' => 0,
     );
     foreach($leaderboard as $idx => $data) {
       $totals['sbd'] += $data['sbd'];
-      $totals['steem'] += $data['steem'];
+      $totals['crea'] += $data['crea'];
       $totals['sp'] += (float) $this->convert->vest2sp($data['vest'], false);
       $totals['vest'] += $data['vest'];
       $totals['postVest'] += $data['postVest'];
@@ -577,12 +577,12 @@ class LabsController extends ControllerBase
     //     ],
     //     'sbd_payout' => ['$sum' => '$sbd_payout'],
     //     'vesting_payout' => ['$sum' => '$vesting_payout'],
-    //     'steem_payout' => ['$sum' => '$steem_payout'],
+    //     'crea_payout' => ['$sum' => '$crea_payout'],
     //     'value' => [
     //       '$sum' => ['$cond' => [
     //         ['$and' => [
     //           ['$eq' => ['$sbd_payout', 0]],
-    //           ['$eq' => ['$steem_payout', 0]],
+    //           ['$eq' => ['$crea_payout', 0]],
     //         ]],
     //         '$vesting_payout',
     //         ['$multiply' => ['$vesting_payout', 2]],

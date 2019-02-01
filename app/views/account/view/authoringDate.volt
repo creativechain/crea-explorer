@@ -27,8 +27,8 @@
       <thead>
         <tr>
           <th>Content</th>
-          <th class="collapsing right aligned">SBD</th>
-          <th class="collapsing right aligned">STEEM</th>
+          <th class="collapsing right aligned">CBD</th>
+          <th class="collapsing right aligned">CREA</th>
           <th class="collapsing right aligned">SP</th>
           <th class="collapsing right aligned">VEST</th>
         </tr>
@@ -44,10 +44,10 @@
             <?php echo $this->timeAgo::mongo($reward->_ts); ?>
           </td>
           <td class="collapsing right aligned">
-            <?php echo $this->largeNumber::format($reward->sbd_payout); ?> SBD
+            <?php echo $this->largeNumber::format($reward->sbd_payout); ?> CBD
           </td>
           <td class="collapsing right aligned">
-            <?php echo $this->largeNumber::format($reward->steem_payout); ?> STEEM
+            <?php echo $this->largeNumber::format($reward->crea_payout); ?> CREA
           </td>
           <td class="collapsing right aligned">
             ~<?php echo $this->convert::vest2sp($reward->vesting_payout, ""); ?> SP*

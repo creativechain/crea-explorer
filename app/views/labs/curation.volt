@@ -119,7 +119,7 @@
                 </div>
                 <br>
                 <small>
-                  ~<?php echo $this->convert::vest2sp($account->total, ""); ?> VIT
+                  ~<?php echo $this->convert::vest2sp($account->total, ""); ?> CREA
                 </small>
               </td>
               <td class="center aligned collapsing">

@@ -24,7 +24,7 @@
                 Vests/SP
               </a>
               <a class="{{ filter == 'vit' ? 'active' : '' }} item" href="/accounts/vit">
-                VIT
+                CREA
               </a>
               <a class="{{ filter == 'powerdown' ? 'active' : '' }} item" href="/accounts/powerdown">
                 Power Down
@@ -101,7 +101,7 @@
               </td>
               <td class="collapsing right aligned">
                 <div class="ui small header">
-                  <?php echo number_format($account->total_balance, 3, ".", ",") ?> VIT
+                  <?php echo number_format($account->total_balance, 3, ".", ",") ?> CREA
                 </div>
               </td>
             </tr>

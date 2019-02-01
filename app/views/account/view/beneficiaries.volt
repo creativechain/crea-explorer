@@ -45,7 +45,7 @@
       <th class="right aligned">Date</th>
       <th class="right aligned">Count</th>
       <th class="right aligned">VESTS Gained</th>
-      <th>Estimated VIT</th>
+      <th>Estimated CREA</th>
     </tr>
   </thead>
   <tbody>
@@ -66,7 +66,7 @@
             </div>
           </td>
           <td>
-            ~<?php echo $this->convert::vest2sp($reward->reward, ""); ?> VIT
+            ~<?php echo $this->convert::vest2sp($reward->reward, ""); ?> CREA
           </td>
         </tr>
     {% else %}

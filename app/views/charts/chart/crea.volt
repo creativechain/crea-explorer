@@ -1,5 +1,5 @@
 <script>
-  d3.json("/api/steem").get(function(error, rows) {
+  d3.json("/api/crea").get(function(error, rows) {
     var data = rows;
     var dataset = new Plottable.Dataset(data);
     var dayOffset = (24*60*60*1000); // 1 day
@@ -21,23 +21,23 @@
       return new Date(dateString);
     };
 
-    var pSBD = function(d) { return +d.sbd; };
-    var pSTEEM = function(d) { return +d.steem; };
+    var pCBD = function(d) { return +d.sbd; };
+    var pCREA = function(d) { return +d.crea; };
     var pSP = function(d) { return +d.sp; };
 
-    // Chart SBD
-    var lSBD = new Plottable.Plots.Line();
-    lSBD.addDataset(dataset);
-    lSBD.x(pDate, xScale)
-         .y(pSBD, yScale)
+    // Chart CBD
+    var lCBD = new Plottable.Plots.Line();
+    lCBD.addDataset(dataset);
+    lCBD.x(pDate, xScale)
+         .y(pCBD, yScale)
          .attr("stroke", "#EF320B")
          ;
 
     // Chart Replies
-    var lSTEEM = new Plottable.Plots.Line();
-    lSTEEM.addDataset(dataset);
-    lSTEEM.x(pDate, xScale)
-             .y(pSTEEM, yScale)
+    var lCREA = new Plottable.Plots.Line();
+    lCREA.addDataset(dataset);
+    lCREA.x(pDate, xScale)
+             .y(pCREA, yScale)
              .attr("stroke", "#EF320B")
              ;
 
@@ -50,7 +50,7 @@
 
     var cs = new Plottable.Scales.Color();
     cs.range(["#EF320B", "#0A46D6", "#58DC0A", "#58DC0A"]);
-    cs.domain(["STEEM"]);
+    cs.domain(["CREA"]);
     var legend = new Plottable.Components.Legend(cs);
     legend.maxEntriesPerRow(3);
 
@@ -67,7 +67,7 @@
     var yLabel = new Plottable.Components.AxisLabel("", "270");
     var xLabel = new Plottable.Components.TitleLabel("Supply History", "0");
 
-    var plots = new Plottable.Components.Group([lSTEEM]);
+    var plots = new Plottable.Components.Group([lCREA]);
     var table = new Plottable.Components.Table([
       [null, null, xLabel, null, null],
       [null, null, legend, null, null],
@@ -75,6 +75,6 @@
       [null, null, xAxis, null, null]
     ]);
 
-    table.renderTo("svg#steem");
+    table.renderTo("svg#crea");
   });
 </script>

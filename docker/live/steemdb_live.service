@@ -1,9 +1,9 @@
 [Unit]
-Description=SteemDB.com Live Service
+Description=CrearyDB.com Live Service
 
 [Service]
-Environment=steemnode=jussi.vit.tube
-WorkingDirectory=/var/www/com_steemdb/docker/live
+Environment=crearynode=node1.creary.net
+WorkingDirectory=/var/www/com_crearydb/docker/live
 ExecStart=/usr/bin/python3 live.py
 Restart=always
 

@@ -42,7 +42,7 @@
       <td class="collapsing right aligned">
         <div class="ui small header">
           <div class="sub header">
-            <?php echo number_format($proxy->total_balance, 3, ".", ",") ?> VIT
+            <?php echo number_format($proxy->total_balance, 3, ".", ",") ?> CREA
           </div>
         </div>
       </td>

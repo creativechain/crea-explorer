@@ -1,21 +1,21 @@
 <?php
-namespace SteemDB\Controllers;
+namespace CrearyDB\Controllers;
 
 use MongoDB\BSON\Regex;
 use MongoDB\BSON\UTCDateTime;
 
-use SteemDB\Models\Account;
-use SteemDB\Models\AccountHistory;
-use SteemDB\Models\AuthorReward;
-use SteemDB\Models\Block30d;
-use SteemDB\Models\Comment;
-use SteemDB\Models\CurationReward;
-use SteemDB\Models\FeedPublish;
-use SteemDB\Models\FundsHistory;
-use SteemDB\Models\PropsHistory;
-use SteemDB\Models\Statistics;
-use SteemDB\Models\Vote;
-use SteemDB\Models\Witness;
+use CrearyDB\Models\Account;
+use CrearyDB\Models\AccountHistory;
+use CrearyDB\Models\AuthorReward;
+use CrearyDB\Models\Block30d;
+use CrearyDB\Models\Comment;
+use CrearyDB\Models\CurationReward;
+use CrearyDB\Models\FeedPublish;
+use CrearyDB\Models\FundsHistory;
+use CrearyDB\Models\PropsHistory;
+use CrearyDB\Models\Statistics;
+use CrearyDB\Models\Vote;
+use CrearyDB\Models\Witness;
 use MongoDB\BSON\ObjectID;
 
 class ApiController extends ControllerBase
@@ -372,7 +372,7 @@ class ApiController extends ControllerBase
     echo json_encode($data, JSON_PRETTY_PRINT);
   }
 
-  public function steemAction()
+  public function creaAction()
   {
     $data = AccountHistory::agg([
       [
@@ -397,10 +397,10 @@ class ApiController extends ControllerBase
           'sbd_savings' => [
             '$sum' => '$savings_sbd_balance'
           ],
-          'steem' => [
+          'crea' => [
             '$sum' => '$balance'
           ],
-          'steem_savings' => [
+          'crea_savings' => [
             '$sum' => '$savings_balance'
           ],
           'vests' => [
@@ -464,7 +464,7 @@ class ApiController extends ControllerBase
     $data = [];
     foreach($results as $doc) {
       $key = $doc->time->toDateTime()->format("U");
-      $data[$key] = $doc->total_vesting_fund_steem / $doc->current_supply;
+      $data[$key] = $doc->total_vesting_fund_crea / $doc->current_supply;
     }
     echo json_encode($data, JSON_PRETTY_PRINT);
   }
@@ -617,7 +617,7 @@ class ApiController extends ControllerBase
       case "sbd":
         $sorting = array('total_sbd_balance' => -1);
         break;
-      case "steem":
+      case "crea":
         $sorting = array('total_balance' => -1);
         break;
       case "vest":
@@ -743,7 +743,7 @@ class ApiController extends ControllerBase
           ],
           'count' => ['$sum' => 1],
           'sbd' => ['$sum' => '$sbd_payout'],
-          'steem' => ['$sum' => '$steem_payout'],
+          'crea' => ['$sum' => '$crea_payout'],
           'vest' => ['$sum' => '$vesting_payout']
         ]
       ],
@@ -909,7 +909,7 @@ class ApiController extends ControllerBase
           '$sum' => ['$cond' => [
             ['$and' => [
               ['$eq' => ['$sbd_payout', 0]],
-              ['$eq' => ['$steem_payout', 0]],
+              ['$eq' => ['$crea_payout', 0]],
             ]],
             '$vesting_payout',
             ['$multiply' => ['$vesting_payout', 2]],

@@ -1,5 +1,5 @@
 <?php
-namespace SteemDB\Helpers;
+namespace CrearyDB\Helpers;
 
 use Phalcon\Tag;
 
@@ -11,7 +11,7 @@ class Convert extends Tag
   }
 
   static private function getProps() {
-    return static::getDI()->getShared('steemd')->getProps();
+    return static::getDI()->getShared('cread')->getProps();
   }
 
   static public function getConversionRate($key) {
@@ -21,7 +21,7 @@ class Convert extends Tag
       $props = static::getProps();
       $values = array(
         'total_vests' => (float) $props['total_vesting_shares'],
-        'total_vest_steem' => (float) $props['total_vesting_fund_steem'],
+        'total_vest_crea' => (float) $props['total_vesting_fund_crea'],
       );
       $cache->save($key, $values);
       return $values;
@@ -32,7 +32,7 @@ class Convert extends Tag
   static public function vest2sp($value, $label = ' VP', $round = 3)
   {
     $values = static::getConversionRate('convert_vest2sp');
-    $return = $values['total_vest_steem'] * ($value / $values['total_vests']);
+    $return = $values['total_vest_crea'] * ($value / $values['total_vests']);
     if($label === false) {
       return round($return, $round);
     }
@@ -42,7 +42,7 @@ class Convert extends Tag
   static public function sp2vest($value, $label = ' VEST')
   {
     $values = static::getConversionRate('convert_vest2sp');
-    $return = (($value) / $values['total_vest_steem']) * $values['total_vests'];
+    $return = (($value) / $values['total_vest_crea']) * $values['total_vests'];
     if($label === false) {
       return $return;
     }

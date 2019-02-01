@@ -9,7 +9,7 @@
   <div class="ui segment">
     <div class="comment">
       <a class="avatar">
-        <img src="https://steemstats.com/images/avatar.8418a25d.png">
+        <img src="https://creastats.com/images/avatar.8418a25d.png">
       </a>
       <div class="content">
         <div class="author">

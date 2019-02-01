@@ -1,6 +1,6 @@
 <?php
 
-namespace SteemDB\Models;
+namespace CrearyDB\Models;
 
 use Phalcon\Mvc\MongoCollection;
 

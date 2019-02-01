@@ -2,3 +2,4 @@ app/config/config.php
 cache/
 bower_components/
 vendor/
+.idea

@@ -1,9 +1,9 @@
 [Unit]
-Description=SteemDB.com Sync Service
+Description=CrearyDB.com Sync Service
 
 [Service]
-Environment=steemnode=jussi.vit.tube
-WorkingDirectory=/var/www/com_steemdb/docker/sync
+Environment=crearynode=node1.creary.net
+WorkingDirectory=/var/www/com_crearydb/docker/sync
 ExecStart=/usr/bin/python3 sync.py
 Restart=always
 

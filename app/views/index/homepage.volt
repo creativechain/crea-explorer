@@ -19,9 +19,9 @@
 
 <div class="ui body container">
   <h1 class="ui header offwhite">
-    VITdb
+    CREAdb
     <div class="sub header offwhite">
-      Block explorer and database for the VIT blockchain.
+      Block explorer and database for the CREA blockchain.
     </div>
   </h1>
   <div class="ui stackable grid">
@@ -32,7 +32,7 @@
         <script type="text/javascript">
         new TradingView.widget({
           "autosize": true,
-          "symbol": "HITBTC:BTCVIT",
+          "symbol": "HITBTC:BTCCREA",
           "interval": "120",
           "timezone": "Etc/UTC",
           "theme": "White",
@@ -187,11 +187,11 @@
         <div class="ui horizontal stacked segments">
           <div class="ui center aligned segment">
             <div class="ui tiny statistic">
-              <div class="value" data-props="steem_per_mvests">
-                {{ props['steem_per_mvests'] }}
+              <div class="value" data-props="crea_per_mvests">
+                {{ props['crea_per_mvests'] }}
               </div>
               <div class="label">
-                VIT per MVest
+                CREA per MVest
               </div>
             </div>
           </div>
@@ -246,7 +246,7 @@
         <table class="ui small definition table" id="state">
           <tbody>
             <tr>
-              <td class="eight wide">VIT Inflation Rate</td>
+              <td class="eight wide">CREA Inflation Rate</td>
               <td>
                 {{ inflation }}
               </td>
@@ -290,7 +290,7 @@
         <table class="ui small definition table" id="global_props">
           <tbody>
             {% for key, value in props %}
-              {% if key not in ['id', 'steem_per_mvests', 'head_block_id', 'recent_slots_filled', 'head_block_number'] %}
+              {% if key not in ['id', 'crea_per_mvests', 'head_block_id', 'recent_slots_filled', 'head_block_number'] %}
                 <tr>
                   <td class="eight wide">{{ key }}</td>
                   <td data-props="{{ key }}">{{ value }}</td>

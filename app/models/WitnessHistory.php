@@ -1,5 +1,5 @@
 <?php
-namespace SteemDB\Models;
+namespace CrearyDB\Models;
 
 class WitnessHistory extends Document
 {

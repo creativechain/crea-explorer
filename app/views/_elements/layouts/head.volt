@@ -1,6 +1,6 @@
 <head>
   <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no,minimal-ui' />
-  <title>VITdb - VIT Blockchain Explorer</title>
+  <title>CREAdb - CREA Blockchain Explorer</title>
   {% if post is defined %}
   <link rel="canonical" href="https://touch.tube/@{{ post.author }}/{{ post.permlink }}"/>
   {% endif %}

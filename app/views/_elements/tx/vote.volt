@@ -18,8 +18,8 @@
         </a>
         ({{ item[1]['op'][1]['weight'] / 100 }}%)
       </span>
-      {#<a class="item" href="https://steemit.com/tag/@{{ item[1]['op'][1]['author'] }}/{{ item[1]['op'][1]['permlink'] }}">
-        steemit.com
+      {#<a class="item" href="https://creary.net/tag/@{{ item[1]['op'][1]['author'] }}/{{ item[1]['op'][1]['permlink'] }}">
+        creary.net
       </a>#}
       <a class="item" href="/tag/@{{ item[1]['op'][1]['author'] }}/{{ item[1]['op'][1]['permlink'] }}/votes">
         all votes

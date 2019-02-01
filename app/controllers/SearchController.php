@@ -1,8 +1,8 @@
 <?php
-namespace SteemDB\Controllers;
+namespace CrearyDB\Controllers;
 
-use SteemDB\Models\Account;
-use SteemDB\Models\Comment;
+use CrearyDB\Models\Account;
+use CrearyDB\Models\Comment;
 
 use MongoDB\BSON\Regex;
 

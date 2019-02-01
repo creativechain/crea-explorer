@@ -10,7 +10,7 @@
     <div class="row">
       <div class="column">
         <div class="ui large header">
-          VIT Benefactors
+          CREA Benefactors
           <div class="sub header">
             Top Earning Benefactors by Date
           </div>

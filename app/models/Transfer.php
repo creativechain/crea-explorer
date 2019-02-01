@@ -1,5 +1,5 @@
 <?php
-namespace SteemDB\Models;
+namespace CrearyDB\Models;
 
 class Transfer extends Document
 {

@@ -1,11 +1,11 @@
 <?php
-namespace SteemDB\Controllers;
+namespace CrearyDB\Controllers;
 
 use MongoDB\BSON\UTCDateTime;
 
-use SteemDB\Models\AuthorReward;
-use SteemDB\Models\BenefactorReward;
-use SteemDB\Models\Status;
+use CrearyDB\Models\AuthorReward;
+use CrearyDB\Models\BenefactorReward;
+use CrearyDB\Models\Status;
 
 class AppController extends ControllerBase
 {
@@ -29,29 +29,29 @@ class AppController extends ControllerBase
       'name' => 'dsound',
       'apptag' => 'dsound',
       'beneficiary' => 'dsound',
-      'description' => 'A decentralized audio platform using STEEM and IPFS',
+      'description' => 'A decentralized audio platform using CREA and IPFS',
       'link' => 'https://dsound.audio',
     ],
     'dtube' => [
       'name' => 'dtube',
       'apptag' => 'dtube',
       'beneficiary' => 'dtube',
-      'description' => 'A decentralized video platform using STEEM and IPFS',
+      'description' => 'A decentralized video platform using CREA and IPFS',
       'link' => 'https://dtube.video',
     ],
-    'esteem' => [
+    'ecrea' => [
       'name' => 'eSteem',
-      'apptag' => 'esteem',
-      'beneficiary' => 'esteemapp',
+      'apptag' => 'ecrea',
+      'beneficiary' => 'ecreaapp',
       'description' => '',
-      'link' => 'https://esteem.ws',
+      'link' => 'https://ecrea.ws',
     ],
-    'steemit' => [
-      'name' => 'Steemit',
-      'apptag' => 'steemit',
+    'creary' => [
+      'name' => 'Creary',
+      'apptag' => 'creary',
       'beneficiary' => '',
       'description' => '',
-      'link' => 'https://steemit.com',
+      'link' => 'https://creary.net',
     ],
     'steepshot' => [
       'name' => 'steepshot',
@@ -100,14 +100,14 @@ class AppController extends ControllerBase
         '_ts' => 1,
         'author' => 1,
         'sbd_payout' => 1,
-        'steem_payout' => 1,
+        'crea_payout' => 1,
         'vesting_payout' => 1,
         'value' => [
           '$sum' => [
             '$vesting_payout',
             ['$cond' => [
               ['$and' => [
-                ['$eq' => ['$steem_payout', 0]],
+                ['$eq' => ['$crea_payout', 0]],
                 ['$eq' => ['$sbd_payout', 0]],
               ]],
               '$vesting_payout',
@@ -121,7 +121,7 @@ class AppController extends ControllerBase
           'account' => '$author',
         ],
         'sbd' => ['$sum' => '$sbd_payout'],
-        'steem' => ['$sum' => '$steem_payout'],
+        'crea' => ['$sum' => '$crea_payout'],
         'vests' => ['$sum' => '$vesting_payout'],
         'value' => ['$sum' => '$value'],
         'count' => ['$sum' => 1]

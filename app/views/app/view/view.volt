@@ -17,9 +17,9 @@
       <th class='collapsing'></th>
       <th>Date</th>
       <th>Posts</th>
-      <th>SBD</th>
+      <th>CBD</th>
       <th>VESTS</th>
-      <th>STEEM</th>
+      <th>CREA</th>
     </tr>
   </thead>
   <tbody>
@@ -42,7 +42,7 @@
     </td>
     <td class='right aligned'>
       <div class="ui small header">
-        {{ item.sbd }} SBD
+        {{ item.sbd }} CBD
       </div>
     </td>
     <td class='right aligned'>
@@ -54,7 +54,7 @@
       </div>
     </td>
     <td class='right aligned'>
-      {{ item.steem }} STEEM
+      {{ item.crea }} CREA
     </td>
   </tr>
   {% else %}

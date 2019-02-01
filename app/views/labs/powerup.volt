@@ -12,7 +12,7 @@
         <div class="ui large header offwhite">
           Biggest Account Power Ups
           <div class="sub header offwhite">
-            Largest total steem powered up per account
+            Largest total crea powered up per account
           </div>
         </div>
         <div class="ui menu">

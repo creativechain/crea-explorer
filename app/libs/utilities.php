@@ -1,8 +1,8 @@
 <?php
 
 use MongoDB\BSON\UTCDateTime;
-use SteemDB\Models\AuthorReward;
-use SteemDB\Models\CurationReward;
+use CrearyDB\Models\AuthorReward;
+use CrearyDB\Models\CurationReward;
 
 class Utilities
 {

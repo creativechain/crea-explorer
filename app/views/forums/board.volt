@@ -34,7 +34,7 @@
         <div class="ui large header">
           Steem Forums Prototype
           <div class="sub header">
-            An experimental view of the STEEM blockchain, organized in a traditional forum layout.
+            An experimental view of the CREA blockchain, organized in a traditional forum layout.
           </div>
         </div>
         {% endif %}
@@ -55,7 +55,7 @@
           <tbody>
             {% for post in topics %}
             <tr>
-              <td class="center aligned collapsing" data-popup data-content="Pending Payout: {{ post.pending_payout_value }} SBD" data-position="right center">
+              <td class="center aligned collapsing" data-popup data-content="Pending Payout: {{ post.pending_payout_value }} CBD" data-position="right center">
                 {% if post.mode == 'archived' %}
                 <i class="lock large bordered fitted icon"></i>
                 {% elseif post.max_accepted_payout <= 0 %}

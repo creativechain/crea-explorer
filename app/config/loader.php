@@ -5,10 +5,10 @@ use Phalcon\Loader;
 $loader = new Loader();
 
 $loader->registerNamespaces([
-    'SteemDB\Models'      => $config->application->modelsDir,
-    'SteemDB\Controllers' => $config->application->controllersDir,
-    'SteemDB\Helpers'     => $config->application->helpersDir,
-    'SteemDB'             => $config->application->libraryDir
+    'CrearyDB\Models'      => $config->application->modelsDir,
+    'CrearyDB\Controllers' => $config->application->controllersDir,
+    'CrearyDB\Helpers'     => $config->application->helpersDir,
+    'CrearyDB'             => $config->application->libraryDir
 ]);
 
 $loader->registerDirs(array(

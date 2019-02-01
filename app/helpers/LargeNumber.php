@@ -1,5 +1,5 @@
 <?php
-namespace SteemDB\Helpers;
+namespace CrearyDB\Helpers;
 
 use Phalcon\Tag;
 

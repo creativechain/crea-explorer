@@ -8,17 +8,17 @@ import time
 import sys
 import os
 
-stm = Steem(node=["https://" + os.environ['steemnode']], custom_chains={"VIT":
-    {'chain_assets': [{'asset': 'VIT', 'id': 0, 'precision': 3, 'symbol': 'VIT'},
+stm = Steem(node=["https://" + os.environ['crearynode']], custom_chains={"CREA":
+    {'chain_assets': [{'asset': 'CREA', 'id': 0, 'precision': 3, 'symbol': 'CREA'},
                       {'asset': 'VESTS', 'id': 1, 'precision': 6, 'symbol': 'VESTS'}],
      'chain_id': '73f14dd4b7b07a8663be9d84300de0f65ef2ee7e27aae32bbe911c548c08f000',
      'min_version': '0.0.0',
-     'prefix': 'VIT'}
+     'prefix': 'CREA'}
     }
 )
 
 mongo = MongoClient("mongodb://mongo")
-db = mongo.steemdb
+db = mongo.crearydb
 
 init = db.status.find_one({'_id': 'height'})
 if(init):
@@ -189,7 +189,7 @@ def save_custom_json(op, block, blockid):
             if data[0] == 'follow':
                 save_follow(data, op, block, blockid)
     except ValueError:
-        pprint("[VITdb] - Processing failure")
+        pprint("[CREAdb] - Processing failure")
         pprint(blockid)
         pprint(op['json'])
 
@@ -380,7 +380,7 @@ def update_comment_options(op, block, blockid):
 mvest_per_account = {}
 
 def load_accounts():
-    pprint("[VITdb] - Loading all accounts")
+    pprint("[CREAdb] - Loading all accounts")
     for account in db.account.find():
         if 'vesting_shares' in account:
             mvest_per_account.update({account['name']: account['vesting_shares']})
@@ -487,11 +487,11 @@ def update_queue():
     pprint("[Queue] Done")
 
 if __name__ == '__main__':
-    pprint("[VITdb] - Starting SteemDB Sync Service")
+    pprint("[CREAdb] - Starting CrearyDB Sync Service")
     sys.stdout.flush()
     # Let's find out how often blocks are generated!
     config = stm.rpc.get_config()
-    block_interval = config["STEEMIT_BLOCK_INTERVAL"]
+    block_interval = config["CREARY_BLOCK_INTERVAL"]
     load_accounts()
     # We are going to loop indefinitely
     while True:
@@ -502,7 +502,7 @@ if __name__ == '__main__':
         block_number = props['last_irreversible_block_num']
         while (block_number - last_block) > 0:
             last_block += 1
-            pprint("[VITdb] - Starting Block #" + str(last_block))
+            pprint("[CREAdb] - Starting Block #" + str(last_block))
             sys.stdout.flush()
             # Get full block
             block = stm.rpc.get_block(last_block)
@@ -511,7 +511,7 @@ if __name__ == '__main__':
             # Update our block height
             db.status.update({'_id': 'height'}, {"$set" : {'value': last_block}}, upsert=True)
             # if last_block % 100 == 0:
-            pprint("[VITdb] - Processed up to Block #" + str(last_block))
+            pprint("[CREAdb] - Processed up to Block #" + str(last_block))
             sys.stdout.flush()
 
         sys.stdout.flush()

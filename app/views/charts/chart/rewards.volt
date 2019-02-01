@@ -20,7 +20,7 @@
       var dateString = d._id.year + "/" + d._id.month + "/" + d._id.day;
       return new Date(dateString);
     };
-    var pSteem = function(d) { return +d.steem; };
+    var pSteem = function(d) { return +d.crea; };
     var pVest = function(d) { return +d.vest; };
     var pSbd = function(d) { return +d.sbd; };
 
@@ -45,7 +45,7 @@
 
     var cs = new Plottable.Scales.Color();
     cs.range(["#777", "#000", "#ccc"]);
-    cs.domain(["Steem", "VESTS", "SBD"]);
+    cs.domain(["Steem", "VESTS", "CBD"]);
     var legend = new Plottable.Components.Legend(cs);
 
     var squareFactory = Plottable.SymbolFactories.square();
@@ -58,7 +58,7 @@
 
     legend.maxEntriesPerRow(5)
 
-    var yLabelValue = new Plottable.Components.AxisLabel("SBD/STEEM", "90");
+    var yLabelValue = new Plottable.Components.AxisLabel("CBD/CREA", "90");
     var xLabelTitle = new Plottable.Components.TitleLabel("Author Reward History", "0");
     var yLabelVest = new Plottable.Components.AxisLabel("VESTS", "270");
 

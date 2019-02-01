@@ -6,7 +6,7 @@
 <h3 class="ui dividing header">
   Power Downs
   <div class="sub header">
-    The VESTS/SP of @{{ account.name }} converted to liquid VIT.
+    The VESTS/SP of @{{ account.name }} converted to liquid CREA.
   </div>
 </h3>
 <table class="ui table">
@@ -16,7 +16,7 @@
       <th>From</th>
       <th>To</th>
       <th class="right aligned">VESTS</th>
-      <th class="right aligned">VIT</th>
+      <th class="right aligned">CREA</th>
     </tr>
   </thead>
   <tbody>
@@ -42,7 +42,7 @@
       </td>
       <td class="right aligned">
         <div class="ui small header">
-          +<?php echo $power->deposited; ?> VIT
+          +<?php echo $power->deposited; ?> CREA
         </div>
       </td>
     </tr>

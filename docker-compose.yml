@@ -3,7 +3,7 @@ services:
   history:
     build: ./docker/history
     environment:
-        steemnode: "jussi.vit.tube"
+        crearynode: "node1.creary.net"
     restart: on-failure
     volumes:
       - ./docker/history:/src
@@ -12,7 +12,7 @@ services:
   live:
     build: ./docker/live
     environment:
-        steemnode: "jussi.vit.tube"
+        crearynode: "node1.creary.net"
     restart: on-failure
     links:
       - mongo
@@ -22,26 +22,26 @@ services:
     build: ./docker/sync
     restart: on-failure
     # external_links:
-    #   - mongo:steemdb_mongo_1
+    #   - mongo:crearydb_mongo_1
     environment:
-        steemnode: "jussi.vit.tube"
+        crearynode: "node1.creary.net"
     volumes:
       - ./docker/sync:/src
   witnesses:
     build: ./docker/witnesses
     environment:
-        steemnode: "jussi.vit.tube"
+        crearynode: "node1.creary.net"
     links:
       - mongo
 
   development:
     build: ./docker/development
     environment:
-        steemnode: "jussi.vit.tube"
+        crearynode: "node1.creary.net"
     links:
       - mongo
     # external_links:
-      # - mongo:steemdb_mongo_1
+      # - mongo:crearydb_mongo_1
     volumes:
       - .:/var/www/html
     ports:
@@ -61,7 +61,7 @@ services:
   # lucky:
   #   build: ./docker/lucky
   #   environment:
-  #     steemnode: "jussi.vit.com"
+  #     crearynode: "jussi.vit.com"
 
 networks:
     dockernet:

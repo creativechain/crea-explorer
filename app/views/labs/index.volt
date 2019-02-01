@@ -16,7 +16,7 @@
     <div class="row">
       <div class="column">
         <div class="ui huge header offwhite">
-          VITdb Labs
+          CREAdb Labs
           <div class="sub header offwhite">
             Experimental projects and testing grounds for various concepts.
           </div>
@@ -126,10 +126,10 @@
                 <i class="list icon"></i>
                 <div class="content">
                   <a href="/labs/clients">
-                    VIT Client Usage
+                    CREA Client Usage
                   </a>
                   <div class="sub header">
-                    Which steem clients are being used
+                    Which crea clients are being used
                   </div>
                 </div>
               </div>
@@ -171,7 +171,7 @@
                   percentage vesting
                 </a>
                 <div class="sub header">
-                  the percentage of steem as vests
+                  the percentage of crea as vests
                 </div>
               </div>
             </div>
@@ -229,10 +229,10 @@
             {#<div class="item">
               <div class="ui header">
                 <a href="/api/topwitnesses">
-                  VIT -> VESTS per Day
+                  CREA -> VESTS per Day
                 </a>
                 <div class="sub header">
-                  Total amount of VIT powered up per day over the last 30 days
+                  Total amount of CREA powered up per day over the last 30 days
                 </div>
               </div>
             </div>#}

@@ -1,5 +1,5 @@
 <?php
-namespace SteemDB\Controllers;
+namespace CrearyDB\Controllers;
 
 class ChartsController extends ControllerBase
 {
@@ -9,7 +9,7 @@ class ChartsController extends ControllerBase
 
   }
 
-  public function steemAction()
+  public function creaAction()
   {
 
   }

@@ -1,8 +1,8 @@
 <?php
-namespace SteemDB\Controllers;
+namespace CrearyDB\Controllers;
 
-use SteemDB\Models\Account;
-use SteemDB\Models\Statistics;
+use CrearyDB\Models\Account;
+use CrearyDB\Models\Statistics;
 
 class AccountsController extends ControllerBase
 {

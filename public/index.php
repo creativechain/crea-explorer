@@ -86,7 +86,7 @@ try {
 //                 'array' => 'array'
 //             ]
 //         ];
-//         return $mongo->selectDatabase('steemdb', $options);
+//         return $mongo->selectDatabase('crearydb', $options);
 //     });
 
 //     // Collection Manager is required for MongoDB

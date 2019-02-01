@@ -23,7 +23,7 @@
     <div class="row">
       <div class="column">
         <div class="ui very padded center aligned segment">
-          <div class="ui header">This block has not yet been imported into SteemDB. Refresh the page to try again.</div>
+          <div class="ui header">This block has not yet been imported into CrearyDB. Refresh the page to try again.</div>
           <a href="/block/{{ height }}" class="ui primary button">Reload Page</a>
         </div>
       </div>

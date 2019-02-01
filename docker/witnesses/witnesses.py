@@ -9,17 +9,17 @@ import time
 import sys
 import os
 
-stm = Steem(node=["https://" + os.environ['steemnode']], custom_chains={"VIT":
-    {'chain_assets': [{'asset': 'VIT', 'id': 0, 'precision': 3, 'symbol': 'VIT'},
+stm = Steem(node=["https://" + os.environ['crearynode']], custom_chains={"CREA":
+    {'chain_assets': [{'asset': 'CREA', 'id': 0, 'precision': 3, 'symbol': 'CREA'},
                       {'asset': 'VESTS', 'id': 1, 'precision': 6, 'symbol': 'VESTS'}],
      'chain_id': '73f14dd4b7b07a8663be9d84300de0f65ef2ee7e27aae32bbe911c548c08f000',
      'min_version': '0.0.0',
-     'prefix': 'VIT'}
+     'prefix': 'CREA'}
     }
 )
 
 mongo = MongoClient("mongodb://mongo")
-db = mongo.steemdb
+db = mongo.crearydb
 
 misses = {}
 
@@ -53,7 +53,7 @@ def update_witnesses():
 
     scantime = datetime.now()
     users = stm.rpc.get_witnesses_by_vote('', 100)
-    pprint("VITdb - Update Witnesses (" + str(len(users)) + " accounts)")
+    pprint("CREAdb - Update Witnesses (" + str(len(users)) + " accounts)")
     db.witness.remove({})
     for user in users:
         # Convert to Numbers

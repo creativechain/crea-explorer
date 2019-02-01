@@ -70,7 +70,7 @@
                       <span class="mobile hidden">&mdash;</span>
                       <br class="mobile visible">
                       <span class="ui small left floated green header mobile visible">
-                        {{ comment.total_payout_value }} VIT
+                        {{ comment.total_payout_value }} CREA
                         <span class="sub header">
                           (+<?php echo $this->largeNumber::format($comment->total_pending_payout_value); ?> Pending)
                         </span>
@@ -82,7 +82,7 @@
                 </div>
                 <div class="three wide center mobile hidden aligned column">
                   <div class="ui green header">
-                    <?php echo $this->largeNumber::format($comment->total_pending_payout_value); ?> SBD
+                    <?php echo $this->largeNumber::format($comment->total_pending_payout_value); ?> CBD
                   </div>
                 </div>
               </div>

@@ -1,11 +1,11 @@
 <?php
-namespace SteemDB\Controllers;
+namespace CrearyDB\Controllers;
 
 use MongoDB\BSON\Regex;
 
-use SteemDB\Models\Account;
-use SteemDB\Models\Comment;
-use SteemDB\Models\Reblog;
+use CrearyDB\Models\Account;
+use CrearyDB\Models\Comment;
+use CrearyDB\Models\Reblog;
 
 class ForumsController extends ControllerBase
 {
@@ -142,23 +142,23 @@ class ForumsController extends ControllerBase
         ]
       ]
     ],
-    'steem' => [
-      'name' => 'STEEM Discussion',
+    'crea' => [
+      'name' => 'CREA Discussion',
       'description' => '',
       'boards' => [
         'announcements' => [
           'name' => 'Announcements',
           'description' => '',
           'accounts' => [
-            'steemitblog'
+            'crearyblog'
           ]
         ],
-        'steem' => [
+        'crea' => [
           'name' => 'Steem',
           'description' => '',
           'tags' => [
-            'steem',
-            'steemit',
+            'crea',
+            'creary',
           ]
         ],
         'witnesses' => [
@@ -225,13 +225,13 @@ class ForumsController extends ControllerBase
     //   'explain' => $command,
     //   'verbosity' => 'queryPlanner',
     // ]);
-    // $cursor = $manager->executeCommand('steemdb', $cmd); // retrieve the results
+    // $cursor = $manager->executeCommand('crearydb', $cmd); // retrieve the results
     // $output['queryPlanner'] = $cursor->toArray()[0];
     $cmd = new \MongoDB\Driver\Command([
       'explain' => $command,
       'verbosity' => 'allPlansExecution',
     ]);
-    $cursor = $manager->executeCommand('steemdb', $cmd); // retrieve the results
+    $cursor = $manager->executeCommand('crearydb', $cmd); // retrieve the results
     // $output['executionStats'] = $cursor->toArray()[0];
     return $cursor->toArray()[0];
     return $output;
@@ -357,8 +357,8 @@ class ForumsController extends ControllerBase
       "sort" => $sort,
     ]);
 
-    // find resteems
-    $this->view->resteems = Reblog::count([
+    // find recreas
+    $this->view->recreas = Reblog::count([
       [
         'author' => $author,
         'permlink' => $permlink,

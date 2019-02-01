@@ -1,25 +1,25 @@
 <?php
-namespace SteemDB\Controllers;
+namespace CrearyDB\Controllers;
 
 use MongoDB\BSON\ObjectID;
 use MongoDB\BSON\Regex;
 use MongoDB\BSON\UTCDateTime;
 
-use SteemDB\Models\Account;
-use SteemDB\Models\AccountHistory;
-use SteemDB\Models\AuthorReward;
-use SteemDB\Models\Block30d;
-use SteemDB\Models\Comment;
-use SteemDB\Models\CurationReward;
-use SteemDB\Models\Follow;
-use SteemDB\Models\Pow;
-use SteemDB\Models\Reblog;
-use SteemDB\Models\Statistics;
-use SteemDB\Models\Transfer;
-use SteemDB\Models\Vote;
-use SteemDB\Models\VestingDeposit;
-use SteemDB\Models\VestingWithdraw;
-use SteemDB\Models\WitnessHistory;
+use CrearyDB\Models\Account;
+use CrearyDB\Models\AccountHistory;
+use CrearyDB\Models\AuthorReward;
+use CrearyDB\Models\Block30d;
+use CrearyDB\Models\Comment;
+use CrearyDB\Models\CurationReward;
+use CrearyDB\Models\Follow;
+use CrearyDB\Models\Pow;
+use CrearyDB\Models\Reblog;
+use CrearyDB\Models\Statistics;
+use CrearyDB\Models\Transfer;
+use CrearyDB\Models\Vote;
+use CrearyDB\Models\VestingDeposit;
+use CrearyDB\Models\VestingWithdraw;
+use CrearyDB\Models\WitnessHistory;
 
 class AccountApiController extends ControllerBase
 {
@@ -421,7 +421,7 @@ class AccountApiController extends ControllerBase
             'day' => ['$dayOfMonth' => '$_ts'],
           ],
           'count' => ['$sum' => 1],
-          'steem' => ['$sum' => '$steem_payout'],
+          'crea' => ['$sum' => '$crea_payout'],
           'vest' => ['$sum' => '$vesting_payout'],
           'sbd' => ['$sum' => '$sbd_payout'],
         ]

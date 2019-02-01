@@ -16,7 +16,7 @@
     <div class="row">
       <div class="center aligned column">
         <div class="ui segment">
-          <svg width="100%" height="500px" id="steem"></svg>
+          <svg width="100%" height="500px" id="crea"></svg>
         </div>
       </div>
     </div>
@@ -54,5 +54,5 @@
 {% endblock %}
 
 {% block scripts %}
-  {% include 'charts/chart/steem.volt' %}
+  {% include 'charts/chart/crea.volt' %}
 {% endblock %}

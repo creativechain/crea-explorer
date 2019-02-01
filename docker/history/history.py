@@ -10,28 +10,28 @@ import re
 
 from apscheduler.schedulers.background import BackgroundScheduler
 
-stm = Steem(node=["https://" + os.environ['steemnode']], custom_chains={"VIT":
-    {'chain_assets': [{'asset': 'VIT', 'id': 0, 'precision': 3, 'symbol': 'VIT'},
+stm = Steem(node=["https://" + os.environ['crearynode']], custom_chains={"CREA":
+    {'chain_assets': [{'asset': 'CREA', 'id': 0, 'precision': 3, 'symbol': 'CREA'},
                       {'asset': 'VESTS', 'id': 1, 'precision': 6, 'symbol': 'VESTS'}],
      'chain_id': '73f14dd4b7b07a8663be9d84300de0f65ef2ee7e27aae32bbe911c548c08f000',
      'min_version': '0.0.0',
-     'prefix': 'VIT'}
+     'prefix': 'CREA'}
     }
 )
 
 mongo = MongoClient("mongodb://mongo")
-db = mongo.steemdb
+db = mongo.crearydb
 
 mvest_per_account = {}
 
 def load_accounts():
-    pprint("SteemDB - Loading mvest per account")
+    pprint("CrearyDB - Loading mvest per account")
     for account in db.account.find():
         if "name" in account.keys():
             mvest_per_account.update({account['name']: account['vesting_shares']})
 
 def update_fund_history():
-    pprint("[VITdb] - Update Fund History")
+    pprint("[CREAdb] - Update Fund History")
 
     fund = stm.rpc.get_reward_fund('post')
     for key in ['recent_claims', 'content_constant']:
@@ -44,27 +44,27 @@ def update_fund_history():
     db.funds_history.insert(fund)
 
 def update_props_history():
-    pprint("[VITdb] - Update Global Properties")
+    pprint("[CREAdb] - Update Global Properties")
 
     props = stm.rpc.get_dynamic_global_properties()
 
     for key in ['max_virtual_bandwidth', 'recent_slots_filled', 'total_reward_shares2']:
         props[key] = float(props[key])
-    for key in ['confidential_supply', 'current_supply', 'total_reward_fund_steem', 'total_vesting_fund_steem', 'total_vesting_shares']:
+    for key in ['confidential_supply', 'current_supply', 'total_reward_fund_crea', 'total_vesting_fund_crea', 'total_vesting_shares']:
         props[key] = float(props[key].split()[0])
     for key in ['time']:
         props[key] = datetime.strptime(props[key], "%Y-%m-%dT%H:%M:%S")
 
-    #floor($return['total_vesting_fund_steem'] / $return['total_vesting_shares'] * 1000000 * 1000) / 1000;
+    #floor($return['total_vesting_fund_crea'] / $return['total_vesting_shares'] * 1000000 * 1000) / 1000;
 
-    props['steem_per_mvests'] = props['total_vesting_fund_steem'] / props['total_vesting_shares'] * 1000000
+    props['crea_per_mvests'] = props['total_vesting_fund_crea'] / props['total_vesting_shares'] * 1000000
 
     db.status.update({
-      '_id': 'steem_per_mvests'
+      '_id': 'crea_per_mvests'
     }, {
       '$set': {
-        '_id': 'steem_per_mvests',
-        'value': props['steem_per_mvests']
+        '_id': 'crea_per_mvests',
+        'value': props['crea_per_mvests']
       }
     }, upsert=True)
 
@@ -80,7 +80,7 @@ def update_props_history():
     db.props_history.insert(props)
 
 def update_tx_history():
-    pprint("[VITdb] - Update Transaction History")
+    pprint("[CREAdb] - Update Transaction History")
     now = datetime.now().date()
 
     today = datetime.combine(now, datetime.min.time())
@@ -123,7 +123,7 @@ def update_history():
     now = datetime.now().date()
     today = datetime.combine(now, datetime.min.time())
 
-    pprint("[VITdb] - Update History (" + str(len(users)) + " accounts)")
+    pprint("[CREAdb] - Update History (" + str(len(users)) + " accounts)")
     # Snapshot User Count
     db.statistics.update({
       'key': 'users',

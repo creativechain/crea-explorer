@@ -1,5 +1,5 @@
 <?php
-namespace SteemDB\Controllers;
+namespace CrearyDB\Controllers;
 
 class RwController extends ControllerBase
 {

@@ -55,7 +55,7 @@
             <div class="ui header">
               Platform Details
               <div class="sub header">
-                The most prominent platforms have their own profile pages, click the link below to view them. To get added to this list, contact <a href="/@jesta">@jesta</a> on steemit.
+                The most prominent platforms have their own profile pages, click the link below to view them. To get added to this list, contact <a href="/@jesta">@jesta</a> on creary.
               </div>
             </div>
             <table class="ui stripped compact table">

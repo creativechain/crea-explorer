@@ -1,12 +1,12 @@
 <?php
-namespace SteemDB\Controllers;
+namespace CrearyDB\Controllers;
 
 use MongoDB\BSON\UTCDateTime;
 
-use SteemDB\Models\Account;
-use SteemDB\Models\Comment;
-use SteemDB\Models\Reblog;
-use SteemDB\Models\CommentDiff;
+use CrearyDB\Models\Account;
+use CrearyDB\Models\Comment;
+use CrearyDB\Models\Reblog;
+use CrearyDB\Models\CommentDiff;
 
 class CommentController extends ControllerBase
 {

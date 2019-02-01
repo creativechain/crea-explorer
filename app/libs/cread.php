@@ -3,9 +3,9 @@
 use JsonRPC\Client;
 use JsonRPC\HttpClient;
 
-use SteemDB\Models\Status;
+use CrearyDB\Models\Status;
 
-class steemd
+class cread
 {
 
   protected $host;
@@ -76,7 +76,7 @@ class steemd
     try {
       return Status::findFirst([['_id' => 'props']])->toArray()['props'];
       $return = $this->client->call(0, 'get_dynamic_global_properties', []);
-      $return['steem_per_mvests'] = Status::findFirst([['_id' => 'steem_per_mvests']])->value;
+      $return['crea_per_mvests'] = Status::findFirst([['_id' => 'crea_per_mvests']])->value;
       return $return;
     } catch (Exception $e) {
       return array();

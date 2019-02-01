@@ -1,9 +1,9 @@
 [Unit]
-Description=SteemDB.com Witnesses Service
+Description=CrearyDB.com Witnesses Service
 
 [Service]
-Environment=steemnode=jussi.vit.tube
-WorkingDirectory=/var/www/com_steemdb/docker/witnesses
+Environment=crearynode=node1.creary.net
+WorkingDirectory=/var/www/com_crearydb/docker/witnesses
 ExecStart=/usr/bin/python3 witnesses.py
 Restart=always
 

@@ -1,6 +1,6 @@
 <div class="comment">
   <a class="avatar">
-    <img src="https://steemstats.com/images/avatar.8418a25d.png">
+    <img src="https://creastats.com/images/avatar.8418a25d.png">
   </a>
   <div class="content">
     <a class="author" href="/@{{ reply.author }}">

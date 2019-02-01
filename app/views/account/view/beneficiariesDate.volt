@@ -35,8 +35,8 @@
                   @{{ reward.comment_author }}
                 </a>
               </span>
-              {#<a class="item" href="https://steemit.com/tag/@{{ reward.comment_author }}/{{ reward.comment_permlink }}">
-                steemit.com
+              {#<a class="item" href="https://creary.net/tag/@{{ reward.comment_author }}/{{ reward.comment_permlink }}">
+                creary.net
               </a>#}
               <a class="item" href="/tag/@{{ reward.comment_author }}/{{ reward.comment_permlink }}/votes">
                 all votes

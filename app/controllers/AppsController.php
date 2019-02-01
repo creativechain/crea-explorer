@@ -1,10 +1,10 @@
 <?php
-namespace SteemDB\Controllers;
+namespace CrearyDB\Controllers;
 
 use MongoDB\BSON\UTCDateTime;
 
-use SteemDB\Models\BenefactorReward;
-use SteemDB\Models\Status;
+use CrearyDB\Models\BenefactorReward;
+use CrearyDB\Models\Status;
 
 class AppsController extends ControllerBase
 {
@@ -13,8 +13,8 @@ class AppsController extends ControllerBase
   {
 
     $platforms = [
-      'steemit' => ['steemit'],
-      'esteem' => ['esteemapp', 'esteem'],
+      'creary' => ['creary'],
+      'ecrea' => ['ecreaapp', 'ecrea'],
       'chainbb' => ['chainbb'],
       'dsound' => ['dsound'],
       'dtube' => ['dtube'],

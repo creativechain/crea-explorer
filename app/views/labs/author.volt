@@ -79,9 +79,9 @@
             <div class="three column row">
               <div class="center aligned column">
                 <div class="ui header">
-                  {{ totals['steem'] }}
+                  {{ totals['crea'] }}
                   <div class="sub header">
-                    VIT
+                    CREA
                   </div>
                 </div>
               </div>
@@ -89,7 +89,7 @@
                 <div class="ui header">
                   {{ totals['sp'] }}
                   <div class="sub header">
-                    VIT Power
+                    CREA Power
                   </div>
                 </div>
               </div>
@@ -128,7 +128,7 @@
                 <th class="collapsing">#</th>
                 <th>Account</th>
                 <th class="collapsing center aligned">VESTS/VP</th>
-                <th class="collapsing center aligned">VIT</th>
+                <th class="collapsing center aligned">CREA</th>
                 <th class="collapsing center aligned">Posts</th>
                 <th class="collapsing center aligned">VP/Post</th>
               </tr>
@@ -155,7 +155,7 @@
                 </small>
               </td>
               <td>
-                {{ account.steem }}
+                {{ account.crea }}
               </td>
               <td>
                 {{ account.posts }}

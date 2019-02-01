@@ -1,29 +1,29 @@
 <?php
-namespace SteemDB\Controllers;
+namespace CrearyDB\Controllers;
 
 use \Datetime;
 
 use MongoDB\BSON\Regex;
 use MongoDB\BSON\UTCDateTime;
 
-use SteemDB\Models\Account;
-use SteemDB\Models\AccountHistory;
-use SteemDB\Models\AuthorReward;
-use SteemDB\Models\BenefactorReward;
-use SteemDB\Models\Block30d;
-use SteemDB\Models\Comment;
-use SteemDB\Models\CurationReward;
-use SteemDB\Models\Follow;
-use SteemDB\Models\Reblog;
-use SteemDB\Models\Vote;
-use SteemDB\Models\Statistics;
-use SteemDB\Models\Pow;
-use SteemDB\Models\Transfer;
-use SteemDB\Models\VestingDeposit;
-use SteemDB\Models\VestingWithdraw;
-use SteemDB\Models\WitnessMiss;
-use SteemDB\Models\WitnessHistory;
-use SteemDB\Models\WitnessVote;
+use CrearyDB\Models\Account;
+use CrearyDB\Models\AccountHistory;
+use CrearyDB\Models\AuthorReward;
+use CrearyDB\Models\BenefactorReward;
+use CrearyDB\Models\Block30d;
+use CrearyDB\Models\Comment;
+use CrearyDB\Models\CurationReward;
+use CrearyDB\Models\Follow;
+use CrearyDB\Models\Reblog;
+use CrearyDB\Models\Vote;
+use CrearyDB\Models\Statistics;
+use CrearyDB\Models\Pow;
+use CrearyDB\Models\Transfer;
+use CrearyDB\Models\VestingDeposit;
+use CrearyDB\Models\VestingWithdraw;
+use CrearyDB\Models\WitnessMiss;
+use CrearyDB\Models\WitnessHistory;
+use CrearyDB\Models\WitnessVote;
 
 class AccountController extends ControllerBase
 {
@@ -42,7 +42,7 @@ class AccountController extends ControllerBase
     $cached = $this->memcached->get($cacheKey);
     // No cache, let's load
     if($cached === null) {
-      $this->view->live = $this->steemd->getAccount($account);
+      $this->view->live = $this->cread->getAccount($account);
       $this->memcached->save($cacheKey, $this->view->live, 60);
     } else {
       // Use cache
@@ -61,9 +61,9 @@ class AccountController extends ControllerBase
   public function viewAction()
   {
     $account = $this->getAccount();
-    $this->view->props = $this->steemd->getProps();
+    $this->view->props = $this->cread->getProps();
     try {
-      $this->view->activity = array_reverse($this->steemd->getAccountHistory($account));
+      $this->view->activity = array_reverse($this->cread->getAccountHistory($account));
     } catch (Exception $e) {
       $this->view->activity = false;
     }
@@ -497,7 +497,7 @@ class AccountController extends ControllerBase
         ],
         '_ts' => ['$first' => '$_ts'],
         'sbd_payout' => ['$sum' => '$sbd_payout'],
-        'steem_payout' => ['$sum' => '$steem_payout'],
+        'crea_payout' => ['$sum' => '$crea_payout'],
         'vesting_payout' => ['$sum' => '$vesting_payout'],
         'posts' => ['$sum' => 1],
       ]],

@@ -1,13 +1,13 @@
 <?php
-namespace SteemDB\Controllers;
+namespace CrearyDB\Controllers;
 
 use MongoDB\BSON\UTCDateTime;
 use MongoDB\BSON\ObjectID;
 
-use SteemDB\Models\Witness;
-use SteemDB\Models\WitnessMiss;
-use SteemDB\Models\WitnessVote;
-use SteemDB\Models\Statistics;
+use CrearyDB\Models\Witness;
+use CrearyDB\Models\WitnessMiss;
+use CrearyDB\Models\WitnessVote;
+use CrearyDB\Models\Statistics;
 
 class WitnessController extends ControllerBase
 {
@@ -64,7 +64,7 @@ class WitnessController extends ControllerBase
       }
       $witness->invalid_signing_key = false;
       // Highlight Red if the signing key is invalid
-      if(!$witness->signing_key || $witness->signing_key == "" || $witness->signing_key == "VIT1111111111111111111111111111111114T1Anm") {
+      if(!$witness->signing_key || $witness->signing_key == "" || $witness->signing_key == "CREA1111111111111111111111111111111114T1Anm") {
         $witness->row_status = "negative";
         $witness->invalid_signing_key = true;
       }

@@ -51,7 +51,7 @@
         <div class="ui large header">
           Steem Forums Prototype
           <div class="sub header">
-            An experimental view of the STEEM blockchain, organized in a traditional forum layout. It's not very optimized which may cause some page to load slowly.
+            An experimental view of the CREA blockchain, organized in a traditional forum layout. It's not very optimized which may cause some page to load slowly.
           </div>
         </div>
         <div class="ui warning message">

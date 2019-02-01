@@ -14,12 +14,12 @@ import sys
 import os
 import re
 
-stm = Steem(node=["https://" + os.environ['steemnode']], custom_chains={"VIT":
-    {'chain_assets': [{'asset': 'VIT', 'id': 0, 'precision': 3, 'symbol': 'VIT'},
+stm = Steem(node=["https://" + os.environ['crearynode']], custom_chains={"CREA":
+    {'chain_assets': [{'asset': 'CREA', 'id': 0, 'precision': 3, 'symbol': 'CREA'},
                       {'asset': 'VESTS', 'id': 1, 'precision': 6, 'symbol': 'VESTS'}],
      'chain_id': '73f14dd4b7b07a8663be9d84300de0f65ef2ee7e27aae32bbe911c548c08f000',
      'min_version': '0.0.0',
-     'prefix': 'VIT'}
+     'prefix': 'CREA'}
     }
 )
 
@@ -76,9 +76,9 @@ class BroadcastServerFactory(WebSocketServerFactory):
         reactor.callLater(1, self.tick)
 
     def publishProps(self, props):
-        total_vesting_fund_steem = float(props['total_vesting_fund_steem'].split(" ")[0])
+        total_vesting_fund_crea = float(props['total_vesting_fund_crea'].split(" ")[0])
         total_vesting_shares = float(props['total_vesting_shares'].split(" ")[0])
-        props['steem_per_mvests'] = math.floor(total_vesting_fund_steem / total_vesting_shares * 1000000 * 1000) / 1000
+        props['crea_per_mvests'] = math.floor(total_vesting_fund_crea / total_vesting_shares * 1000000 * 1000) / 1000
         props['reversible_blocks'] = props['head_block_number'] - props['last_irreversible_block_num']
         self.publish("props", "props", props)
 

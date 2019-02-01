@@ -47,7 +47,7 @@
     <tr>
       <th class="right aligned">Date</th>
       <th class="right aligned">Posts</th>
-      <th class="right aligned">VIT</th>
+      <th class="right aligned">CREA</th>
     </tr>
   </thead>
   <tbody>
@@ -62,7 +62,7 @@
             {{ reward.posts }}
           </td>
           <td class="collapsing right aligned">
-            ~<?php echo $this->convert::vest2sp($reward->vesting_payout, ""); ?> VIT
+            ~<?php echo $this->convert::vest2sp($reward->vesting_payout, ""); ?> CREA
           </td>
         </tr>
     {% else %}
