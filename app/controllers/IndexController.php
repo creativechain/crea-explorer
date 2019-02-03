@@ -16,7 +16,7 @@ class IndexController extends ControllerBase
   }
 
   public function homepageAction() {
-    $this->view->props = $props = $this->cread->getProps();
+    $this->view->props = $props = $this->Cread->getProps();
     $this->view->inflation = round(max((978 - $props['head_block_number'] / 250000), 95) / 100, 4);
     $this->view->totals = $totals = $this->util->distribution($props);
     $this->view->renderChart = $renderChart = array_sum($totals);

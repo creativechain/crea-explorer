@@ -42,7 +42,7 @@ class AccountController extends ControllerBase
     $cached = $this->memcached->get($cacheKey);
     // No cache, let's load
     if($cached === null) {
-      $this->view->live = $this->cread->getAccount($account);
+      $this->view->live = $this->Cread->getAccount($account);
       $this->memcached->save($cacheKey, $this->view->live, 60);
     } else {
       // Use cache
@@ -62,9 +62,9 @@ class AccountController extends ControllerBase
   public function viewAction()
   {
     $account = $this->getAccount();
-    $this->view->props = $this->cread->getProps();
+    $this->view->props = $this->Cread->getProps();
     try {
-      $this->view->activity = array_reverse($this->cread->getAccountHistory($account));
+      $this->view->activity = array_reverse($this->Cread->getAccountHistory($account));
     } catch (Exception $e) {
       $this->view->activity = false;
     }

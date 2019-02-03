@@ -13,7 +13,7 @@ class LiveController extends ControllerBase
 
   public function propsAction()
   {
-    echo json_encode($this->cread->getProps(), JSON_PRETTY_PRINT);
+    echo json_encode($this->Cread->getProps(), JSON_PRETTY_PRINT);
   }
 
 }

@@ -63,7 +63,7 @@ class LabsController extends ControllerBase
   }
 
   public function powerdownAction() {
-    $props = $this->cread->getProps();
+    $props = $this->Cread->getProps();
     $converted = array(
       'current' => (float) explode(" ", $props['current_supply'])[0],
       'vesting' => (float) explode(" ", $props['total_vesting_fund_crea'])[0],
