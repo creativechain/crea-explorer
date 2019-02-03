@@ -55,6 +55,7 @@ class AccountController extends ControllerBase
     $secondsago = $current_time->getTimestamp() - $last_vote_time->getTimestamp();
     $calculated_power = $last_vote_power + (10000 * $secondsago / 432000);
     $this->view->actual_voting_power = min(round($calculated_power / 10000 * 100, 2), 100);
+    die(print_r($account, true));
     return $account;
   }
 
