@@ -4,6 +4,8 @@
     "phalcon/incubator": "~3.0",
     "ezyang/htmlpurifier": "~4.8.0",
     "league/commonmark": "^0.11",
-    "fguillot/json-rpc": "^1.2"
+    "fguillot/json-rpc": "^1.2",
+    "ext-json": "*",
+    "ext-mongodb": "*"
   }
 }
