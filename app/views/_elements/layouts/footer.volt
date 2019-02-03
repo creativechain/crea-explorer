@@ -12,9 +12,9 @@
     <div class="ui stackable inverted divided equal height stackable grid">
       <div class="sixteen wide center aligned column">
         <h4 class="ui inverted header">
-          <a href="https://explore.vit.tube">CREAdb</a>
+          <a href="https://test.creary.net">CREAdb</a>
           originally created by
-          <a href="https://creary.net/@jesta">@jesta</a>
+          <a href="https://steemit.com/@jesta">@jesta</a>
         </h4>
       </div>
     </div>
