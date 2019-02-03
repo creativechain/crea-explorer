@@ -24,7 +24,7 @@
     <a href="/accounts" class="{{ (router.getControllerName() == 'account' or router.getControllerName() == 'accounts') ? 'active' : '' }} item">accounts</a>
     <a class="{{ (router.getControllerName() == 'comments') ? 'active' : '' }} item" href="/posts">posts</a>
     <a href="/witnesses" class="{{ (router.getControllerName() == 'witness') ? 'active' : '' }} item">witnesses</a>
-    <a href="/blocks" class="{{ (router.getControllerName() == 'witness') ? 'active' : '' }} item">witnesses</a>
+    <a href="/blocks" class="{{ (router.getControllerName() == 'blocks') ? 'active' : '' }} item">blocks</a>
     <div class="right menu">
       <div class="item">
         <a href="https://test.creary.net/welcome" target="_blank" rel="nofollow">
@@ -45,5 +45,7 @@
 <!-- Sidebar Menu -->
 <div class="ui vertical inverted sidebar menu">
   <a href="/accounts" class="{{ (router.getControllerName() == 'account' or router.getControllerName() == 'accounts') ? 'active' : '' }} item">accounts</a>
+  <a href="/posts" class="{{ (router.getControllerName() == 'comments') ? 'active' : '' }} item">posts</a>
   <a href="/witnesses" class="{{ (router.getControllerName() == 'witness') ? 'active' : '' }} item">witnesses</a>
+  <a href="/blocks" class="{{ (router.getControllerName() == 'blocks') ? 'active' : '' }} item">blocks</a>
 </div>
