@@ -23,7 +23,7 @@ class Markdown
     // $string = preg_replace('/(https?:\/\/\S+)/', '<a href="\1">\1</a>', $string);
 
     // Linkify usernames
-    $string = preg_replace('/(^|\s)@((?:[^_\W]|-)+)/', '\1<a href="http://crearydb.com/@\2">@\2</a>', $string);
+    $string = preg_replace('/(^|\s)@((?:[^_\W]|-)+)/', '\1<a href="http://creascan.net/@\2">@\2</a>', $string);
 
     // Linkify tags
     $string = preg_replace('/(^|\s)#(\w+)/', '\1<a href="/forums/tag/\2">#\2</a>', $string);

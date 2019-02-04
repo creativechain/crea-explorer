@@ -1,6 +1,6 @@
 ## crearydb
 
-https://crearydb.com
+https://creascan.net
 
 open source blockchain explorer for the crea blockchain - build on phalcon + mongodb
 

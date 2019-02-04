@@ -210,7 +210,7 @@ a.anchor {
                     {% elseif post.origin() == 'busy' %}
                     <a href="https://busy.org/">busy.org</a>
                     {% elseif post.origin() == 'crearydb' %}
-                    <a href="https://crearydb.com/">crearydb.com</a>
+                    <a href="https://creascan.net/">creascan.net</a>
                     {% elseif post.origin() == 'ecrea' %}
                     <a href="http://ecrea.ws/">ecrea</a>
                     {% else %}
@@ -224,7 +224,7 @@ a.anchor {
                 <div class="actions">
                   <a class="reply" data-display="false" data-permlink="{{ post.permlink }}" data-author="{{ post.author }}">Reply to this post</a>
                   <a href="https://creary.net{{ post.url }}" target="_blank">crea<strong>it</strong>.com</a>
-                  <a href="https://crearydb.com/tag/@{{ post.author }}/{{ post.permlink }}" target="_blank">crea<strong>db</strong>.com</a>
+                  <a href="https://creascan.net/tag/@{{ post.author }}/{{ post.permlink }}" target="_blank">crea<strong>db</strong>.com</a>
                 </div>
               </div>
             </div>
