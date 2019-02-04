@@ -22,7 +22,7 @@ class Cread
   public function getState($path = "")
   {
     try {
-      return $this->client->call(0, 'get_state', [$path]);
+      return $this->client->call('condenser_api', 'get_state', [$path]);
     } catch (Exception $e) {
       return array();
     }
@@ -31,7 +31,7 @@ class Cread
   public function getBlock($height)
   {
     try {
-      return $this->client->call(0, 'get_block', [$height]);
+      return $this->client->call('condenser_api', 'get_block', [$height]);
     } catch (Exception $e) {
       return array();
     }
@@ -40,7 +40,7 @@ class Cread
   public function getTx($txid)
   {
     try {
-      return $this->client->call(0, 'get_transaction', [$txid]);
+      return $this->client->call('condenser_api', 'get_transaction', [$txid]);
     } catch (Exception $e) {
       return array();
     }
@@ -49,7 +49,7 @@ class Cread
   public function getAccount($account)
   {
     try {
-      $return = $this->client->call(0, 'get_accounts', [[$account]]);
+      $return = $this->client->call('condenser_api', 'get_accounts', [[$account]]);
       try {
         foreach($return as $index => $account) {
           $return[$index]['profile'] = json_decode($account['json_metadata'], true)['profile'];
@@ -65,7 +65,7 @@ class Cread
   public function getAccountHistory($username, $limit = 100, $skip = -1)
   {
     try {
-      return $this->client->call(0, 'get_account_history', [$username, $skip, $limit]);
+      return $this->client->call('condenser_api', 'get_account_history', [$username, $skip, $limit]);
     } catch (Exception $e) {
       return array();
     }
@@ -75,7 +75,7 @@ class Cread
   {
     try {
       return Status::findFirst([['_id' => 'props']])->toArray()['props'];
-      $return = $this->client->call(0, 'get_dynamic_global_properties', []);
+      $return = $this->client->call('condenser_api', 'get_dynamic_global_properties', []);
       $return['crea_per_mvests'] = Status::findFirst([['_id' => 'crea_per_mvests']])->value;
       return $return;
     } catch (Exception $e) {
@@ -90,7 +90,6 @@ class Cread
 
   public function getFollowing($username, $limit = 100, $skip = -1)
   {
-    $api = $this->getApi('follow_api');
-    return $this->client->call($api, 'get_following', [$username, $skip, $limit]);
+    return $this->client->call('follow_api', 'get_following', [$username, $skip, $limit]);
   }
 }
