@@ -7,8 +7,8 @@
   </a>
 </span>
 <span class="ui green label">
-  <a href="https://test.creary.net/@{{ item[1]['op'][1]['comment_author'] }}/{{ item[1]['op'][1]['comment_permlink'] }}">
-    @{{ item[1]['op'][1]['comment_author'] }}/{{ item[1]['op'][1]['comment_permlink'] }}
+  <a href="/tag/@{{ item[1]['op'][1]['comment_author'] }}/{{ item[1]['op'][1]['comment_permlink'] }}">
+    {{ item[1]['op'][1]['comment_permlink'] }}
   </a>
 </span>
 {% endif %}
