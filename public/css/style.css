@@ -1,0 +1,14 @@
+
+a {
+    color: #0073FF;
+}
+
+.ui.basic.blue.label {
+    color: #0073FF !important;
+    border-color: #0073FF !important;
+}
+
+.ui.blue.label, .ui.blue.labels .label {
+    background-color: #0073FF !important;
+    border-color: #0073FF !important;
+}

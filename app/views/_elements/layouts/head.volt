@@ -155,6 +155,7 @@
     }
   </style>
   <link rel="stylesheet" href="/bower/plottable/plottable.css">
+  <link rel="stylesheet" href="/css/style.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
   <link rel="icon" type="image/vnd.microsoft.icon" sizes="16x16 24x24 36x36"  href="/img/favicon.ico">
   <link rel="manifest" href="/img/site.webmanifest">
