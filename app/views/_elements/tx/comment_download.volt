@@ -11,4 +11,3 @@
     {{ item[1]['op'][1]['comment_permlink'] }}
   </a>
 </span>
-{% endif %}
