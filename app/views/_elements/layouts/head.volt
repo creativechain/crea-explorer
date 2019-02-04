@@ -152,9 +152,6 @@
       .mobile.hidden {
         display: none !important;
       }
-      .logo {
-        height: 40px;
-      }
     }
   </style>
   <link rel="stylesheet" href="/bower/plottable/plottable.css">
