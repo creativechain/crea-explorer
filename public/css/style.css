@@ -16,3 +16,7 @@ a {
 .ui.blue.button, .ui.blue.buttons .button {
     background-color: #0073FF;
 }
+
+a.item {
+    padding: 0 10px;
+}
