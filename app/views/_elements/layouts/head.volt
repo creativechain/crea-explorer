@@ -43,7 +43,7 @@
       color: #15DF00 !important;
     }
     body.pushable>.pusher {
-      background-image: url('/img/vicewallpaper.jpg') !important;
+      background-image: url('/img/background.jpg') !important;
       background-position: center;
       background-repeat: no-repeat;
       background-attachment: fixed;
@@ -156,8 +156,7 @@
   </style>
   <link rel="stylesheet" href="/bower/plottable/plottable.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+  <link rel="icon" type="image/vnd.microsoft.icon" sizes="16x16 24x24 36x36"  href="/img/favicon.ico">
   <link rel="manifest" href="/img/site.webmanifest">
   <link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#5bbad5">
   <meta name="msapplication-TileColor" content="#da532c">
