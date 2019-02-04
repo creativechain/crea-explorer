@@ -12,3 +12,7 @@ a {
     background-color: #0073FF !important;
     border-color: #0073FF !important;
 }
+
+.ui.blue.button, .ui.blue.buttons .button {
+    background-color: #0073FF;
+}
