@@ -9,4 +9,6 @@ RUN pip3 install twisted
 
 COPY . /src
 
+EXPOSE 8681
+
 CMD ["python", "/src/live.py"]
