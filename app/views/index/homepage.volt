@@ -348,7 +348,7 @@
       }
 
       sock.onmessage = function(e) {
-        var data = JSON.parse(e.data);
+        var data = JSON.parse(e.data).result;
         log(data);
         if(data.props) {
           $.each(data.props, function(key, value) {
