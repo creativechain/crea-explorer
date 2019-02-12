@@ -329,6 +329,15 @@
     if (sock) {
 
       var lastBlock = {{ props['last_irreversible_block_num'] }};
+      var getProps = function () {
+        sock.send(JSON.stringify({
+          jsonrpc:"2.0",
+          method:"database_api.get_dynamic_global_properties",
+          params: {},
+          id:1
+        }))
+      };
+
       var getBlock = function(blockNum) {
         sock.send(JSON.stringify({
           jsonrpc:"2.0",
@@ -366,6 +375,13 @@
             $("[data-state-feed="+key+"]").html(value);
           });
         }
+
+        if (data.last_irreversible_block_num) {
+          if (data.last_irreversible_block_num !== lastBlock) {
+            getBlock(data.last_irreversible_block_num);
+          }
+        }
+
         if(data.block) {
           lastBlock = data.block.height;
           var tbody = $("#blocks-table-body"),
@@ -396,7 +412,7 @@
       }
 
       setInterval(function () {
-        getBlock(lastBlock++)
+        getProps();
       }, 3000)
     }
   };
