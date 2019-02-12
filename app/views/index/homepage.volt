@@ -332,8 +332,8 @@
       var getProps = function () {
         sock.send(JSON.stringify({
           jsonrpc:"2.0",
-          method:"database_api.get_dynamic_global_properties",
-          params: {},
+          method:"condenser_api.get_dynamic_global_properties",
+          params: [],
           id:1
         }))
       };
@@ -361,7 +361,12 @@
       sock.onmessage = function(e) {
         var data = JSON.parse(e.data).result;
         log(data);
-        if(data.props) {
+        if(data.props || data.head_block_number) {
+          if (data.last_irreversible_block_num !== lastBlock) {
+            getBlock(data.last_irreversible_block_num);
+          }
+
+          data.props = data;
           $.each(data.props, function(key, value) {
             $("[data-props="+key+"]").html(value);
           });
@@ -376,12 +381,6 @@
           $.each(data.state.feed_price, function(key, value) {
             $("[data-state-feed="+key+"]").html(value);
           });
-        }
-
-        if (data.last_irreversible_block_num) {
-          if (data.last_irreversible_block_num !== lastBlock) {
-            getBlock(data.last_irreversible_block_num);
-          }
         }
 
         if(data.block) {
