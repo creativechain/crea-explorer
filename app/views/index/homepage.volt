@@ -152,7 +152,7 @@
               <th>Operations</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="blocks-table-body">
             <tr class="loading center aligned">
               <td colspan="10">
                 <div class="ui very padded basic segment">
@@ -338,6 +338,7 @@
 
          sock.onmessage = function(e) {
             var data = JSON.parse(e.data);
+            log(data);
             if(data.props) {
               $.each(data.props, function(key, value) {
                 $("[data-props="+key+"]").html(value);
@@ -355,7 +356,7 @@
               });
             }
             if(data.block) {
-              var tbody = $("#blockchain-activity tbody"),
+              var tbody = $("#blocks-table-body"),
                   row = $("<tr class='block-animation'>"),
                   rows = tbody.find("tr"),
                   rowLimit = 19,
