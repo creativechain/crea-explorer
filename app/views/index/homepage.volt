@@ -175,8 +175,8 @@
                 po.async = true;
                 po.src = "https://hitbtc.com/get_widget?pair=vitusd";
                 var s = document.getElementsByTagName("script")[0];
-                s.pare*/ntNode.insertBefore(po, s);
-            })();
+                s.parentNode.insertBefore(po, s);
+            })();*/
         </script>
         <div class="ui small dividing header offwhite">
           Metrics
@@ -339,6 +339,7 @@
       };
 
       var getBlock = function(blockNum) {
+        log(blockNum);
         lastBlock = blockNum;
         sock.send(JSON.stringify({
           jsonrpc:"2.0",
@@ -392,7 +393,7 @@
                   // Block Height
                   height_header = $("<div class='ui small header'>"),
                   height_header_link = $("<a>").attr("href", "/block/" + lastBlock).attr("target", "_blank").html("#"+lastBlock),
-                  height_header_time = $("<div class='sub header'>").html(data.block.time),
+                  height_header_time = $("<div class='sub header'>").html(data.block.timestamp),
                   height = $("<td>").append(height_header.append(height_header_link, height_header_time)),
                   // Transactions
                   tx = $("<td>").append(data.block.transactions.length),
