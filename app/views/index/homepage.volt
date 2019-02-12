@@ -332,7 +332,7 @@
       var getBlock = function(blockNum) {
         sock.send(JSON.stringify({
           jsonrpc:"2.0",
-          method:"database_api.set_block_applied_callback",
+          method:"block_api.get_block",
           params: {blockNum: blockNum},
           id:1
         }))
