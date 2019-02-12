@@ -309,54 +309,66 @@
 
 {% block scripts %}
 <script type="text/javascript">
-   var sock = null;
-   var ellog = null;
+  var sock = null;
+  var ellog = null;
 
-   window.onload = function() {
+  window.onload = function() {
 
-      var wsuri = "wss://node1.creary.net/ws/";
-      ellog = document.getElementById('log');
+    var wsuri = "wss://node1.creary.net/ws/";
+    ellog = document.getElementById('log');
 
-      if ("WebSocket" in window) {
-         sock = new WebSocket(wsuri);
-      } else if ("MozWebSocket" in window) {
-         sock = new MozWebSocket(wsuri);
-      } else {
-        //  log("Browser does not support WebSocket!");
+    if ("WebSocket" in window) {
+      sock = new WebSocket(wsuri);
+    } else if ("MozWebSocket" in window) {
+      sock = new MozWebSocket(wsuri);
+    } else {
+      //  log("Browser does not support WebSocket!");
+    }
+
+
+    if (sock) {
+
+      var lastBlock = this.props['last_irreversible_block_num'];
+      var getBlock = function(blockNum) {
+        sock.send({
+          jsonrpc:"2.0",
+          method:"database_api.set_block_applied_callback",
+          params: {blockNum},
+          id:1
+        })
+      };
+
+      sock.onopen = function() {
+        log("Connected to " + wsuri);
       }
 
+      sock.onclose = function(e) {
+        // log("Connection closed (wasClean = " + e.wasClean + ", code = " + e.code + ", reason = '" + e.reason + "')");
+        sock = null;
+      }
 
-      if (sock) {
-         sock.onopen = function() {
-            log("Connected to " + wsuri);
-         }
-
-         sock.onclose = function(e) {
-            // log("Connection closed (wasClean = " + e.wasClean + ", code = " + e.code + ", reason = '" + e.reason + "')");
-            sock = null;
-         }
-
-         sock.onmessage = function(e) {
-            var data = JSON.parse(e.data);
-            log(data);
-            if(data.props) {
-              $.each(data.props, function(key, value) {
-                $("[data-props="+key+"]").html(value);
-              });
-            }
-            if(data.state) {
-              $.each(data.state.witness_schedule, function(key, value) {
-                $("[data-state-witness="+key+"]").html(value);
-              });
-              $.each(data.state.witness_schedule.median_props, function(key, value) {
-                $("[data-state-witness-median="+key+"]").html(value);
-              });
-              $.each(data.state.feed_price, function(key, value) {
-                $("[data-state-feed="+key+"]").html(value);
-              });
-            }
-            if(data.block) {
-              var tbody = $("#blocks-table-body"),
+      sock.onmessage = function(e) {
+        var data = JSON.parse(e.data);
+        log(data);
+        if(data.props) {
+          $.each(data.props, function(key, value) {
+            $("[data-props="+key+"]").html(value);
+          });
+        }
+        if(data.state) {
+          $.each(data.state.witness_schedule, function(key, value) {
+            $("[data-state-witness="+key+"]").html(value);
+          });
+          $.each(data.state.witness_schedule.median_props, function(key, value) {
+            $("[data-state-witness-median="+key+"]").html(value);
+          });
+          $.each(data.state.feed_price, function(key, value) {
+            $("[data-state-feed="+key+"]").html(value);
+          });
+        }
+        if(data.block) {
+          lastBlock = data.block.height;
+          var tbody = $("#blocks-table-body"),
                   row = $("<tr class='block-animation'>"),
                   rows = tbody.find("tr"),
                   rowLimit = 19,
@@ -369,21 +381,25 @@
                   // Transactions
                   tx = $("<td>").append(data.block.opCount),
                   ops = $("<td>");
-              $.each(data.block.opCounts, function(key, value) {
-                var label = $("<span class='ui tiny basic label'>").append(key + " (" + value + ")");
-                ops.append(label);
-              });
-              tbody.find("tr.loading").remove();
-              row.append(height, tx, ops);
-              tbody.prepend(row);
-              if(count > rowLimit) {
-                rows.slice(rowLimit-count).remove();
-              }
-            }
-            // log(JSON.stringify(data));
-         }
+          $.each(data.block.opCounts, function(key, value) {
+            var label = $("<span class='ui tiny basic label'>").append(key + " (" + value + ")");
+            ops.append(label);
+          });
+          tbody.find("tr.loading").remove();
+          row.append(height, tx, ops);
+          tbody.prepend(row);
+          if(count > rowLimit) {
+            rows.slice(rowLimit-count).remove();
+          }
+        }
+        // log(JSON.stringify(data));
       }
-   };
+
+      setInterval(function () {
+        getBlock(lastBlock++)
+      })
+    }
+  };
 
   //  function broadcast() {
   //     var account = document.getElementById('account').value;
@@ -395,14 +411,14 @@
   //     }
   //  };
 
-   function log(m) {
-     if (ellog) {
-       ellog.innerHTML += m + '\n';
-       ellog.scrollTop = ellog.scrollHeight;
-     } else {
-       console.log(m);
-     }
+  function log(m) {
+    if (ellog) {
+      ellog.innerHTML += m + '\n';
+      ellog.scrollTop = ellog.scrollHeight;
+    } else {
+      console.log(m);
+    }
 
-   };
+  };
 </script>
 {% endblock %}
