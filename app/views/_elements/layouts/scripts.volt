@@ -1,7 +1,7 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.js"></script>
 <script type="text/javascript" src="/bower/d3/d3.min.js"></script>
-<script type="text/javascript" src="/bower/plottable/plottable.min.js"></script>
+<script type="text/javascript" src="/bower/plottable/plottable.js"></script>
 <script type="text/javascript" src="/js/semantic-tablesort.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
