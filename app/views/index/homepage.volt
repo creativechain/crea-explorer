@@ -395,8 +395,13 @@
   //  };
 
    function log(m) {
-      ellog.innerHTML += m + '\n';
-      ellog.scrollTop = ellog.scrollHeight;
+     if (ellog) {
+       ellog.innerHTML += m + '\n';
+       ellog.scrollTop = ellog.scrollHeight;
+     } else {
+       console.log(m);
+     }
+
    };
 </script>
 {% endblock %}
