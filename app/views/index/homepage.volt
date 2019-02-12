@@ -330,12 +330,12 @@
 
       var lastBlock = {{ props['last_irreversible_block_num'] }};
       var getBlock = function(blockNum) {
-        sock.send({
+        sock.send(JSON.stringify({
           jsonrpc:"2.0",
           method:"database_api.set_block_applied_callback",
           params: {blockNum: blockNum},
           id:1
-        })
+        }))
       };
 
       sock.onopen = function() {
