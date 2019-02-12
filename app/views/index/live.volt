@@ -8,18 +8,8 @@
 
          window.onload = function() {
 
-            var wsuri;
+            var wsuri = "wss://node1.creary.net/ws/";
             ellog = document.getElementById('log');
-
-            if (window.location.protocol === "file:") {
-               wsuri = "ws://localhost:8681";
-            } else {
-               if (window.location.hostname == 'explore.vit.tube') {
-                  wsuri = "ws://live.vit.tube";
-               } else {
-                  wsuri = "ws://" + window.location.hostname + ":8681";
-               }
-            }
 
             if ("WebSocket" in window) {
                sock = new WebSocket(wsuri);
