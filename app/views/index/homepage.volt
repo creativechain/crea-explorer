@@ -333,7 +333,7 @@
         sock.send({
           jsonrpc:"2.0",
           method:"database_api.set_block_applied_callback",
-          params: {blockNum},
+          params: {blockNum: blockNum},
           id:1
         })
       };
