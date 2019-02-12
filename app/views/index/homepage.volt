@@ -392,7 +392,7 @@
                   // Block Height
                   height_header = $("<div class='ui small header'>"),
                   height_header_link = $("<a>").attr("href", "/block/" + lastBlock).attr("target", "_blank").html("#"+lastBlock),
-                  height_header_time = $("<div class='sub header'>").html(data.block.ts),
+                  height_header_time = $("<div class='sub header'>").html(data.block.timestamp),
                   height = $("<td>").append(height_header.append(height_header_link, height_header_time)),
                   // Transactions
                   tx = $("<td>").append(data.block.transactions.length),
