@@ -325,9 +325,10 @@
         //  log("Browser does not support WebSocket!");
       }
 
+
       if (sock) {
          sock.onopen = function() {
-            // log("Connected to " + wsuri);
+            log("Connected to " + wsuri);
          }
 
          sock.onclose = function(e) {
