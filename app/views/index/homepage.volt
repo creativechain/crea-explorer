@@ -169,13 +169,13 @@
       <div class="six wide centered column">
         <div id="hitbtc-ticker" class="hit-medium" style=";width:275px;height:160px;" data-hue="93"></div>
         <script type="text/javascript">
-            (function() {
+/*            (function() {
                 var po = document.createElement("script");
                 po.type = "text/javascript";
                 po.async = true;
                 po.src = "https://hitbtc.com/get_widget?pair=vitusd";
                 var s = document.getElementsByTagName("script")[0];
-                s.parentNode.insertBefore(po, s);
+                s.pare*/ntNode.insertBefore(po, s);
             })();
         </script>
         <div class="ui small dividing header offwhite">
