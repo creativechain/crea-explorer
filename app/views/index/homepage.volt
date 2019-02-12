@@ -328,7 +328,7 @@
 
     if (sock) {
 
-      var lastBlock = {{ props['last_irreversible_block_num'] }}--;
+      var lastBlock = {{ props['last_irreversible_block_num'] }};
       var getBlock = function(blockNum) {
         sock.send({
           jsonrpc:"2.0",
@@ -397,7 +397,7 @@
 
       setInterval(function () {
         getBlock(lastBlock++)
-      })
+      }, 3000)
     }
   };
 
