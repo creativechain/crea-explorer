@@ -345,7 +345,7 @@
           jsonrpc:"2.0",
           method:"block_api.get_block",
           params: {blockNum: blockNum},
-          id:1
+          id: parseInt(Math.random() * (Number.MAX_SAFE_INTEGER - 1) + 1)
         }))
       };
 
