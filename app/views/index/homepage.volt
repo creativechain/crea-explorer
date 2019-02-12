@@ -402,10 +402,10 @@
           var opCount = {};
           data.block.transactions.forEach(function (t) {
             t.operations.forEach(function (o) {
-              if (opCount[o[0]]) {
-                opCount[o[0]]++
+              if (opCount[o.type]) {
+                opCount[o.type]++
               } else {
-                opCount[o[0]] = 1;
+                opCount[o.type] = 1;
               }
             })
           })
