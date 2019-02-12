@@ -339,6 +339,7 @@
       };
 
       var getBlock = function(blockNum) {
+        lastBlock = blockNum;
         sock.send(JSON.stringify({
           jsonrpc:"2.0",
           method:"block_api.get_block",
@@ -383,21 +384,32 @@
         }
 
         if(data.block) {
-          lastBlock = data.block.height;
           var tbody = $("#blocks-table-body"),
                   row = $("<tr class='block-animation'>"),
                   rows = tbody.find("tr"),
-                  rowLimit = 19,
+                  rowLimit = 25,
                   count = rows.length,
                   // Block Height
                   height_header = $("<div class='ui small header'>"),
-                  height_header_link = $("<a>").attr("href", "/block/" + data.block.height).attr("target", "_blank").html("#"+data.block.height),
+                  height_header_link = $("<a>").attr("href", "/block/" + lastBlock).attr("target", "_blank").html("#"+lastBlock),
                   height_header_time = $("<div class='sub header'>").html(data.block.ts),
                   height = $("<td>").append(height_header.append(height_header_link, height_header_time)),
                   // Transactions
-                  tx = $("<td>").append(data.block.opCount),
+                  tx = $("<td>").append(data.block.transactions.length),
                   ops = $("<td>");
-          $.each(data.block.opCounts, function(key, value) {
+
+          var opCount = {};
+          data.block.transactions.forEach(function (t) {
+            t.operations.forEach(function (o) {
+              if (opCount[o[0]]) {
+                opCount[o[0]]++
+              } else {
+                opCount[o[0]] = 1;
+              }
+            })
+          })
+
+          $.each(opCount, function(key, value) {
             var label = $("<span class='ui tiny basic label'>").append(key + " (" + value + ")");
             ops.append(label);
           });
