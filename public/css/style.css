@@ -21,6 +21,3 @@ a.item {
     padding: 0 10px;
 }
 
-.ui.comments .comment .avatar img, .ui.comments .comment img.avatar {
-    border-radius: 20px;
-}
