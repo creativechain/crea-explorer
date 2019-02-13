@@ -1,6 +1,6 @@
 <head>
   <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no,minimal-ui' />
-  <title>CREAdb - CREA Blockchain Explorer</title>
+  <title>CREA SCAN - CREA Blockchain Explorer</title>
   {% if post is defined %}
   <link rel="canonical" href="https://test.creary.net/@{{ post.author }}/{{ post.permlink }}"/>
   {% endif %}

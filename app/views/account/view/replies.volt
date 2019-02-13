@@ -9,7 +9,7 @@
   <div class="ui segment">
     <div class="comment">
       <a class="avatar">
-        <img src="{{ account.json_metadata.avatar.url }}">
+        <img src="{{ (account.json_metadata|json_decode()).avatar.url }}">
       </a>
       <div class="content">
         <div class="author">
