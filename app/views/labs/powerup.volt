@@ -10,9 +10,9 @@
     <div class="row">
       <div class="column">
         <div class="ui large header offwhite">
-          Biggest Account Power Ups
+          Biggest Account Energizations
           <div class="sub header offwhite">
-            Largest total crea powered up per account
+            Largest total crea energized per account
           </div>
         </div>
         <div class="ui menu">
@@ -23,31 +23,31 @@
         <table class="ui attached table">
           <thead>
             <tr>
-              <th class="right aligned">Power Up</th>
+              <th class="right aligned">Energize</th>
               <th class="right aligned">Vests</th>
               <th>Account</th>
             </tr>
           </thead>
           <tbody>
-            {% for powerup in powerups %}
+            {% for energize in energizes %}
             <tr>
               <td class="collapsing right aligned">
                 <div class="ui header">
-                  +<?php echo $this->largeNumber::format($powerup->total, ''); ?>
+                  +<?php echo $this->largeNumber::format($energize->total, ''); ?>
                   <div class="sub header">
-                    {{ powerup.count }}x Power Ups
+                    {{ energize.count }}x Energizations
                   </div>
                 </div>
               </td>
               <td class="collapsing right aligned">
-                {{ partial("_elements/vesting_shares", ['current': powerup.account[0]]) }}
+                {{ partial("_elements/vesting_shares", ['current': energize.account[0]]) }}
               </td>
               <td>
                 <div class="ui header">
                   <div class="ui circular blue label">
-                    <?php echo $this->reputation::number($powerup->account[0]->reputation) ?>
+                    <?php echo $this->reputation::number($energize->account[0]->reputation) ?>
                   </div>
-                  {{ link_to("/@" ~ powerup.account[0].name, powerup.account[0].name) }}
+                  {{ link_to("/@" ~ energize.account[0].name, energize.account[0].name) }}
                 </div>
               </td>
             </tr>

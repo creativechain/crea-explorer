@@ -1,6 +1,6 @@
 <span class="ui left labeled button" tabindex="0">
   <span class="ui red right pointing label">
-    Power Up
+    Energize
   </span>
   <a class="ui button">
     {{ item[1]['op'][1]['amount'] }}

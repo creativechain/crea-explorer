@@ -25,10 +25,10 @@
     lValue.addDataset(dataset);
     lValue.x(pDate, xScale)
             .y(pValue, yScale)
-            .attr("fill", "#2185D0");
+            .attr("fill", "#0073ff");
 
     var cs = new Plottable.Scales.Color();
-    cs.range(["#2185D0"]);
+    cs.range(["#0073ff"]);
     cs.domain(["Followers Gained"]);
     var legend = new Plottable.Components.Legend(cs);
 

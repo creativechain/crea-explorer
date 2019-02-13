@@ -11,7 +11,7 @@
     <div class="three wide center aligned column">
       <div class="ui segment">
         <div class="ui header">
-          +<?php echo $this->largeNumber::format($this->convert->vest2sp($stats[0]->week, false), '') ?>&nbsp;SP
+          +<?php echo $this->largeNumber::format($this->convert->vest2cgy($stats[0]->week, false), '') ?>&nbsp;CGY
           <div class="sub header">Last Week</div>
         </div>
       </div>
@@ -19,7 +19,7 @@
     <div class="three wide center aligned column">
       <div class="ui segment">
         <div class="ui header">
-          +<?php echo $this->largeNumber::format($this->convert->vest2sp($stats[0]->month, false), '') ?>&nbsp;SP
+          +<?php echo $this->largeNumber::format($this->convert->vest2cgy($stats[0]->month, false), '') ?>&nbsp;CGY
           <div class="sub header">Last Month</div>
         </div>
       </div>
@@ -27,7 +27,7 @@
     <div class="three wide center aligned column">
       <div class="ui segment">
         <div class="ui header">
-          +<?php echo $this->largeNumber::format($this->convert->vest2sp($stats[0]->quarter, false), '') ?>&nbsp;SP
+          +<?php echo $this->largeNumber::format($this->convert->vest2cgy($stats[0]->quarter, false), '') ?>&nbsp;CGY
           <div class="sub header">Last Quarter</div>
         </div>
       </div>
@@ -53,7 +53,7 @@
     </td>
     <td>
       <div class="ui small header">
-        <?php echo $this->convert->vest2sp($item->reward, null) ?> SP
+        <?php echo $this->convert->vest2cgy($item->reward, null) ?> CGY
         <div class="sub header">
           {{ item.reward }} VESTS
         </div>

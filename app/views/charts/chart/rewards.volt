@@ -22,7 +22,7 @@
     };
     var pSteem = function(d) { return +d.crea; };
     var pVest = function(d) { return +d.vest; };
-    var pSbd = function(d) { return +d.sbd; };
+    var pSbd = function(d) { return +d.cbd; };
 
     // Chart Posts
     var lSteem = new Plottable.Plots.StackedBar();

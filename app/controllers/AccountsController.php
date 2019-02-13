@@ -17,7 +17,7 @@ class AccountsController extends ControllerBase
     );
     if($filter) {
       switch($filter) {
-        case "powerdown":
+        case "de_energize":
           $sort = array(
             "vesting_withdraw_rate" => -1
           );

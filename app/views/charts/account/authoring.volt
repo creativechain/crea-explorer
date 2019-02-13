@@ -22,20 +22,20 @@
     };
     var pSteem = function(d) { return +d.crea; };
     var pVest = function(d) { return +d.vest; };
-    var pSbd = function(d) { return +d.sbd; };
+    var pSbd = function(d) { return +d.cbd; };
 
     // Chart Posts
     var lSteem = new Plottable.Plots.ClusteredBar();
     lSteem.addDataset(dataset);
     lSteem.x(pDate, xScale)
           .y(pSteem, yScale)
-          .attr("fill", "#21BA45");
+          .attr("fill", "#ffd952");
 
     var lVest = new Plottable.Plots.Line();
     lVest.addDataset(dataset);
     lVest.x(pDate, xScale)
             .y(pVest, yScale2)
-            .attr("fill", "#2185D0");
+            .attr("fill", "#0073ff");
 
     var lSbd = new Plottable.Plots.ClusteredBar();
     lSbd.addDataset(dataset);
@@ -44,7 +44,7 @@
             .attr("fill", "#c83333");
 
     var cs = new Plottable.Scales.Color();
-    cs.range(["#21BA45", "#2185D0", "#c83333"]);
+    cs.range(["#ffd952", "#0073ff", "#c83333"]);
     cs.domain(["Steem", "VESTS", "CBD"]);
     var legend = new Plottable.Components.Legend(cs);
 

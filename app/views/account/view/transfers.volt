@@ -1,7 +1,7 @@
 <div class="ui three item inverted menu">
   <a href="/@{{ account.name }}/transfers" class="{{ router.getActionName() == 'transfers' ? "active" : "" }} blue item">Transfers</a>
-  <a href="/@{{ account.name }}/powerup" class="{{ router.getActionName() == 'powerup' ? "active" : "" }} blue item">Power Ups</a>
-  <a href="/@{{ account.name }}/powerdown" class="{{ router.getActionName() == 'powerdown' ? "active" : ""}} blue item">Power Downs</a>
+  <a href="/@{{ account.name }}/energize" class="{{ router.getActionName() == 'energize' ? "active" : "" }} blue item">Energizations</a>
+  <a href="/@{{ account.name }}/de_energize" class="{{ router.getActionName() == 'de_energize' ? "active" : ""}} blue item">De-Energizations</a>
 </div>
 <h3 class="ui header">
   Transfers
@@ -58,7 +58,7 @@
     <tr>
       <td colspan="10">
         <div class="ui header">
-          No powerdown transfers found
+          No de-energize transfers found
         </div>
       </td>
     </tr>

@@ -2,7 +2,7 @@
   <div class="ui basic very padded segment">
     <center>
       <small>
-        * All CREA Power & VEST calculations are done using the current conversion rate, not a historical rate. This may cause some calculations to be incorrect.
+        * All CREA ENERGY & VEST calculations are done using the current conversion rate, not a historical rate. This may cause some calculations to be incorrect.
       </small>
     </center>
   </div>
@@ -12,9 +12,9 @@
     <div class="ui stackable inverted divided equal height stackable grid">
       <div class="sixteen wide center aligned column">
         <h4 class="ui inverted header">
-          <a href="https://test.creary.net">CREAdb</a>
-          originally created by
-          <a href="https://steemit.com/@jesta">@jesta</a>
+          <a href="/">CREA SCAN</a>
+          .
+          <a href="https://creaproject.io">creaproject.io</a>
         </h4>
       </div>
     </div>

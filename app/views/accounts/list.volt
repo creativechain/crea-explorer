@@ -12,7 +12,7 @@
         <div class="ui huge header offwhite">
           Accounts
           <div class="sub header offwhite">
-            Accounts sorted by various metrics (richlist by default)
+            Accounts sorted by various metrics
           </div>
         </div>
         <div class="ui top attached menu">
@@ -21,13 +21,13 @@
             <i class="dropdown icon"></i>
             <div class="menu">
               <a class="{{ filter == 'vest' ? 'active' : '' }} item" href="/accounts/vest">
-                Vests/SP
+                Vests/CGY
               </a>
               <a class="{{ filter == 'vit' ? 'active' : '' }} item" href="/accounts/vit">
                 CREA
               </a>
-              <a class="{{ filter == 'powerdown' ? 'active' : '' }} item" href="/accounts/powerdown">
-                Power Down
+              <a class="{{ filter == 'de_energize' ? 'active' : '' }} item" href="/accounts/de_energize">
+                De-Energize
               </a>
             </div>
           </div>
@@ -62,7 +62,7 @@
               <th class="center aligned">Followers</th>
               <th class="center aligned">Posts</th>
               <th class="right aligned">Vests</th>
-              <th class="right aligned">Powerdown</th>
+              <th class="right aligned">De-energize</th>
               <th class="right aligned">Balances</th>
             </tr>
           </thead>
@@ -96,7 +96,7 @@
                   <div data-popup data-content="<?php echo number_format($current->vesting_withdraw_rate, 3, ".", ",") ?> VESTS" data-variation="inverted" data-position="left center">
                     <?php echo $this->largeNumber::format($current->vesting_withdraw_rate); ?> (<?php echo round($current->vesting_withdraw_rate / $current->vesting_shares * 100, 2) ?>%)
                   </div>
-                  +<?php echo $this->convert::vest2sp($current->vesting_withdraw_rate); ?>/Week
+                  +<?php echo $this->convert::vest2cgy($current->vesting_withdraw_rate); ?>/Week
                 <?php endif; ?>
               </td>
               <td class="collapsing right aligned">

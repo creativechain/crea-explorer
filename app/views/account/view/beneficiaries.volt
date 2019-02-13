@@ -66,7 +66,7 @@
             </div>
           </td>
           <td>
-            ~<?php echo $this->convert::vest2sp($reward->reward, ""); ?> CREA
+            ~<?php echo $this->convert::vest2cgy($reward->reward, ""); ?> CREA
           </td>
         </tr>
     {% else %}

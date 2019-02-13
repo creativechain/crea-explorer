@@ -19,7 +19,7 @@
         </div>
       </td>
       <td class="collapsing right aligned">
-        ~<?php echo $this->convert::vest2sp($reward->reward, ""); ?> SP*
+        ~<?php echo $this->convert::vest2cgy($reward->reward, ""); ?> CGY*
       </td>
       <td>
         <div class="ui small header">

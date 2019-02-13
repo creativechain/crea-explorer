@@ -21,9 +21,9 @@
       return new Date(dateString);
     };
 
-    var pCBD = function(d) { return +d.sbd; };
+    var pCBD = function(d) { return +d.cbd; };
     var pCREA = function(d) { return +d.crea; };
-    var pSP = function(d) { return +d.sp; };
+    var pCGY = function(d) { return +d.cgy; };
 
     // Chart CBD
     var lCBD = new Plottable.Plots.Line();
@@ -42,10 +42,10 @@
              ;
 
     // Chart Votes
-    var lSP = new Plottable.Plots.Line();
-    lSP.addDataset(dataset);
-    lSP.x(pDate, xScale)
-             .y(pSP, yScale2)
+    var lCGY = new Plottable.Plots.Line();
+    lCGY.addDataset(dataset);
+    lCGY.x(pDate, xScale)
+             .y(pCGY, yScale2)
              .attr("stroke", "#58DC0A");
 
     var cs = new Plottable.Scales.Color();

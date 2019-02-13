@@ -62,7 +62,7 @@ class LabsController extends ControllerBase
     $this->view->rshares = $rshares;
   }
 
-  public function powerdownAction() {
+  public function de_energizeAction() {
     $props = $this->Cread->getProps();
     $converted = array(
       'current' => (float) explode(" ", $props['current_supply'])[0],
@@ -177,7 +177,7 @@ class LabsController extends ControllerBase
         '$limit' => 100
       ]
     ])->toArray();
-    $this->view->powerdowns = $transactions;
+    $this->view->de_energizes = $transactions;
   }
 
   public function flagsAction() {
@@ -202,7 +202,7 @@ class LabsController extends ControllerBase
     $this->view->accounts = $accounts;
   }
 
-  public function powerupAction() {
+  public function energizeAction() {
     // {transactions: {$elemMatch: {'operations.0.0': 'transfer_to_vesting'}}
     $days = 30;
     $this->view->filter = $filter = $this->request->get('filter');
@@ -214,7 +214,7 @@ class LabsController extends ControllerBase
         $days = 1;
         break;
     }
-    $powerups = VestingDeposit::agg([
+    $energizes = VestingDeposit::agg([
       [
         '$match' => [
           '_ts' => [
@@ -265,17 +265,17 @@ class LabsController extends ControllerBase
         'batchSize' => 0
       ]
     ])->toArray();
-    // var_dump($powerups); exit;
-    foreach($powerups as $idx => $tx) {
-      $powerups[$idx]['total'] = 0;
-      foreach($tx['instances'] as $powerup) {
-        $powerups[$idx]['total'] += (float) explode(" ", $powerup)[0];
+    // var_dump($energizes); exit;
+    foreach($energizes as $idx => $tx) {
+      $energizes[$idx]['total'] = 0;
+      foreach($tx['instances'] as $energize) {
+        $energizes[$idx]['total'] += (float) explode(" ", $energize)[0];
       }
     }
-    usort($powerups, function($a, $b) {
+    usort($energizes, function($a, $b) {
       return $b['total'] - $a['total'];
     });
-    $this->view->powerups = $powerups;
+    $this->view->energizes = $energizes;
   }
   public function photochallengeAction() {
     $query = array(
@@ -462,7 +462,7 @@ class LabsController extends ControllerBase
         'permlink' => '$permlink',
         'crea_payout' => '$crea_payout',
         'vesting_payout' => '$vesting_payout',
-        'sbd_payout' => '$sbd_payout',
+        'cbd_payout' => '$cbd_payout',
       ]],
       [
         '$group' => [
@@ -493,7 +493,7 @@ class LabsController extends ControllerBase
             '$sum' => ['$cond' => [
               ['$eq' => ['$prefix', 're-']],
               0,
-              '$sbd_payout',
+              '$cbd_payout',
             ]],
           ],
           'postSteem' => [
@@ -513,7 +513,7 @@ class LabsController extends ControllerBase
           'replySbd' => [
             '$sum' => ['$cond' => [
               ['$eq' => ['$prefix', 're-']],
-              '$sbd_payout',
+              '$cbd_payout',
               0,
             ]],
           ],
@@ -524,7 +524,7 @@ class LabsController extends ControllerBase
               0,
             ]],
           ],
-          'sbd' => ['$sum' => '$sbd_payout'],
+          'cbd' => ['$sum' => '$cbd_payout'],
           'crea' => ['$sum' => '$crea_payout'],
           'vest' => ['$sum' => '$vesting_payout'],
           'permlinks' => ['$addToSet' => [
@@ -545,15 +545,15 @@ class LabsController extends ControllerBase
     ])->toArray();
     // var_dump($leaderboard); exit;
     $totals = array(
-      'sbd' => 0,
+      'cbd' => 0,
       'crea' => 0,
-      'sp' => 0,
+      'cgy' => 0,
       'vest' => 0,
     );
     foreach($leaderboard as $idx => $data) {
-      $totals['sbd'] += $data['sbd'];
+      $totals['cbd'] += $data['cbd'];
       $totals['crea'] += $data['crea'];
-      $totals['sp'] += (float) $this->convert->vest2sp($data['vest'], false);
+      $totals['cgy'] += (float) $this->convert->vest2cgy($data['vest'], false);
       $totals['vest'] += $data['vest'];
       $totals['postVest'] += $data['postVest'];
     }
@@ -575,13 +575,13 @@ class LabsController extends ControllerBase
     //       'day' => ['$dayOfMonth' => '$_ts'],
     //       'dow' => ['$dayOfWeek' => '$_ts'],
     //     ],
-    //     'sbd_payout' => ['$sum' => '$sbd_payout'],
+    //     'cbd_payout' => ['$sum' => '$cbd_payout'],
     //     'vesting_payout' => ['$sum' => '$vesting_payout'],
     //     'crea_payout' => ['$sum' => '$crea_payout'],
     //     'value' => [
     //       '$sum' => ['$cond' => [
     //         ['$and' => [
-    //           ['$eq' => ['$sbd_payout', 0]],
+    //           ['$eq' => ['$cbd_payout', 0]],
     //           ['$eq' => ['$crea_payout', 0]],
     //         ]],
     //         '$vesting_payout',

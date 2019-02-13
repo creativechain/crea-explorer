@@ -1,12 +1,12 @@
 <div class="ui three item inverted menu">
   <a href="/@{{ account.name }}/transfers" class="{{ router.getActionName() == 'transfers' ? "active" : "" }} blue item">Transfers</a>
-  <a href="/@{{ account.name }}/powerup" class="{{ router.getActionName() == 'powerup' ? "active" : "" }} blue item">Power Ups</a>
-  <a href="/@{{ account.name }}/powerdown" class="{{ router.getActionName() == 'powerdown' ? "active" : ""}} blue item">Power Downs</a>
+  <a href="/@{{ account.name }}/energize" class="{{ router.getActionName() == 'energize' ? "active" : "" }} blue item">Energizations</a>
+  <a href="/@{{ account.name }}/de_energize" class="{{ router.getActionName() == 'de_energize' ? "active" : ""}} blue item">De-Energizations</a>
 </div>
 <h3 class="ui dividing header">
-  Power Ups
+  Energizations
   <div class="sub header">
-    The CREA powered up to @{{ account.name }}.
+    The CREA energized to @{{ account.name }}.
   </div>
 </h3>
 <table class="ui table">
@@ -19,7 +19,7 @@
     </tr>
   </thead>
   <tbody>
-    {% for power in powerup %}
+    {% for power in energize %}
     <tr>
       <td>
         <?php echo $this->timeAgo::mongo($power->_ts); ?>
@@ -44,7 +44,7 @@
     <tr>
       <td colspan="10">
         <div class="ui header">
-          No powerup transfers found
+          No energize transfers found
         </div>
       </td>
     </tr>

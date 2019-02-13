@@ -13,7 +13,7 @@
       color: #fff;
     }
     .ui.tabular.menu .item:hover {
-      color: #600DD0;
+      color: #0073ff;
     }
     .offwhite {
       color: #f3f3f3 !important;

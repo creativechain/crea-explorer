@@ -19,7 +19,7 @@
         </div>
       </td>
       <td class="collapsing right aligned">
-        ~<?php echo $this->convert::vest2sp($reward->reward, ""); ?> SP*
+        ~<?php echo $this->convert::vest2cgy($reward->reward, ""); ?> CGY*
       </td>
       <td>
         <a href="/tag/@{{ reward.comment_author }}/{{ reward.comment_permlink }}">

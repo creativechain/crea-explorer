@@ -68,7 +68,7 @@
             </div>
           </td>
           <td>
-            ~<?php echo $this->convert::vest2sp($reward->reward, ""); ?> CREA
+            ~<?php echo $this->convert::vest2cgy($reward->reward, ""); ?> CREA
           </td>
           <td class="right aligned">
             <span style="color: #ccc">
@@ -86,7 +86,7 @@
             </span>
           </td>
           <td class="right aligned">
-            ~<?php echo round($this->convert::vest2sp($reward->reward, false) / $reward->votes, 3); ?>
+            ~<?php echo round($this->convert::vest2cgy($reward->reward, false) / $reward->votes, 3); ?>
           </td>
         </tr>
     {% else %}

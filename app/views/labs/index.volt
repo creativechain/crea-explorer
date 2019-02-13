@@ -86,11 +86,11 @@
               <div class="ui header">
                 <i class="list icon"></i>
                 <div class="content">
-                  <a href="/powerup">
-                    biggest power ups
+                  <a href="/energize">
+                    biggest energizes
                   </a>
                   <div class="sub header">
-                    The accounts who have powered up the most SP over the past 30 days.
+                    The accounts who have energized the most CGY over the past 30 days.
                   </div>
                 </div>
               </div>
@@ -99,8 +99,8 @@
               <div class="ui header">
                 <i class="list icon"></i>
                 <div class="content">
-                  <a href="/labs/powerdown">
-                    power down statistics
+                  <a href="/labs/de_energize">
+                    de-energize statistics
                   </a>
                   <div class="sub header">
                     Shows the largest accounts powering down as well as a week over week overview
@@ -232,7 +232,7 @@
                   CREA -> VESTS per Day
                 </a>
                 <div class="sub header">
-                  Total amount of CREA powered up per day over the last 30 days
+                  Total amount of CREA energized per day over the last 30 days
                 </div>
               </div>
             </div>#}

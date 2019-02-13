@@ -365,9 +365,9 @@ class ApiController extends ControllerBase
         '$limit' => 30
       ],
     ])->toArray();
-    // TODO: Figure out why VP shows as a small number
+    // TODO: Figure out why CGY shows as a small number
     // foreach($data as $idx => $date) {
-    //   $data[$idx]->vp = (float) $this->convert->vest2sp($data[$idx]->vests, null);
+    //   $data[$idx]->cgy = (float) $this->convert->vest2cgy($data[$idx]->vests, null);
     // }
     echo json_encode($data, JSON_PRETTY_PRINT);
   }
@@ -391,11 +391,11 @@ class ApiController extends ControllerBase
             'month' => ['$month' => '$date'],
             'day' => ['$dayOfMonth' => '$date'],
           ],
-          'sbd' => [
-            '$sum' => '$sbd_balance'
+          'cbd' => [
+            '$sum' => '$cbd_balance'
           ],
-          'sbd_savings' => [
-            '$sum' => '$savings_sbd_balance'
+          'cbd_savings' => [
+            '$sum' => '$savings_cbd_balance'
           ],
           'crea' => [
             '$sum' => '$balance'
@@ -614,8 +614,8 @@ class ApiController extends ControllerBase
 
     $filter = $this->request->get('sort');
     switch($filter) {
-      case "sbd":
-        $sorting = array('total_sbd_balance' => -1);
+      case "cbd":
+        $sorting = array('total_cbd_balance' => -1);
         break;
       case "crea":
         $sorting = array('total_balance' => -1);
@@ -659,7 +659,7 @@ class ApiController extends ControllerBase
     echo json_encode($data, JSON_PRETTY_PRINT);
   }
 
-  public function powerupAction() {
+  public function energizeAction() {
     $transactions = Block30d::agg([
       [
         '$match' => [
@@ -714,8 +714,8 @@ class ApiController extends ControllerBase
     ])->toArray();
     foreach($transactions as $idx => $tx) {
       $transactions[$idx]['total'] = 0;
-      foreach($tx['instances'] as $powerup) {
-        $transactions[$idx]['total'] += (float) explode(" ", $powerup)[0];
+      foreach($tx['instances'] as $energize) {
+        $transactions[$idx]['total'] += (float) explode(" ", $energize)[0];
       }
       unset($transactions[$idx]['instances']);
     }
@@ -742,7 +742,7 @@ class ApiController extends ControllerBase
             'day' => ['$dayOfMonth' => '$_ts']
           ],
           'count' => ['$sum' => 1],
-          'sbd' => ['$sum' => '$sbd_payout'],
+          'cbd' => ['$sum' => '$cbd_payout'],
           'crea' => ['$sum' => '$crea_payout'],
           'vest' => ['$sum' => '$vesting_payout']
         ]
@@ -755,7 +755,7 @@ class ApiController extends ControllerBase
       ]
     ])->toArray();
     foreach($rewards as $index => $reward) {
-      $rewards[$index]['sp'] = (float) $this->convert->vest2sp($reward['vest'], false);
+      $rewards[$index]['cgy'] = (float) $this->convert->vest2cgy($reward['vest'], false);
     }
     echo json_encode($rewards, JSON_PRETTY_PRINT);
   }
@@ -790,10 +790,10 @@ class ApiController extends ControllerBase
         ]
       ]
     ])->toArray();
-    $sp = [];
+    $cgy = [];
     foreach($rewards as $index => $reward) {
-      $rewards[$index]['sp'] = (float) $this->convert->vest2sp($reward['vest'], false);
-      $sp[] = $rewards[$index]['sp'];
+      $rewards[$index]['cgy'] = (float) $this->convert->vest2cgy($reward['vest'], false);
+      $cgy[] = $rewards[$index]['cgy'];
     }
     echo json_encode($rewards, JSON_PRETTY_PRINT);
   }
@@ -828,12 +828,12 @@ class ApiController extends ControllerBase
         ]
       ]
     ])->toArray();
-    $sp = [];
+    $cgy = [];
     foreach($rewards as $index => $reward) {
-      $rewards[$index]['sp'] = (float) $this->convert->vest2sp($reward['vest'], false);
-      $sp[] = $rewards[$index]['sp'];
+      $rewards[$index]['cgy'] = (float) $this->convert->vest2cgy($reward['vest'], false);
+      $cgy[] = $rewards[$index]['cgy'];
     }
-    var_dump(array_sum($sp) / sizeof($sp)); exit;
+    var_dump(array_sum($cgy) / sizeof($cgy)); exit;
     echo json_encode($rewards, JSON_PRETTY_PRINT);
   }
 
@@ -867,17 +867,17 @@ class ApiController extends ControllerBase
         ]
       ]
     ])->toArray();
-    $sp = [];
+    $cgy = [];
     foreach($rewards as $index => $reward) {
-      $rewards[$index]['sp'] = (float) $this->convert->vest2sp($reward['vest'], false);
-      $sp[] = $rewards[$index]['sp'];
+      $rewards[$index]['cgy'] = (float) $this->convert->vest2cgy($reward['vest'], false);
+      $cgy[] = $rewards[$index]['cgy'];
     }
-    // var_dump(array_sum($sp) / sizeof($sp)); exit;
+    // var_dump(array_sum($cgy) / sizeof($cgy)); exit;
     echo json_encode($rewards, JSON_PRETTY_PRINT);
   }
 
 
-  public function powerdown1000Action() {
+  public function de_energize1000Action() {
     $accounts = Account::agg([
       ['$sort' => [
         'vesting_shares' => -1
@@ -908,7 +908,7 @@ class ApiController extends ControllerBase
         'value' => [
           '$sum' => ['$cond' => [
             ['$and' => [
-              ['$eq' => ['$sbd_payout', 0]],
+              ['$eq' => ['$cbd_payout', 0]],
               ['$eq' => ['$crea_payout', 0]],
             ]],
             '$vesting_payout',

@@ -9,7 +9,7 @@
   <div class="ui segment">
     <div class="comment">
       <a class="avatar">
-        <img src="https://creastats.com/images/avatar.8418a25d.png">
+        <img src="{{ account.json_metadata.avatar.url }}">
       </a>
       <div class="content">
         <div class="author">

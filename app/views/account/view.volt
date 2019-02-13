@@ -46,7 +46,7 @@
           {% include '_elements/cards/account.volt' %}
           <div class="ui small indicating progress">
             <div class="label offwhite">
-              {{ actual_voting_power }}% Voting Power
+              {{ actual_voting_power }}% Voting Energy
             </div>
             <div class="bar">
               <div class="progress"></div>
@@ -60,15 +60,15 @@
                   {{ partial("_elements/vesting_shares", ['current': account]) }}
                 </td>
               </tr>
-              <tr {% if account.vesting_withdraw_rate and account.vesting_withdraw_rate > 1 %}data-popup data-html="<table class='ui small definition table'><tr><td>Power Down - Rate</td><td>-<?php echo $this->convert::vest2sp($current->vesting_withdraw_rate, " VP"); ?></td></tr><tr><td>Power Down - Datetime</td><td><?php echo gmdate("Y-m-d H:i:s e", (string) $account->next_vesting_withdrawal / 1000) ?></td></tr></table>" data-position="left center" data-variation="very wide"{% endif %}>
-                <td>VP</td>
+              <tr {% if account.vesting_withdraw_rate and account.vesting_withdraw_rate > 1 %}data-popup data-html="<table class='ui small definition table'><tr><td>De-Energize - Rate</td><td>-<?php echo $this->convert::vest2cgy($current->vesting_withdraw_rate, " CGY"); ?></td></tr><tr><td>De-Energize - Datetime</td><td><?php echo gmdate("Y-m-d H:i:s e", (string) $account->next_vesting_withdrawal / 1000) ?></td></tr></table>" data-position="left center" data-variation="very wide"{% endif %}>
+                <td>CGY</td>
                 <td>
                   <div class="ui tiny header">
-                    <?php echo $this->convert::vest2sp($current->vesting_shares); ?>
+                    <?php echo $this->convert::vest2cgy($current->vesting_shares); ?>
                   </div>
                 </td>
               </tr>
-              <tr data-popup data-html="<table class='ui small definition table'><tr><td>Balance</td><td><?php echo number_format($account->balance, 3, '.', ','); ?></td></tr><tr><td>Savings Balance</td><td><?php echo number_format($account->savings_balance, 3, '.', ','); ?></td></tr>{% if account.vesting_withdraw_rate and account.vesting_withdraw_rate > 1 and not account.withdraw_routes %}<tr><td>Power Down - Rate</td><td>+<?php echo $this->convert::vest2sp($current->vesting_withdraw_rate, " CREA"); ?></td></tr><tr><td>Power Down - Datetime</td><td><?php echo gmdate("Y-m-d H:i:s e", (string) $account->next_vesting_withdrawal / 1000) ?></td></tr>{% endif %}</table>" data-position="left center" data-variation="very wide">
+              <tr data-popup data-html="<table class='ui small definition table'><tr><td>Balance</td><td><?php echo number_format($account->balance, 3, '.', ','); ?></td></tr><tr><td>Savings Balance</td><td><?php echo number_format($account->savings_balance, 3, '.', ','); ?></td></tr>{% if account.vesting_withdraw_rate and account.vesting_withdraw_rate > 1 and not account.withdraw_routes %}<tr><td>De-Energize - Rate</td><td>+<?php echo $this->convert::vest2cgy($current->vesting_withdraw_rate, " CREA"); ?></td></tr><tr><td>De-Energize - Datetime</td><td><?php echo gmdate("Y-m-d H:i:s e", (string) $account->next_vesting_withdrawal / 1000) ?></td></tr>{% endif %}</table>" data-position="left center" data-variation="very wide">
                 <td>CREA</td>
                 <td>
                   <div class="ui tiny header">

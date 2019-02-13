@@ -62,7 +62,7 @@
             {{ reward.posts }}
           </td>
           <td class="collapsing right aligned">
-            ~<?php echo $this->convert::vest2sp($reward->vesting_payout, ""); ?> CREA
+            ~<?php echo $this->convert::vest2cgy($reward->vesting_payout, ""); ?> CREA
           </td>
         </tr>
     {% else %}

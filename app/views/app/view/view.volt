@@ -42,12 +42,12 @@
     </td>
     <td class='right aligned'>
       <div class="ui small header">
-        {{ item.sbd }} CBD
+        {{ item.cbd }} CBD
       </div>
     </td>
     <td class='right aligned'>
       <div class="ui small header">
-        <?php echo $this->convert->vest2sp($item->vests, null) ?> SP
+        <?php echo $this->convert->vest2cgy($item->vests, null) ?> CGY
         <div class="sub header">
           {{ item.vests }} VESTS
         </div>

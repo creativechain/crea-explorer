@@ -20,7 +20,7 @@ class OpName extends Tag
     "delete_comment" => "Post Delete",
     "feed_publish" => "Feed Publish",
     "fill_order" => "Fill Order",
-    "fill_vesting_withdraw" => "Power Down",
+    "fill_vesting_withdraw" => "De-Energize",
     "interest" => "CBD Interest",
     "limit_order_create" => "Limit Order Create",
     "limit_order_cancel" => "Limit Order Cancel",
@@ -29,7 +29,7 @@ class OpName extends Tag
     "transfer" => "Transfer",
     "transfer_to_savings" => "Transfer to Savings",
     "transfer_from_savings" => "Transfer from Savings",
-    "transfer_to_vesting" => "Power Up",
+    "transfer_to_vesting" => "Energize",
     "vote" => "Vote",
     "witness_update" => "Witness Update",
   );

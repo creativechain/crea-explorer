@@ -22,7 +22,7 @@
     };
 
     var pCREA = function(d) { return +d.crea; };
-    var pSP = function(d) { return +d.sp; };
+    var pCGY = function(d) { return +d.cgy; };
 
 
     // Chart Replies
@@ -34,10 +34,10 @@
              ;
 
     // Chart Votes
-    var lSP = new Plottable.Plots.Line();
-    lSP.addDataset(dataset);
-    lSP.x(pDate, xScale)
-             .y(pSP, yScale2)
+    var lCGY = new Plottable.Plots.Line();
+    lCGY.addDataset(dataset);
+    lCGY.x(pDate, xScale)
+             .y(pCGY, yScale2)
              .attr("stroke", "#58DC0A");
 
     var cs = new Plottable.Scales.Color();
@@ -59,7 +59,7 @@
     var yLabel = new Plottable.Components.AxisLabel("", "270");
     var xLabel = new Plottable.Components.TitleLabel("Supply History", "0");
 
-    var plots = new Plottable.Components.Group([lCREA, lSP]);
+    var plots = new Plottable.Components.Group([lCREA, lCGY]);
     var table = new Plottable.Components.Table([
       [null, null, xLabel, null, null],
       [null, null, legend, null, null],

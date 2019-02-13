@@ -109,7 +109,7 @@
                 {{ partial("_elements/vesting_shares", ['current': account.account[0]]) }}
                 <br>
                 <small>
-                  ~<?php echo $this->convert::vest2sp($account->account[0]->vesting_shares, ""); ?>&nbsp;SP*
+                  ~<?php echo $this->convert::vest2cgy($account->account[0]->vesting_shares, ""); ?>&nbsp;CGY*
                 </small>
 
               </td>
@@ -119,7 +119,7 @@
                 </div>
                 <br>
                 <small>
-                  ~<?php echo $this->convert::vest2sp($account->total, ""); ?> CREA
+                  ~<?php echo $this->convert::vest2cgy($account->total, ""); ?> CREA
                 </small>
               </td>
               <td class="center aligned collapsing">

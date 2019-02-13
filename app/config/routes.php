@@ -127,14 +127,14 @@ $router->add('/labs', [
   'action' => 'index'
 ]);
 
-$router->add('/powerup', [
+$router->add('/energize', [
   'controller' => 'labs',
-  'action' => 'powerup'
+  'action' => 'energize'
 ]);
 
-$router->add('/powerdown', [
+$router->add('/de_energize', [
   'controller' => 'labs',
-  'action' => 'powerdown'
+  'action' => 'de_energize'
 ]);
 
 $router->add('/labs/focus', [

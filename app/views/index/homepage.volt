@@ -18,36 +18,7 @@
 </style>
 
 <div class="ui body container">
-  <h1 class="ui header offwhite">
-    CREAdb
-    <div class="sub header offwhite">
-      Block explorer and database for the CREA blockchain.
-    </div>
-  </h1>
   <div class="ui stackable grid">
-    <div class="row">
-      <div class="four wide column centered">
-        <!-- TradingView Widget BEGIN
-        <script type="text/javascript" src="https://d33t3vvu2t2yu5.cloudfront.net/tv.js"></script>
-        <script type="text/javascript">
-        new TradingView.widget({
-          "autosize": true,
-          "symbol": "HITBTC:BTCCREA",
-          "interval": "120",
-          "timezone": "Etc/UTC",
-          "theme": "White",
-          "style": "1",
-          "locale": "en",
-          "toolbar_bg": "#f1f3f6",
-          "enable_publishing": false,
-          "hide_top_toolbar": true,
-          "allow_symbol_change": true,
-          "hideideas": true
-        });
-        </script>
-        TradingView Widget END -->
-      </div>
-    </div>
     <div class="row">
       <div class="ten wide column">
         {% if (renderChart > 0) %}
@@ -170,7 +141,7 @@
         <div class="ui small dividing header offwhite">
           Metrics
           <div class="sub header offwhite">
-            Witness Parameters, global properties and statistics
+            Global properties and statistics
           </div>
         </div>
         <div class="ui horizontal stacked segments">

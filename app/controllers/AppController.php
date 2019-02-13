@@ -99,7 +99,7 @@ class AppController extends ControllerBase
       ['$project' => [
         '_ts' => 1,
         'author' => 1,
-        'sbd_payout' => 1,
+        'cbd_payout' => 1,
         'crea_payout' => 1,
         'vesting_payout' => 1,
         'value' => [
@@ -108,7 +108,7 @@ class AppController extends ControllerBase
             ['$cond' => [
               ['$and' => [
                 ['$eq' => ['$crea_payout', 0]],
-                ['$eq' => ['$sbd_payout', 0]],
+                ['$eq' => ['$cbd_payout', 0]],
               ]],
               '$vesting_payout',
               ['$multiply' => ['$vesting_payout', 2]]
@@ -120,7 +120,7 @@ class AppController extends ControllerBase
         '_id' => [
           'account' => '$author',
         ],
-        'sbd' => ['$sum' => '$sbd_payout'],
+        'cbd' => ['$sum' => '$cbd_payout'],
         'crea' => ['$sum' => '$crea_payout'],
         'vests' => ['$sum' => '$vesting_payout'],
         'value' => ['$sum' => '$value'],

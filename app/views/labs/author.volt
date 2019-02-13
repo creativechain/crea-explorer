@@ -87,7 +87,7 @@
               </div>
               <div class="center aligned column">
                 <div class="ui header">
-                  {{ totals['sp'] }}
+                  {{ totals['cgy'] }}
                   <div class="sub header">
                     CREA Power
                   </div>
@@ -127,10 +127,10 @@
               <tr>
                 <th class="collapsing">#</th>
                 <th>Account</th>
-                <th class="collapsing center aligned">VESTS/VP</th>
+                <th class="collapsing center aligned">VESTS/CGY</th>
                 <th class="collapsing center aligned">CREA</th>
                 <th class="collapsing center aligned">Posts</th>
-                <th class="collapsing center aligned">VP/Post</th>
+                <th class="collapsing center aligned">CGY/Post</th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -151,7 +151,7 @@
                 </div>
                 <br>
                 <small>
-                  ~<?php echo $this->convert::vest2sp($account->vest, ""); ?> VP*
+                  ~<?php echo $this->convert::vest2cgy($account->vest, ""); ?> CGY*
                 </small>
               </td>
               <td>
@@ -161,7 +161,7 @@
                 {{ account.posts }}
               </td>
               <td>
-                ~<?php echo $this->convert::vest2sp($account->vest / $account->count, ""); ?>&nbsp;SP*
+                ~<?php echo $this->convert::vest2cgy($account->vest / $account->count, ""); ?>&nbsp;CGY*
               </td>
             </tr>
           {% else %}

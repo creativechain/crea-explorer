@@ -25,10 +25,10 @@
     lVotes.addDataset(dataset);
     lVotes.x(pDate, xScale)
             .y(pVotes, yScale)
-            .attr("fill", "#2185D0");
+            .attr("fill", "#0073ff");
 
     var cs = new Plottable.Scales.Color();
-    cs.range(["#2185D0"]);
+    cs.range(["#0073ff"]);
     cs.domain(["Votes"]);
     var legend = new Plottable.Components.Legend(cs);
 
@@ -54,6 +54,6 @@
     ]);
 
     table.renderTo("svg#account-witness");
-    $(".bar-area rect").popup({target: '#account-powerup'});
+    $(".bar-area rect").popup({target: '#account-energize'});
   });
 </script>

@@ -28,7 +28,7 @@
     lPosts.addDataset(dataset);
     lPosts.x(pDate, xScale)
             .y(pPosts, yScale)
-            .attr("fill", "#2185D0");
+            .attr("fill", "#0073ff");
 
     // Chart Replies
     var lReplies = new Plottable.Plots.Line();
@@ -38,7 +38,7 @@
             .attr("stroke", "#58DC0A");
 
     var cs = new Plottable.Scales.Color();
-    cs.range(["#2185D0", "#58DC0A"]);
+    cs.range(["#0073ff", "#58DC0A"]);
     cs.domain(["Posts", "Replies"]);
     var legend = new Plottable.Components.Legend(cs);
     legend.maxEntriesPerRow(3);

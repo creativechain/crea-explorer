@@ -496,7 +496,7 @@ class AccountController extends ControllerBase
           'day' => ['$dayOfMonth' => '$_ts']
         ],
         '_ts' => ['$first' => '$_ts'],
-        'sbd_payout' => ['$sum' => '$sbd_payout'],
+        'cbd_payout' => ['$sum' => '$cbd_payout'],
         'crea_payout' => ['$sum' => '$crea_payout'],
         'vesting_payout' => ['$sum' => '$vesting_payout'],
         'posts' => ['$sum' => 1],
@@ -590,10 +590,10 @@ class AccountController extends ControllerBase
     $this->view->pick("account/view");
   }
 
-  public function powerupAction()
+  public function energizeAction()
   {
     $account = $this->getAccount();
-    $this->view->powerup = VestingDeposit::find(array(
+    $this->view->energize = VestingDeposit::find(array(
       array('to' => $account),
       'sort' => array('_ts' => -1)
     ));
@@ -601,10 +601,10 @@ class AccountController extends ControllerBase
     $this->view->pick("account/view");
   }
 
-  public function powerdownAction()
+  public function de_energizeAction()
   {
     $account = $this->getAccount();
-    $this->view->powerdown = VestingWithdraw::find(array(
+    $this->view->de_energize = VestingWithdraw::find(array(
       array('from_account' => $account),
       'sort' => array('_ts' => -1)
     ));

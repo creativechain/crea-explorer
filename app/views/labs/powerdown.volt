@@ -10,7 +10,7 @@
     <div class="row">
       <div class="column">
         <div class="ui huge dividing header offwhite">
-          Power Down Statistics
+          De-Energize Statistics
           <div class="sub header offwhite">
             Analysis of the accounts currently powering down (using UTC time)
           </div>
@@ -47,7 +47,7 @@
     <div class="row">
       <div class="seven wide column">
         <div class="ui centered header offwhite">
-          Pending Power Downs
+          Pending De-Energizations
           <div class="sub header offwhite">
             Total powering down in the next week
           </div>
@@ -57,7 +57,7 @@
             <tr>
               <th>Total (Weekly)</th>
               <th class="right aligned"><?php echo number_format($upcoming_total, 0, ".", ",") ?> VESTS</th>
-              <th class="right aligned">~<?php echo $this->convert::vest2sp($upcoming_total, " CREA", 0); ?></th>
+              <th class="right aligned">~<?php echo $this->convert::vest2cgy($upcoming_total, " CREA", 0); ?></th>
             </tr>
           </thead>
           <tbody>
@@ -72,7 +72,7 @@
                 {% endif %}
               </td>
               <td class="right aligned"><?php echo number_format($day->withdrawn, 0, ".", ",") ?> VESTS</td>
-              <td class="right aligned">~<?php echo $this->convert::vest2sp($day->withdrawn, " CREA", 0); ?></td>
+              <td class="right aligned">~<?php echo $this->convert::vest2cgy($day->withdrawn, " CREA", 0); ?></td>
             </tr>
             {% endfor %}
           </tbody>
@@ -90,7 +90,7 @@
             <th class="right aligned">
               <?php $number = round(($upcoming_total / $previous_total - 1) * 100 ,2); ?>
               {% if number > 0 %}
-              <div style="color: #DB2828">
+              <div style="color: #ff5766">
               {% else %}
               <div style="color: #16ab39">
               {% endif %}
@@ -115,7 +115,7 @@
                   $number = round(($withdrawn / $previous[$idx]['withdrawn'] - 1) * 100, 1);
                  ?>
                 {% if number > 0 %}
-                <div style="color: #DB2828">
+                <div style="color: #ff5766">
                 {% else %}
                 <div style="color: #16ab39">
                 {% endif %}
@@ -129,9 +129,9 @@
       </div>
       <div class="seven wide column">
         <div class="ui centered header offwhite">
-          Completed Power Downs
+          Completed De-Energizations
           <div class="sub header offwhite">
-            Total powered down in the last week
+            Total de-energized in the last week
           </div>
         </div>
         <table class="ui small striped table">
@@ -139,7 +139,7 @@
             <tr>
               <th>Total</th>
               <th class="right aligned"><?php echo number_format($previous_total, 0, ".", ",") ?> VESTS</th>
-              <th class="right aligned">~<?php echo $this->convert::vest2sp($previous_total, " CREA", 0); ?></th>
+              <th class="right aligned">~<?php echo $this->convert::vest2cgy($previous_total, " CREA", 0); ?></th>
             </tr>
           </thead>
           <tbody>
@@ -151,7 +151,7 @@
                 {{ day['_id']['month'] }}-{{ day['_id']['day'] }}
               </td>
               <td class="right aligned"><?php echo number_format($day->withdrawn, 0, ".", ",") ?> VESTS</td>
-              <td class="right aligned">~<?php echo $this->convert::vest2sp($day->withdrawn, " CREA", 0); ?></td>
+              <td class="right aligned">~<?php echo $this->convert::vest2cgy($day->withdrawn, " CREA", 0); ?></td>
             </tr>
             {% endfor %}
           </tbody>
@@ -164,7 +164,7 @@
         <div class="ui header offwhite">
           Largest Liquidity Increases
           <div class="sub header offwhite">
-            30 days worth of powerdowns combined per account
+            30 days worth of de-energizes combined per account
           </div>
         </div>
         <table class="ui small striped attached table">
@@ -180,37 +180,37 @@
             </tr>
           </thead>
           <tbody>
-            {% for powerdown in powerdowns %}
+            {% for de_energize in de_energizes %}
             <tr>
               <td class="collapsing">{{ loop.index }}</td>
               <td class="collapsing right aligned">
                 <div class="ui header">
-                  +<?php echo $this->largeNumber::format($powerdown->deposited, '', " CREA", 0); ?>
+                  +<?php echo $this->largeNumber::format($de_energize->deposited, '', " CREA", 0); ?>
                   <div class="sub header">
-                    {{ powerdown.count }}x Power Downs
+                    {{ de_energize.count }}x De-Energizations
                   </div>
                 </div>
               </td>
               <td class="collapsing right aligned">
-                <div class="ui <?php echo $this->largeNumber::color($powerdown->withdrawn)?> label" data-popup data-content="<?php echo number_format($powerdown->withdrawn, 0, ".", ",") ?> VESTS" data-variation="inverted" data-position="left center">
-                  -<?php echo $this->largeNumber::format($powerdown->withdrawn); ?>
+                <div class="ui <?php echo $this->largeNumber::color($de_energize->withdrawn)?> label" data-popup data-content="<?php echo number_format($de_energize->withdrawn, 0, ".", ",") ?> VESTS" data-variation="inverted" data-position="left center">
+                  -<?php echo $this->largeNumber::format($de_energize->withdrawn); ?>
                 </div>
               </td>
               <td class="collapsing right aligned">
-                {{ partial("_elements/vesting_shares", ['current': powerdown.account[0]]) }}
+                {{ partial("_elements/vesting_shares", ['current': de_energize.account[0]]) }}
               </td>
               <td>
                 <div class="ui header">
                   <div class="ui circular blue label">
-                    <?php echo $this->reputation::number($powerdown->account[0]->reputation) ?>
+                    <?php echo $this->reputation::number($de_energize->account[0]->reputation) ?>
                   </div>
-                  {{ link_to("/@" ~ powerdown.account[0].name, powerdown.account[0].name) }}
+                  {{ link_to("/@" ~ de_energize.account[0].name, de_energize.account[0].name) }}
                   <div class="sub header" style="margin-left: 50px">
-                    <a href="/@{{ powerdown.account[0].name }}/powerdown">
-                      Power Downs
+                    <a href="/@{{ de_energize.account[0].name }}/de_energize">
+                      De-Energizations
                     </a>
                     |
-                    <a href="/@{{ powerdown.account[0].name }}/transfers">
+                    <a href="/@{{ de_energize.account[0].name }}/transfers">
                       Transfers
                     </a>
                   </div>
@@ -218,7 +218,7 @@
               </td>
               <td>
                 <div class="ui list">
-                {% for account in powerdown.deposited_to %}
+                {% for account in de_energize.deposited_to %}
                   <div class="item">
                     <a href="/@{{ account }}">
                       {{ account }}

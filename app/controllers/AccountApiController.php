@@ -423,7 +423,7 @@ class AccountApiController extends ControllerBase
           'count' => ['$sum' => 1],
           'crea' => ['$sum' => '$crea_payout'],
           'vest' => ['$sum' => '$vesting_payout'],
-          'sbd' => ['$sum' => '$sbd_payout'],
+          'cbd' => ['$sum' => '$cbd_payout'],
         ]
       ],
       [
@@ -476,7 +476,7 @@ class AccountApiController extends ControllerBase
     echo json_encode($data, JSON_PRETTY_PRINT);
   }
 
-  public function powerupAction() {
+  public function energizeAction() {
     $account = $this->dispatcher->getParam("account");
     $data = VestingDeposit::agg([
       [
@@ -508,7 +508,7 @@ class AccountApiController extends ControllerBase
     echo json_encode($data, JSON_PRETTY_PRINT);
   }
 
-  public function powerdownAction() {
+  public function de_energizeAction() {
     $account = $this->dispatcher->getParam("account");
     $data = VestingWithdraw::agg([
       [

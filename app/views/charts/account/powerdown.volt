@@ -1,5 +1,5 @@
 <script>
-  d3.json("/api/account/{{ account.name }}/powerdown").get(function(error, rows) {
+  d3.json("/api/account/{{ account.name }}/de_energize").get(function(error, rows) {
     var data = rows;
     var dataset = new Plottable.Dataset(data);
     var dayOffset = (24*60*60*1000); // 1 day
@@ -25,10 +25,10 @@
     lValue.addDataset(dataset);
     lValue.x(pDate, xScale)
             .y(pValue, yScale)
-            .attr("fill", "#2185D0");
+            .attr("fill", "#0073ff");
 
     var cs = new Plottable.Scales.Color();
-    cs.range(["#2185D0"]);
+    cs.range(["#0073ff"]);
     cs.domain(["CREA"]);
     var legend = new Plottable.Components.Legend(cs);
 
@@ -43,7 +43,7 @@
     legend.maxEntriesPerRow(5)
 
     var yLabelValue = new Plottable.Components.AxisLabel("CREA", "90");
-    var xLabelTitle = new Plottable.Components.TitleLabel("90-day Power Downs", "0");
+    var xLabelTitle = new Plottable.Components.TitleLabel("90-day De-Energizations", "0");
 
     var plots = new Plottable.Components.Group([lValue]);
     var table = new Plottable.Components.Table([
@@ -53,6 +53,6 @@
       [xAxis, null, null]
     ]);
 
-    table.renderTo("svg#account-powerdown");
+    table.renderTo("svg#account-de-energize");
   });
 </script>
