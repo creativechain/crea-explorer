@@ -47,7 +47,7 @@
         <div class="ui centered header">
           No votes found
           <div class="sub header">
-            CREAdb has no record of any votes by this user.
+            CREASCAN has no record of any votes by this user.
           </div>
         </div>
       </td>

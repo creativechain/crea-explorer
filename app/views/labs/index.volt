@@ -16,7 +16,7 @@
     <div class="row">
       <div class="column">
         <div class="ui huge header offwhite">
-          CREAdb Labs
+          CREASCAN Labs
           <div class="sub header offwhite">
             Experimental projects and testing grounds for various concepts.
           </div>

@@ -31,7 +31,7 @@ def load_accounts():
             mvest_per_account.update({account['name']: account['vesting_shares']})
 
 def update_fund_history():
-    pprint("[CREAdb] - Update Fund History")
+    pprint("[CREASCAN] - Update Fund History")
 
     fund = stm.rpc.get_reward_fund('post')
     for key in ['recent_claims', 'content_constant']:
@@ -44,7 +44,7 @@ def update_fund_history():
     db.funds_history.insert(fund)
 
 def update_props_history():
-    pprint("[CREAdb] - Update Global Properties")
+    pprint("[CREASCAN] - Update Global Properties")
 
     props = stm.rpc.get_dynamic_global_properties()
 
@@ -80,7 +80,7 @@ def update_props_history():
     db.props_history.insert(props)
 
 def update_tx_history():
-    pprint("[CREAdb] - Update Transaction History")
+    pprint("[CREASCAN] - Update Transaction History")
     now = datetime.now().date()
 
     today = datetime.combine(now, datetime.min.time())
@@ -123,7 +123,7 @@ def update_history():
     now = datetime.now().date()
     today = datetime.combine(now, datetime.min.time())
 
-    pprint("[CREAdb] - Update History (" + str(len(users)) + " accounts)")
+    pprint("[CREASCAN] - Update History (" + str(len(users)) + " accounts)")
     # Snapshot User Count
     db.statistics.update({
       'key': 'users',

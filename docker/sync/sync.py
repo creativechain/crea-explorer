@@ -189,7 +189,7 @@ def save_custom_json(op, block, blockid):
             if data[0] == 'follow':
                 save_follow(data, op, block, blockid)
     except ValueError:
-        pprint("[CREAdb] - Processing failure")
+        pprint("[CREASCAN] - Processing failure")
         pprint(blockid)
         pprint(op['json'])
 
@@ -380,7 +380,7 @@ def update_comment_options(op, block, blockid):
 mvest_per_account = {}
 
 def load_accounts():
-    pprint("[CREAdb] - Loading all accounts")
+    pprint("[CREASCAN] - Loading all accounts")
     for account in db.account.find():
         if 'vesting_shares' in account:
             mvest_per_account.update({account['name']: account['vesting_shares']})
@@ -487,7 +487,7 @@ def update_queue():
     pprint("[Queue] Done")
 
 if __name__ == '__main__':
-    pprint("[CREAdb] - Starting CrearyDB Sync Service")
+    pprint("[CREASCAN] - Starting CrearyDB Sync Service")
     sys.stdout.flush()
     # Let's find out how often blocks are generated!
     config = stm.rpc.get_config()
@@ -502,7 +502,7 @@ if __name__ == '__main__':
         block_number = props['last_irreversible_block_num']
         while (block_number - last_block) > 0:
             last_block += 1
-            pprint("[CREAdb] - Starting Block #" + str(last_block))
+            pprint("[CREASCAN] - Starting Block #" + str(last_block))
             sys.stdout.flush()
             # Get full block
             block = stm.rpc.get_block(last_block)
@@ -511,7 +511,7 @@ if __name__ == '__main__':
             # Update our block height
             db.status.update({'_id': 'height'}, {"$set" : {'value': last_block}}, upsert=True)
             # if last_block % 100 == 0:
-            pprint("[CREAdb] - Processed up to Block #" + str(last_block))
+            pprint("[CREASCAN] - Processed up to Block #" + str(last_block))
             sys.stdout.flush()
 
         sys.stdout.flush()

@@ -41,7 +41,7 @@
         <div class="ui centered header">
           No accounts found
           <div class="sub header">
-            CREAdb has no record of this account following others.
+            CREASCAN has no record of this account following others.
           </div>
         </div>
       </td>
