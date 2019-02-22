@@ -2,7 +2,7 @@
 Description=CrearyDB.com Witnesses Service
 
 [Service]
-Environment=crearynode=node1.creary.net
+Environment=crearynode=nodes.creary.net
 WorkingDirectory=/var/www/com_crearydb/docker/witnesses
 ExecStart=/usr/bin/python3 witnesses.py
 Restart=always

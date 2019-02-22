@@ -2,7 +2,7 @@
 Description=CrearyDB.com History Service
 
 [Service]
-Environment=crearynode=node1.creary.net
+Environment=crearynode=nodes.creary.net
 WorkingDirectory=/var/www/com_crearydb/docker/history
 ExecStart=/usr/bin/python3 history.py
 Restart=always
