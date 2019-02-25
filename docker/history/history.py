@@ -48,7 +48,7 @@ def update_props_history():
 
     props = stm.rpc.get_dynamic_global_properties()
 
-    for key in ['max_virtual_bandwidth', 'recent_slots_filled', 'total_reward_shares2']:
+    for key in ['recent_slots_filled', 'total_reward_shares2']:
         props[key] = float(props[key])
     for key in ['confidential_supply', 'current_supply', 'total_reward_fund_crea', 'total_vesting_fund_crea', 'total_vesting_shares']:
         props[key] = float(props[key].split()[0])
@@ -166,12 +166,12 @@ def update_history():
           following_results = stm.rpc.get_following({"account": user, "start": last_account, "type": "blog", "limit": 100}, api="follow")['following'][1:]
         # Convert to Numbers
         account['proxy_witness'] = sum(float(i) for i in account['proxied_vsf_votes']) / 1000000
-        for key in ['lifetime_bandwidth', 'reputation', 'to_withdraw']:
+        for key in ['reputation', 'to_withdraw']:
             account[key] = float(account[key])
         for key in ['balance', 'savings_balance', 'vesting_balance', 'vesting_shares', 'vesting_withdraw_rate']:
             account[key] = float(account[key].split()[0])
         # Convert to Date
-        for key in ['created','last_account_recovery','last_account_update','last_bandwidth_update','last_market_bandwidth_update','last_owner_update','last_post','last_root_post','last_vote_time','next_vesting_withdrawal']:
+        for key in ['created','last_account_recovery','last_account_update', 'last_owner_update','last_post','last_root_post','last_vote_time','next_vesting_withdrawal']:
             account[key] = datetime.strptime(account[key], "%Y-%m-%dT%H:%M:%S")
         # Combine Savings + Balance
         account['total_balance'] = account['balance'] + account['savings_balance']
@@ -181,7 +181,7 @@ def update_history():
         account['scanned'] = datetime.now()
         db.account.update({'_id': user}, account, upsert=True)
         # Create our Snapshot dict
-        wanted_keys = ['name', 'proxy_witness', 'activity_shares', 'average_bandwidth', 'average_market_bandwidth', 'savings_balance', 'balance', 'comment_count', 'curation_rewards', 'lifetime_bandwidth', 'lifetime_vote_count', 'next_vesting_withdrawal', 'reputation', 'post_bandwidth', 'post_count', 'posting_rewards', 'to_withdraw', 'vesting_balance', 'vesting_shares', 'vesting_withdraw_rate', 'voting_power', 'withdraw_routes', 'withdrawn', 'witnesses_voted_for']
+        wanted_keys = ['name', 'proxy_witness', 'activity_shares', 'average_bandwidth', 'savings_balance', 'balance', 'comment_count', 'curation_rewards', 'lifetime_vote_count', 'next_vesting_withdrawal', 'reputation', 'post_bandwidth', 'post_count', 'posting_rewards', 'to_withdraw', 'vesting_balance', 'vesting_shares', 'vesting_withdraw_rate', 'voting_power', 'withdraw_routes', 'withdrawn', 'witnesses_voted_for']
         snapshot = dict((k, account[k]) for k in wanted_keys if k in account)
         snapshot.update({
           'account': user,
