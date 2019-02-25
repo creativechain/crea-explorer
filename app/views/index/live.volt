@@ -8,7 +8,7 @@
 
          window.onload = function() {
 
-            var wsuri = "wss://nodes.creary.net/ws/";
+            var wsuri = "wss://nodes.creary.net";
             ellog = document.getElementById('log');
 
             if ("WebSocket" in window) {
