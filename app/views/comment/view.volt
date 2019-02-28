@@ -56,7 +56,7 @@
           <div class="item">
             <a href="https://creary.net/@{{comment.author}}/{{comment.permlink}}" class="ui fluid primary icon small button" target="_blank">
               <i class="external icon"></i>
-              View Post on Test Creary
+              View Post on Creary
             </a>
           </div>
         </div>
