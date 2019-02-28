@@ -27,7 +27,7 @@
     <a href="/blocks" class="{{ (router.getControllerName() == 'blocks') ? 'active' : '' }} item">blocks</a>
     <div class="right menu">
       <div class="item">
-        <a href="https://test.creary.net/welcome" target="_blank" rel="nofollow">
+        <a href="https://creary.net/welcome" target="_blank" rel="nofollow">
           <small>Create Account</small>
         </a>
       </div>
