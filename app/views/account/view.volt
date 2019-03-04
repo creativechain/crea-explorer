@@ -92,7 +92,7 @@
 {% endblock %}
 
 {% block scripts %}
-  {% if chart is defined %}
+  {% if chart %}
     {% include 'charts/account/' ~ router.getActionName() %}
   {% endif %}
   <script>
