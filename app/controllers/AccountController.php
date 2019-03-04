@@ -446,7 +446,7 @@ class AccountController extends ControllerBase
         ]
       ]
     ])->toArray();
-    $this->view->chart = true;
+    $this->view->chart = false;
     $this->view->pick("account/view");
   }
 
