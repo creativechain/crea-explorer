@@ -319,7 +319,7 @@
 
       sock.onmessage = function(e) {
         var data = JSON.parse(e.data).result;
-        //log(data);
+        console.log(data);
         if(data.props) {
           if (data.props.last_irreversible_block_num !== lastBlock) {
             getBlock(data.props.last_irreversible_block_num);
