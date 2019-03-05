@@ -2,7 +2,7 @@
 
 {% block content %}
 <style type="text/css">
-  .item {
+  ui.tabular.menu .item {
     color: rgba(0, 0, 0, .03);
   }
 </style>
