@@ -319,7 +319,7 @@
 
       sock.onmessage = function(e) {
         var data = JSON.parse(e.data).result;
-        console.log(data);
+
         if(data.props) {
           if (data.props.last_irreversible_block_num !== lastBlock) {
             getBlock(data.props.last_irreversible_block_num);
@@ -329,18 +329,21 @@
             $("[data-props="+key+"]").html(value);
           });
         }
-        if(data.state) {
-          console.log(data.state);
-          $.each(data.state.witness_schedule, function(key, value) {
+        if (data.witness_schedule) {
+          $.each(data.witness_schedule, function(key, value) {
             $("[data-state-witness="+key+"]").html(value);
           });
-          $.each(data.state.witness_schedule.median_props, function(key, value) {
+          $.each(data.witness_schedule.median_props, function(key, value) {
             $("[data-state-witness-median="+key+"]").html(value);
           });
-          $.each(data.state.feed_price, function(key, value) {
+        }
+
+        if (data.feed_price) {
+          $.each(data.feed_price, function(key, value) {
             $("[data-state-feed="+key+"]").html(value);
           });
         }
+
 
         if(data.block) {
           var tbody = $("#blocks-table-body"),
