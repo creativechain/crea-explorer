@@ -299,7 +299,6 @@
       };
 
       var getBlock = function(blockNum) {
-        log(blockNum);
         lastBlock = blockNum;
         sock.send(JSON.stringify({
           jsonrpc:"2.0",
@@ -331,6 +330,7 @@
           });
         }
         if(data.state) {
+          console.log(data.state);
           $.each(data.state.witness_schedule, function(key, value) {
             $("[data-state-witness="+key+"]").html(value);
           });
