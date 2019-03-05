@@ -289,11 +289,11 @@
     if (sock) {
 
       var lastBlock = {{ props['last_irreversible_block_num'] }};
-      var getProps = function () {
+      var getState = function () {
         sock.send(JSON.stringify({
           jsonrpc:"2.0",
-          method:"condenser_api.get_dynamic_global_properties",
-          params: [],
+          method:"condenser_api.get_state",
+          params: [""],
           id:1
         }))
       };
@@ -321,12 +321,11 @@
       sock.onmessage = function(e) {
         var data = JSON.parse(e.data).result;
         //log(data);
-        if(data.props || data.head_block_number) {
-          if (data.last_irreversible_block_num !== lastBlock) {
-            getBlock(data.last_irreversible_block_num);
+        if(data.props) {
+          if (data.props.last_irreversible_block_num !== lastBlock) {
+            getBlock(data.props.last_irreversible_block_num);
           }
 
-          data.props = data;
           $.each(data.props, function(key, value) {
             $("[data-props="+key+"]").html(value);
           });
@@ -384,7 +383,7 @@
       }
 
       setInterval(function () {
-        getProps();
+        getState();
       }, 3000)
     }
   };
