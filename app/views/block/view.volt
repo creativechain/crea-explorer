@@ -1,6 +1,11 @@
 {% extends 'layouts/default.volt' %}
 
 {% block content %}
+<style type="text/css">
+  .item {
+    color: rgba(0, 0, 0, .03);
+  }
+</style>
 <div class="ui hidden divider"></div>
 <div class="ui container">
   <div class="ui vertically divided grid">
