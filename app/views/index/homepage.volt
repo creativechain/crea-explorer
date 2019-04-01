@@ -364,8 +364,8 @@
 
           if (data.feed_price) {
             $.each(data.feed_price, function(key, value) {
-              if (data.props[key]['nai']) {
-                value = Asset.parse(data.props[key]).toFriendlyString(null, false);
+              if (data.feed_price[key]['nai']) {
+                value = Asset.parse(data.feed_price[key]).toFriendlyString(null, false);
               }
               $("[data-state-feed="+key+"]").html(value);
             });
