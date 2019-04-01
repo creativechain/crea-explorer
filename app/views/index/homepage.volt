@@ -288,6 +288,7 @@
 
       if (sock) {
 
+        var data = {};
         var lastBlock = {{ props['last_irreversible_block_num'] }};
         var getState = function () {
           //Dynamic global properties
@@ -334,7 +335,6 @@
         }
 
         sock.onmessage = function(e) {
-          var data = {};
           var result = JSON.parse(e.data).result;
           data.props = result.last_irreversible_block_num ? result : null;
           data.witness_schedule = result.median_props ? result : null;
@@ -346,7 +346,6 @@
             }
 
             $.each(data.props, function(key, value) {
-              console.log(key);
               if (data.props[key]['nai']) {
                 value = Asset.parse(data.props[key]).toFriendlyString(null, false);
               }
