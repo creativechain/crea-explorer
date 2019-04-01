@@ -3,6 +3,7 @@
 <script type="text/javascript" src="/bower/d3/d3.min.js"></script>
 <script type="text/javascript" src="/bower/plottable/plottable.js"></script>
 <script type="text/javascript" src="/js/semantic-tablesort.js"></script>
+<script type="text/javascript" src="/js/amount.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
 {% block scripts %}{% endblock %}
