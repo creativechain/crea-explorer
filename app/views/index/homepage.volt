@@ -328,7 +328,7 @@
 
             $.each(data.props, function(key, value) {
               if (data.props[key]['nai']) {
-                value = Amount.parse(data.props[key]).toFriendlyString(null, false);
+                value = Asset.parse(data.props[key]).toFriendlyString(null, false);
               }
 
               $("[data-props="+key+"]").html(value);
