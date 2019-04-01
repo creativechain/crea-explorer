@@ -339,7 +339,7 @@
           data.props = result.last_irreversible_block_num ? result : null;
           data.witness_schedule = result.median_props ? result : null;
           data.feed_price = result.current_median_history ? result.current_median_history : null;
-          data.block = result.previous ? result : null;
+          data.block = result.block ? result : null;
 
           if(data.props) {
             if (data.props.last_irreversible_block_num !== lastBlock) {
