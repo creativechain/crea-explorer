@@ -290,12 +290,28 @@
 
         var lastBlock = {{ props['last_irreversible_block_num'] }};
         var getState = function () {
+          //Dynamic global properties
           sock.send(JSON.stringify({
             jsonrpc:"2.0",
             method:"database_api.get_dynamic_global_properties",
             params: {},
             id: parseInt(Math.random() * (Number.MAX_SAFE_INTEGER - 1) + 1)
           }));
+
+          //Witness Schedule
+          sock.send(JSON.stringify({
+            jsonrpc:"2.0",
+            method: "condenser_api.get_witness_schedule",
+            params:[],
+            "id": parseInt(Math.random() * (Number.MAX_SAFE_INTEGER - 1) + 1)
+          }))
+
+          //Feed price
+          /*sock.send(JSON.stringify({
+            jsonrpc:"2.0",
+            method: "database_api.get_feed_history",
+            id: parseInt(Math.random() * (Number.MAX_SAFE_INTEGER - 1) + 1)
+          }));*/
         };
 
         var getBlock = function(blockNum) {
@@ -320,6 +336,8 @@
         sock.onmessage = function(e) {
           var data = JSON.parse(e.data).result;
           data.props = data.last_irreversible_block_num ? data : null;
+          data.witness_schedule = data.median_props ? data : null;
+          data.feed_price = data.current_median_history ? data.current_median_history : null;
 
           if(data.props) {
             if (data.props.last_irreversible_block_num !== lastBlock) {
@@ -345,6 +363,9 @@
 
           if (data.feed_price) {
             $.each(data.feed_price, function(key, value) {
+              if (data.props[key]['nai']) {
+                value = Asset.parse(data.props[key]).toFriendlyString(null, false);
+              }
               $("[data-state-feed="+key+"]").html(value);
             });
           }
