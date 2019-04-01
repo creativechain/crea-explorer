@@ -345,6 +345,7 @@
             }
 
             $.each(data.props, function(key, value) {
+              console.log(data.props, key);
               if (data.props[key]['nai']) {
                 value = Asset.parse(data.props[key]).toFriendlyString(null, false);
               }
