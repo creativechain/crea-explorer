@@ -334,10 +334,11 @@
         }
 
         sock.onmessage = function(e) {
-          var data = JSON.parse(e.data).result;
-          data.props = data.last_irreversible_block_num ? data : null;
-          data.witness_schedule = data.median_props ? data : null;
-          data.feed_price = data.current_median_history ? data.current_median_history : null;
+          var data = {};
+          var result = JSON.parse(e.data).result;
+          data.props = result.last_irreversible_block_num ? result : null;
+          data.witness_schedule = result.median_props ? result : null;
+          data.feed_price = result.current_median_history ? result.current_median_history : null;
 
           if(data.props) {
             if (data.props.last_irreversible_block_num !== lastBlock) {
