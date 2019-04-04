@@ -20,15 +20,15 @@
       var dateString = d._id.year + "/" + d._id.month + "/" + d._id.day;
       return new Date(dateString);
     };
-    var pSteem = function(d) { return +d.crea; };
+    var pCrea = function(d) { return +d.crea; };
     var pVest = function(d) { return +d.vest; };
     var pSbd = function(d) { return +d.cbd; };
 
     // Chart Posts
-    var lSteem = new Plottable.Plots.StackedBar();
-    lSteem.addDataset(dataset);
-    lSteem.x(pDate, xScale)
-          .y(pSteem, yScale)
+    var lCrea = new Plottable.Plots.StackedBar();
+    lCrea.addDataset(dataset);
+    lCrea.x(pDate, xScale)
+          .y(pCrea, yScale)
           .attr("fill", "#777");
 
     var lVest = new Plottable.Plots.Line();
@@ -45,7 +45,7 @@
 
     var cs = new Plottable.Scales.Color();
     cs.range(["#777", "#000", "#ccc"]);
-    cs.domain(["Steem", "VESTS", "CBD"]);
+    cs.domain(["Crea", "VESTS", "CBD"]);
     var legend = new Plottable.Components.Legend(cs);
 
     var squareFactory = Plottable.SymbolFactories.square();
@@ -63,7 +63,7 @@
     var yLabelVest = new Plottable.Components.AxisLabel("VESTS", "270");
 
 
-    var plots = new Plottable.Components.Group([lSteem, lVest, lSbd]);
+    var plots = new Plottable.Components.Group([lCrea, lVest, lSbd]);
     var table = new Plottable.Components.Table([
       [null, null, xLabelTitle, null, null],
       [null, null, legend, null, null],

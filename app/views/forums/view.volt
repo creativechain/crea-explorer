@@ -271,11 +271,11 @@ a.anchor {
       <div class="content">
         <div class="ui padded basic segment" style="font: 16px">
           <p>
-            Before you continue, please take a moment to understand how leaving a response on CrearyDB works.
+            Before you continue, please take a moment to understand how leaving a response on CreaScan works.
           </p>
-          <p>
+{#          <p>
             The signing of these transactions uses tools provided by <a href="https://creaconnect.com/" target="_blank">SteemConnect.com</a>. CrearyDB is embedding and using these tools to allow your actions to take place.
-          </p>
+          </p>#}
           <p>
             <strong>For security reasons, we recommend you use your "posting" key to keep your account safe.</strong>
           </p>

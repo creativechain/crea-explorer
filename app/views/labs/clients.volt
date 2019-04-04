@@ -10,9 +10,9 @@
     <div class="row">
       <div class="column">
         <div class="ui large header">
-          Steem Clients
+          Crea Clients
           <div class="sub header">
-            Usage of the various Steem clients
+            Usage of the various Crea clients
           </div>
         </div>
         <div class="ui grid">

@@ -10,9 +10,9 @@
     <div class="row">
       <div class="column">
         <div class="ui huge header">
-          Steem Apps
+          Crea Apps
           <div class="sub header">
-            Applications and Platforms powered by the Steem blockchain.
+            Applications and Platforms powered by the Crea blockchain.
           </div>
         </div>
         <div class="ui secondary inverted menu">
@@ -44,7 +44,7 @@
             <div class="ui huge header">
               Platforms
               <div class="sub header">
-                User interfaces for interacting with the Steem blockchain
+                User interfaces for interacting with the Crea blockchain
               </div>
             </div>
           </div>

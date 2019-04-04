@@ -32,7 +32,7 @@
         </div>
         {% else %}
         <div class="ui large header">
-          Steem Forums Prototype
+          Crea Forums Prototype
           <div class="sub header">
             An experimental view of the CREA blockchain, organized in a traditional forum layout.
           </div>
