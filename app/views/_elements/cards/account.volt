@@ -38,11 +38,11 @@
     </span>
     <span>
       <i class="users icon"></i>
-      {{ account.follower_count | length }} Followers
+      {{ account.follower_count }} Followers
     </span>
     <span>
       <i class="users icon"></i>
-      {{ account.following_count | length }} Following
+      {{ account.following_count }} Following
     </span>
   </div>
 </div>
