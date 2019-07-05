@@ -1,6 +1,5 @@
 <div class="ui card">
   <div class="content">
-    {{ live[0]['metadata']['avatar']['url'] }}
     {% if live[0] is defined and live[0]['metadata'] is defined and live[0]['metadata']['avatar'] is defined %}
       <img class="right floated avatar image" src="{{ live[0]['metadata']['avatar']['url'] }}">
     {% endif %}
@@ -15,7 +14,7 @@
     <div class="meta">
       joined <?php echo $this->timeAgo::mongo($account->created); ?>
     </div>
-    {#{% if live[0] is defined and live[0] is defined and live[0]['metadata'] is defined and live[0]['metadata']['about'] is defined %}
+    {% if live[0] is defined and live[0] is defined and live[0]['metadata'] is defined and live[0]['metadata']['about'] is defined %}
     <div class="description">
       {{ live[0]['metadata']['about'] | e }}
     </div>
@@ -27,7 +26,7 @@
           {{ live[0]['metadata']['web'] | e }}
         </a>
       </div>
-    {% endif %}#}
+    {% endif %}
 
   </div>
   <div class="extra content">
