@@ -106,7 +106,7 @@
             {% include '_elements/definition_table' with ['data': current] %}
           </div>
           <div class="ui tab" data-tab="json">
-            <pre class="text-overflow">
+            <pre>
               <?php echo json_encode($current, JSON_PRETTY_PRINT); ?>
             </pre>
           </div>
