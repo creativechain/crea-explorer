@@ -32,7 +32,7 @@
   <div class="extra content">
     <span class="right floated">
       {% if live[0] is defined and live[0] is defined and live[0]['metadata'] is defined and live[0]['metadata']['contact'] is defined %}
-        <i class="marker icon"></i>
+        <i class="address card icon"></i>
         {{ live[0]['metadata']['contact'] | e }}
       {% endif %}
     </span>
