@@ -2,10 +2,10 @@
   <tbody>
     {% for key, value in data %}
     <tr>
-      <td class="three wide json-overflow">
+      <td class="three wide">
         <small>{{ key }}</small>
       </td>
-      <td>
+      <td class="text-overflow">
         <?php
           switch(gettype($value)) {
             case "array":
