@@ -43,7 +43,7 @@ class AccountController extends ControllerBase
     // No cache, let's load
     if($cached === null) {
       $live = $this->Cread->getAccount($account);
-      $live[0]['metadata'] = json_decode($live[0]['json_metadata']);
+      $live[0]['metadata'] = json_decode($live[0]['json_metadata'], true);
       $this->view->live = $live;
       $this->memcached->save($cacheKey, $this->view->live, 60);
     } else {
