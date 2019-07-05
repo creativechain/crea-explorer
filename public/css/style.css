@@ -31,6 +31,6 @@ a.item {
 }
 
 .text-overflow {
-    word-wrap: normal;
+    word-wrap: break-word;
 }
 
