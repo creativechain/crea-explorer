@@ -2,13 +2,15 @@
 
 {% block content %}
 <style type="text/css">
-  ui.tabular.menu  .item .active {
+  .ui.tabular.menu  .item {
+    color: #ffffff;
+  }
+
+  .ui.tabular.menu  .item.active {
     color: #000000;
   }
 
-  ui.tabular.menu  .item {
-    color: #ffffff;
-  }
+
 </style>
 <div class="ui hidden divider"></div>
 <div class="ui container">
