@@ -2,7 +2,7 @@
   <tbody>
     {% for key, value in data %}
     <tr>
-      <td class="three wide">
+      <td class="three wide json-overflow">
         <small>{{ key }}</small>
       </td>
       <td>
