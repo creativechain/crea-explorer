@@ -1,6 +1,6 @@
 <div class="ui card">
   <div class="content">
-    {{ live[0]['metadata'].avatar['url'] }}
+    {{ live[0]['metadata'].avatar.url }}
 {#    {% if live[0] is defined and live[0]['metadata'] is defined and live[0]['metadata']['avatar'] is defined %}
       <img class="right floated avatar image" src="{{ live[0]['metadata']['avatar']['url'] | e }}">
     {% endif %}#}
