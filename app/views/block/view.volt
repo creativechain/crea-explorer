@@ -64,7 +64,7 @@
             {% for idx, tx in current['transactions'] %}
               {% for op in tx['operations'] %}
               <tr>
-                <td class="three wide text-overflow">
+                <td class="three wide">
                   <div class="ui small header">
                     <?php echo $this->opName::string($op) ?>
                     <div class="sub header">
@@ -105,10 +105,10 @@
           {% endif %}
             {% include '_elements/definition_table' with ['data': current] %}
           </div>
-          <div class="ui tab text-overflow" data-tab="json">
-<pre>
-<?php echo json_encode($current, JSON_PRETTY_PRINT); ?>
-</pre>
+          <div class="ui tab" data-tab="json">
+            <pre class="text-overflow">
+              <?php echo json_encode($current, JSON_PRETTY_PRINT); ?>
+            </pre>
           </div>
         </div>
       </div>
