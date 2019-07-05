@@ -39,6 +39,8 @@ class IndexController extends ControllerBase
       'sort' => ['last_update' => -1],
       'limit' => 1
     ])[0];
+
+    $this->view->total_accounts = $this->Cread->getAccountCount();
   }
 
   public function show404Action() {

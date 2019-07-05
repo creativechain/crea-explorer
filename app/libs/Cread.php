@@ -92,4 +92,12 @@ class Cread
   {
     return $this->client->call('follow_api', 'get_following', [$username, $skip, $limit]);
   }
+
+  public function getAccountCount() {
+      try {
+          return $this->client->call('condenser_api', 'get_account_count', []);
+      } catch (Exception $e) {
+          return array();
+      }
+  }
 }
