@@ -76,7 +76,7 @@
                   </div>
                 </td>
               </tr>
-              <tr data-popup data-html="<table class='ui small definition table'><tr><td>Balance</td><td><?php echo number_format($account->cbd_balance, 3, '.', ','); ?></td></tr><tr><td>Savings CBD Balance</td><td><?php echo number_format($account->savings_cbd_balance, 3, '.', ','); ?></td></tr></table>" data-position="left center" data-variation="very wide">
+              <tr data-popup data-html="<table class='ui small definition table'><tr><td>CBD Balance</td><td><?php echo number_format($account->cbd_balance, 3, '.', ','); ?></td></tr><tr><td>Savings CBD Balance</td><td><?php echo number_format($account->savings_cbd_balance, 3, '.', ','); ?></td></tr></table>" data-position="left center" data-variation="very wide">
               <td>CBD</td>
               <td>
                 <div class="ui tiny header">
