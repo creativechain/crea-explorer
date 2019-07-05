@@ -2,11 +2,11 @@
 
 {% block content %}
 <style type="text/css">
-  ui.tabular.menu .active .item {
+  ui.tabular.menu  .item .active {
     color: #000000;
   }
 
-  ui.tabular.menu .item {
+  ui.tabular.menu  .item {
     color: #ffffff;
   }
 </style>
@@ -53,11 +53,11 @@
       <div class="column">
         <div class="ui top attached tabular menu">
           {% if current['transactions'] | length %}
-          <a class="active item" data-tab="op">Operations</a>
+          <a class="item active" data-tab="op">Operations</a>
           <a class="item" data-tab="tx">Transactions</a>
           <a class="item" data-tab="block">Block Data</a>
           {% else %}
-          <a class="active item" data-tab="block">Block Data</a>
+          <a class="item active" data-tab="block">Block Data</a>
           {% endif %}
           <a class="item" data-tab="json">JSON</a>
         </div>
