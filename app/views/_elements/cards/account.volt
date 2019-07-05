@@ -31,10 +31,10 @@
   </div>
   <div class="extra content">
     <span class="right floated">
-{#      {% if live[0] is defined and live[0] is defined and live[0]['metadata'] is defined and live[0]['metadata']['contact'] is defined %}
+      {% if live[0] is defined and live[0] is defined and live[0]['metadata'] is defined and live[0]['metadata']['contact'] is defined %}
         <i class="marker icon"></i>
         {{ live[0]['metadata']['contact'] | e }}
-      {% endif %}#}
+      {% endif %}
     </span>
     <span>
       <i class="users icon"></i>
