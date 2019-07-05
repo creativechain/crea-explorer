@@ -30,12 +30,12 @@
 
   </div>
   <div class="extra content">
-    <span class="right floated">
-      {% if live[0] is defined and live[0] is defined and live[0]['metadata'] is defined and live[0]['metadata']['contact'] is defined %}
+    {% if live[0] is defined and live[0] is defined and live[0]['metadata'] is defined and live[0]['metadata']['contact'] is defined %}
+      <div>
         <i class="address card icon"></i>
-        {{ live[0]['metadata']['contact'] | e }}
-      {% endif %}
-    </span>
+      </div>
+      {{ live[0]['metadata']['contact'] | e }}
+    {% endif %}
     <span>
       <i class="users icon"></i>
       {{ account.follower_count }} Followers
