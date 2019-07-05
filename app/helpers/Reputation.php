@@ -7,6 +7,17 @@ class Reputation extends Tag
 {
   static public function number($rep)
   {
-    return (int)( is_numeric($rep) ? max( log10(abs($rep)) - 9, 0) * (($rep >= 0) ? 1 : -1) * 9 + 25 : 0 );
+      if (is_numeric($rep)) {
+          $maxLevel = 8;
+          $maxLogNum = 20;
+
+          $rep = floatval($rep);
+          $logRep = log10($rep);
+          $logRep = $logRep * $maxLevel / $maxLogNum;
+          $buzz = round($logRep * 10);
+          return intval($buzz);
+      }
+
+    return 0;
   }
 }

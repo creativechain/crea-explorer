@@ -158,6 +158,19 @@
     </div>
     <div class="ui divider"></div>
     <div class="ui small header offwhite">
+          Network data
+    </div>
+    <table class="ui small definition table" id="state">
+      <tbody>
+        <tr>
+          <td class="eight wide">Total accounts</td>
+            <td>
+                  {{ total_accounts }}
+            </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="ui small header offwhite">
       Network Performance
     </div>
     <table class="ui small definition table" id="state">

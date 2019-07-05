@@ -46,7 +46,7 @@
           {% include '_elements/cards/account.volt' %}
           <div class="ui small indicating progress">
             <div class="label offwhite">
-              {{ actual_voting_power }}% Voting Energy
+              {{ actual_voting_energy }}% Voting Energy
             </div>
             <div class="bar">
               <div class="progress"></div>
@@ -76,6 +76,14 @@
                   </div>
                 </td>
               </tr>
+              <tr data-popup data-html="<table class='ui small definition table'><tr><td>Balance</td><td><?php echo number_format($account->cbd_balance, 3, '.', ','); ?></td></tr><tr><td>Savings CBD Balance</td><td><?php echo number_format($account->savings_cbd_balance, 3, '.', ','); ?></td></tr></table>" data-position="left center" data-variation="very wide">
+              <td>CBD</td>
+              <td>
+                <div class="ui tiny header">
+                  <?php echo number_format($account->total_cbd_balance, 3, '.', ','); ?>
+                </div>
+              </td>
+              </tr>
             </tbody>
           </table>
           <div class="ui tiny centered header">
@@ -98,7 +106,7 @@
   <script>
     $('.ui.indicating.progress')
       .progress({
-        percent: {{ actual_voting_power }}
+        percent: {{ actual_voting_energy }}
       });
     $('.tabular.menu .item')
       .tab({

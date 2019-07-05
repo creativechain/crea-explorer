@@ -42,19 +42,21 @@ class AccountController extends ControllerBase
     $cached = $this->memcached->get($cacheKey);
     // No cache, let's load
     if($cached === null) {
+      $live = $this->Cread->getAccount($account);
+      $live[0]['metadata'] = json_decode($live[0]['json_metadata']);
       $this->view->live = $this->Cread->getAccount($account);
       $this->memcached->save($cacheKey, $this->view->live, 60);
     } else {
       // Use cache
       $this->view->live = $cached;
     }
-    // Calculate actual voting power
+    // Calculate actual voting energy
     $current_time = new DateTime();
-    $last_vote_power = $this->view->live[0]['voting_power'];
+    $last_vote_energy = $this->view->live[0]['voting_energy'];
     $last_vote_time = new DateTime($this->view->live[0]['last_vote_time']);
     $secondsago = $current_time->getTimestamp() - $last_vote_time->getTimestamp();
-    $calculated_power = $last_vote_power + (10000 * $secondsago / 432000);
-    $this->view->actual_voting_power = min(round($calculated_power / 10000 * 100, 2), 100);
+    $calculated_energy = $last_vote_energy + (10000 * $secondsago / 432000);
+    $this->view->actual_voting_energy = min(round($calculated_energy / 100, 2), 100);
     return $account;
   }
 

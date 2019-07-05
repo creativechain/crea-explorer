@@ -168,13 +168,14 @@ def update_history():
         account['proxy_witness'] = sum(float(i) for i in account['proxied_vsf_votes']) / 1000000
         for key in ['reputation', 'to_withdraw']:
             account[key] = float(account[key])
-        for key in ['balance', 'savings_balance', 'vesting_balance', 'vesting_shares', 'vesting_withdraw_rate']:
+        for key in ['balance', 'savings_balance', 'vesting_balance', 'vesting_shares', 'vesting_withdraw_rate', 'cbd_balance', 'savings_cbd_balance']:
             account[key] = float(account[key].split()[0])
         # Convert to Date
         for key in ['created','last_account_recovery','last_account_update', 'last_owner_update','last_post','last_root_post','last_vote_time','next_vesting_withdrawal']:
             account[key] = datetime.strptime(account[key], "%Y-%m-%dT%H:%M:%S")
         # Combine Savings + Balance
         account['total_balance'] = account['balance'] + account['savings_balance']
+        account['total_cbd_balance'] = account['cbd_balance'] + account['savings_cbd_balance']
         # Update our current info about the account
         mvest_per_account.update({account['name']: account['vesting_shares']})
         # Save current state of account
