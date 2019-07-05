@@ -27,7 +27,7 @@ class AccountsController extends ControllerBase
             "followers_mvest" => -1,
           );
           break;
-        case "vit":
+        case "crea":
           $sort = array(
             "total_balance" => -1,
           );

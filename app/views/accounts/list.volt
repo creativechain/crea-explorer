@@ -23,7 +23,7 @@
               <a class="{{ filter == 'vest' ? 'active' : '' }} item" href="/accounts/vest">
                 Vests/CGY
               </a>
-              <a class="{{ filter == 'vit' ? 'active' : '' }} item" href="/accounts/vit">
+              <a class="{{ filter == 'crea' ? 'active' : '' }} item" href="/accounts/crea">
                 CREA
               </a>
               <a class="{{ filter == 'de_energize' ? 'active' : '' }} item" href="/accounts/de_energize">
