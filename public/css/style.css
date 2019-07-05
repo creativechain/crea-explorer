@@ -30,3 +30,7 @@ a.item {
     color: #000000;
 }
 
+.json-overflow {
+    overflow-wrap: break-word;
+}
+

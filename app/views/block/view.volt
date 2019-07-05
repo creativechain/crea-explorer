@@ -64,7 +64,7 @@
             {% for idx, tx in current['transactions'] %}
               {% for op in tx['operations'] %}
               <tr>
-                <td class="three wide">
+                <td class="three wide json-overflow">
                   <div class="ui small header">
                     <?php echo $this->opName::string($op) ?>
                     <div class="sub header">
