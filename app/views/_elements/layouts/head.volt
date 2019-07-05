@@ -7,7 +7,7 @@
   {% if posts is defined and posts[0] is defined %}
   <link rel="canonical" href="https://creary.net/@{{ posts[0].author }}/{{ posts[0].permlink }}"/>
   {% endif %}
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.0/semantic.min.css">
   <style>
     body {
       color: #fff;
