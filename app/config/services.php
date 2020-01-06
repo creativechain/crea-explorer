@@ -159,7 +159,7 @@ $di->set('logger', function ($filename = null, $format = null) {
 
 $di->set('Cread', function() {
   require_once(APP_PATH . '/libs/Cread.php');
-  return new \Cread('https://nodes.creary.net');
+  return new \Cread('https://supportnodes.creary.net');
 });
 
 $di->set('memcached', function() {

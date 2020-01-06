@@ -2,7 +2,7 @@
 Description=CrearyDB.com Live Service
 
 [Service]
-Environment=crearynode=nodes.creary.net
+Environment=crearynode=supportnodes.creary.net
 WorkingDirectory=/var/www/com_crearydb/docker/live
 ExecStart=/usr/bin/python3 live.py
 Restart=always

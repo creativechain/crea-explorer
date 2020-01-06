@@ -1,8 +1,8 @@
 [Unit]
-Description=CrearyDB.com History Service
+Description=CreaScan History Service
 
 [Service]
-Environment=crearynode=nodes.creary.net
+Environment=crearynode=supportnodes.creary.net
 WorkingDirectory=/var/www/com_crearydb/docker/history
 ExecStart=/usr/bin/python3 history.py
 Restart=always

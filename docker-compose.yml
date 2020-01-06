@@ -3,7 +3,7 @@ services:
   history:
     build: ./docker/history
     environment:
-        crearynode: "nodes.creary.net"
+        crearynode: "supportnodes.creary.net"
     restart: on-failure
     volumes:
       - ./docker/history:/src
@@ -12,7 +12,7 @@ services:
   live:
     build: ./docker/live
     environment:
-        crearynode: "nodes.creary.net"
+        crearynode: "supportnodes.creary.net"
     restart: on-failure
     links:
       - mongo
@@ -24,20 +24,20 @@ services:
     # external_links:
     #   - mongo:crearydb_mongo_1
     environment:
-        crearynode: "nodes.creary.net"
+        crearynode: "supportnodes.creary.net"
     volumes:
       - ./docker/sync:/src
   witnesses:
     build: ./docker/witnesses
     environment:
-        crearynode: "nodes.creary.net"
+        crearynode: "supportnodes.creary.net"
     links:
       - mongo
 
   development:
     build: ./docker/development
     environment:
-        crearynode: "nodes.creary.net"
+        crearynode: "supportnodes.creary.net"
     links:
       - mongo
     # external_links:

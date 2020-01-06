@@ -2,7 +2,7 @@
 Description=CrearyDB.com Sync Service
 
 [Service]
-Environment=crearynode=nodes.creary.net
+Environment=crearynode=supportnodes.creary.net
 WorkingDirectory=/var/www/com_crearydb/docker/sync
 ExecStart=/usr/bin/python3 sync.py
 Restart=always
