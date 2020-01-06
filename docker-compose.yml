@@ -38,6 +38,7 @@ services:
     build: ./docker/development
     environment:
         crearynode: "supportnodes.creary.net"
+    restart: on-failure
     links:
       - mongo
     # external_links:
@@ -48,11 +49,13 @@ services:
       - "8680:80"
   mongodata:
     image: mongo:3.3.10
+    restart: on-failure
     volumes:
     - /data/db:/data/db
     command: --break-mongo
   mongo:
     image: mongo:3.3.10
+    restart: on-failure
     volumes_from:
       - mongodata
     # ports:
