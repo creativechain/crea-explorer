@@ -9,7 +9,7 @@ class Account extends Document
         $this->json_metadata = json_decode($this->json_metadata, true);
     }
     if(property_exists($this, 'json_metadata') && isset($this->json_metadata['avatar']) && isset($this->json_metadata['avatar']['hash'])) {
-        return 'https://ipfs.creary.net/ipfs/' . $this->json_metadata['avatar']['hash'];
+        return 'https://ipfs3.creary.net/ipfs/' . $this->json_metadata['avatar']['hash'];
     }
     return null;
   }
