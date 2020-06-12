@@ -2,13 +2,13 @@
   <meta property="og:url" content="https://creascan.net" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="CREASCAN - Explore CREA network" />
-  <meta property="og:image" content="/img/creascan-og.jpg" />
+  <meta property="og:image" content="https://creascan.net/img/creascan-og.jpg" />
   <meta property="og:description" content="Creascan allows you to explore and search all CREA Blockchain activity, transactions, operations, addresses, tokens, and other activities related to network users." />
   <meta property="twitter:card" content="summary_large_image"/>
   <meta property="twitter:site" content="@crearynet"/>
   <meta property="twitter:title" content="CREASCAN - Explore CREA network" />
   <meta property="twitter:description" content="Creascan allows you to explore and search all CREA Blockchain activity, transactions, operations, addresses, tokens, and other activities related to network users."/>
-  <meta property="twitter:image" content="/img/creascan-og.jpg" />
+  <meta property="twitter:image" content="https://creascan.net/img/creascan-og.jpg" />
   <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no,minimal-ui' />
 
   <title>CREA SCAN - CREA Blockchain Explorer</title>
