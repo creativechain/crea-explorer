@@ -21,7 +21,7 @@ class Utilities
       'curation' => 0,
       'authors' => 0,
       'interest' => $this->di->get('convert')->sp2vest($props['current_supply'] * 0.095 * 0.15 / 12, false),
-      'witnesses' => $this->di->get('convert')->sp2vest($props['current_supply'] * 0.095 * 0.1 / 12, false),
+      'witnesses' => $this->di->get('convert')->sp2vest($props['current_supply'] * 0.095 * 0.15 / 12, false),
     ];
     // Set Date Range
     $start = new UTCDateTime(strtotime("-30 days") * 1000);
