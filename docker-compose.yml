@@ -9,15 +9,6 @@ services:
       - ./docker/history:/src
     links:
       - mongo
-  live:
-    build: ./docker/live
-    environment:
-        crearynode: "supportnodes.creary.net"
-    restart: on-failure
-    links:
-      - mongo
-    ports:
-      - "8681:8681"
   sync:
     build: ./docker/sync
     restart: on-failure
@@ -33,7 +24,6 @@ services:
         crearynode: "supportnodes.creary.net"
     links:
       - mongo
-
   development:
     build: ./docker/development
     environment:
@@ -47,12 +37,6 @@ services:
       - .:/var/www/html
     ports:
       - "8680:80"
-  mongodata:
-    image: mongo:3.3.10
-    restart: on-failure
-    volumes:
-    - /data/db:/data/db
-    command: --break-mongo
   mongo:
     image: mongo:3.3.10
     restart: on-failure
@@ -61,10 +45,6 @@ services:
     # ports:
     #   - "27017:27017"
     command: --smallfiles --rest
-  # lucky:
-  #   build: ./docker/lucky
-  #   environment:
-  #     crearynode: "jussi.vit.com"
 
 networks:
     dockernet:

@@ -89,7 +89,7 @@
                 <div class="ui header">
                   {{ totals['cgy'] }}
                   <div class="sub header">
-                    CREA Power
+                    CREA Energy
                   </div>
                 </div>
               </div>
