@@ -40,8 +40,8 @@ services:
   mongo:
     image: mongo:3.3.10
     restart: on-failure
-    volumes_from:
-      - mongodata
+    volumes:
+      - /data/db:/data/db
     # ports:
     #   - "27017:27017"
     command: --smallfiles --rest
