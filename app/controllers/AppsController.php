@@ -40,7 +40,7 @@ class AppsController extends ControllerBase
           }
           $apps[$benefactor->benefactor]['data'][] = $benefactor->cbd_reward;
           $apps[$benefactor->benefactor]['data'][] = $benefactor->crea_reward;
-          $apps[$benefactor->benefactor]['data'][] = $benefactor->vesting_reward;
+          $apps[$benefactor->benefactor]['data'][] = $benefactor->vesting_payout;
         }
       }
     }

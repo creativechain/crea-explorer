@@ -60,13 +60,13 @@
             {{ reward.posts }}
           </td>
           <td class="collapsing right aligned">
-            <div style="display: none"><?php echo number_format($reward->reward, 0, "", "") ?></div>
-            <div class="ui <?php echo $this->largeNumber::color($reward->reward)?> label" data-popup data-content="<?php echo number_format($reward->reward, 3, ".", ",") ?> VESTS" data-variation="inverted" data-position="left center">
-              <?php echo $this->largeNumber::format($reward->reward); ?>
+            <div style="display: none"><?php echo number_format($reward->vesting_payout, 0, "", "") ?></div>
+            <div class="ui <?php echo $this->largeNumber::color($reward->reward)?> label" data-popup data-content="<?php echo number_format($reward->vesting_payout, 3, ".", ",") ?> VESTS" data-variation="inverted" data-position="left center">
+              <?php echo $this->largeNumber::format($reward->vesting_payout); ?>
             </div>
           </td>
           <td>
-            ~<?php echo $this->convert::vest2cgy($reward->reward, ""); ?> CREA
+            ~<?php echo $this->convert::vest2cgy($reward->vesting_payout, ""); ?> CREA
           </td>
         </tr>
     {% else %}
