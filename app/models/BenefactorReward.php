@@ -21,7 +21,7 @@ class BenefactorReward extends Document
         ],
         'cbd_reward' => ['$sum' => '$cbd_reward'],
         'crea_reward' => ['$sum' => '$crea_reward'],
-        'cgy_reward' => ['$sum' => '$cgy_reward'],
+        'vesting_payout' => ['$sum' => '$vesting_payout'],
         'count' => ['$sum' => 1]
       ]],
       ['$group' => [
@@ -38,12 +38,12 @@ class BenefactorReward extends Document
             'count' => '$count',
             'cbd_reward' => '$cbd_reward',
             'crea_reward' => '$crea_reward',
-            'cgy_reward' => '$cgy_reward',
+            'vesting_payout' => '$vesting_payout',
           ]
         ],
         'cbd_reward'  => [ '$sum' => '$cbd_reward' ],
         'crea_reward'  => [ '$sum' => '$crea_reward' ],
-        'cgy_reward'  => [ '$sum' => '$cgy_reward' ],
+        'vesting_payout'  => [ '$sum' => '$vesting_payout' ],
         'total' => [
           '$sum' => '$count'
         ]
