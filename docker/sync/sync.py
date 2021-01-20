@@ -237,7 +237,9 @@ def save_benefactor_reward(op, block, blockid):
     doc.update({
         '_block': blockid,
         '_ts': datetime.strptime(block['timestamp'], "%Y-%m-%dT%H:%M:%S"),
-        'reward': float(doc['reward'].split()[0])
+        'cdb_reward': float(doc['cbd_payout'].split()[0])
+        'crea_reward': float(doc['crea_payout'].split()[0])
+        'cgy_reward': float(doc['cgy_payout'].split()[0])
     })
     db.benefactor_reward.update(query, doc, upsert=True)
 

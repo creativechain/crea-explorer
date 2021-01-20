@@ -38,7 +38,9 @@ class AppsController extends ControllerBase
               'data' => []
             ];
           }
-          $apps[$benefactor->benefactor]['data'][] = $benefactor->reward;
+          $apps[$benefactor->benefactor]['data'][] = $benefactor->cbd_reward;
+          $apps[$benefactor->benefactor]['data'][] = $benefactor->crea_reward;
+          $apps[$benefactor->benefactor]['data'][] = $benefactor->cgy_reward;
         }
       }
     }

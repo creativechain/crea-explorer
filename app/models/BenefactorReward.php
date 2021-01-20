@@ -19,7 +19,9 @@ class BenefactorReward extends Document
           'day' => ['$dayOfMonth' => '$_ts'],
           'dow' => ['$dayOfWeek' => '$_ts'],
         ],
-        'reward' => ['$sum' => '$reward'],
+        'cbd_reward' => ['$sum' => '$cbd_reward'],
+        'crea_reward' => ['$sum' => '$crea_reward'],
+        'cgy_reward' => ['$sum' => '$cgy_reward'],
         'count' => ['$sum' => 1]
       ]],
       ['$group' => [
@@ -34,12 +36,14 @@ class BenefactorReward extends Document
           '$push' => [
             'benefactor' => '$_id.benefactor',
             'count' => '$count',
-            'reward' => '$reward'
+            'cbd_reward' => '$cbd_reward',
+            'crea_reward' => '$crea_reward',
+            'cgy_reward' => '$cgy_reward',
           ]
         ],
-        'reward'  => [
-          '$sum' => '$reward'
-        ],
+        'cbd_reward'  => [ '$sum' => '$cbd_reward' ],
+        'crea_reward'  => [ '$sum' => '$crea_reward' ],
+        'cgy_reward'  => [ '$sum' => '$cgy_reward' ],
         'total' => [
           '$sum' => '$count'
         ]
