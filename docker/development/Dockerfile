@@ -6,7 +6,7 @@ ENV composer_hash 795f976fe0ebd8b75f26a6dd68f78fd3453ce79f32ecb33e7fd087d39bfeb9
 
 RUN apt-get update -y && apt-get install -y software-properties-common
 
-RUN apt-add-repository ppa:phalcon/stable && apt-get update -y
+#RUN apt-add-repository ppa:phalcon/stable && apt-get update -y
 
 RUN apt-get install -y bash \
     vim \
@@ -29,7 +29,7 @@ RUN apt-get install -y bash \
     php7.4-json \
     php7.4-phar \
     php7.4-dom \
-    php7.4-phalcon \
+#    php7.4-phalcon \
     php7.4-zip \
     php-xdebug \
     php7.4-mbstring \
@@ -42,6 +42,8 @@ RUN apt-get install -y bash \
     mkdir -p /var/www/app && \
     mkdir -p /run/nginx && \
     mkdir -p /var/log/supervisor
+ \
+RUN curl -s https://packagecloud.io/install/repositories/phalcon/stable/script.deb.sh | sudo bash
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
     #php -r "if (hash_file('SHA384', 'composer-setup.php') === '${composer_hash}') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" && \
