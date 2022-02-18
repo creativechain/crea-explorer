@@ -199,7 +199,7 @@ def save_feed_publish(op, block, blockid):
     query = {
         '_id': _id
     }
-    doc.update_one({
+    doc.update({
         '_id': _id,
         '_block': blockid,
         '_ts': datetime.strptime(block['timestamp'], "%Y-%m-%dT%H:%M:%S"),
@@ -217,7 +217,7 @@ def save_follow(data, op, block, blockid):
           'follower': doc['follower'],
           'following': doc['following']
       }
-      doc.update_one({
+      doc.update({
           '_block': blockid,
           '_ts': datetime.strptime(block['timestamp'], "%Y-%m-%dT%H:%M:%S"),
       })
@@ -234,7 +234,7 @@ def save_benefactor_reward(op, block, blockid):
         'permlink': doc['permlink'],
         'author': doc['author']
     }
-    doc.update_one({
+    doc.update({
         '_block': blockid,
         '_ts': datetime.strptime(block['timestamp'], "%Y-%m-%dT%H:%M:%S"),
         'cdb_reward': float(doc['cbd_payout'].split()[0]),
@@ -252,7 +252,7 @@ def save_reblog(data, op, block, blockid):
                 'permlink': doc['permlink'],
                 'account': doc['account']
             }
-            doc.update_one({
+            doc.update({
                 '_block': blockid,
                 '_ts': datetime.strptime(block['timestamp'], "%Y-%m-%dT%H:%M:%S"),
             })
@@ -260,7 +260,7 @@ def save_reblog(data, op, block, blockid):
 
 def save_block(block, blockid):
     doc = block.copy()
-    doc.update_one({
+    doc.update({
         '_id': blockid,
         '_ts': datetime.strptime(doc['timestamp'], "%Y-%m-%dT%H:%M:%S"),
     })
@@ -274,7 +274,7 @@ def save_pow(op, block, blockid):
     else:
         _id = str(blockid) + '-' + op['worker_account']
     doc = op.copy()
-    doc.update_one({
+    doc.update({
         '_id': _id,
         '_ts': datetime.strptime(block['timestamp'], "%Y-%m-%dT%H:%M:%S"),
         'block': blockid,
