@@ -8,6 +8,8 @@ RUN apt-get update -y && apt-get install -y software-properties-common
 RUN apt-get install -y php-dev libmcrypt-dev gcc make autoconf libc-dev pkg-config
 #RUN apt-add-repository ppa:phalcon/stable && apt-get update -y
 
+RUN curl -s https://packagecloud.io/install/repositories/phalcon/stable/script.deb.sh | bash
+
 RUN apt-get install -y bash \
     vim \
     openssh-client \
@@ -29,7 +31,7 @@ RUN apt-get install -y bash \
     php7.4-json \
     php7.4-phar \
     php7.4-dom \
-#    php7.4-phalcon \
+    php7.4-phalcon \
     php7.4-zip \
     php-xdebug \
     php7.4-mbstring \
@@ -43,7 +45,7 @@ RUN apt-get install -y bash \
     mkdir -p /run/nginx && \
     mkdir -p /var/log/supervisor
  \
-RUN curl -s https://packagecloud.io/install/repositories/phalcon/stable/script.deb.sh | bash
+
 
 RUN pecl install mcrypt-1.0.4
 
