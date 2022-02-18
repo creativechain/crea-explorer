@@ -4,7 +4,7 @@ ENV php_conf /etc/php/7.4/fpm/php.ini
 ENV fpm_conf /etc/php/7.4/fpm/php-fpm.conf
 ENV composer_hash 795f976fe0ebd8b75f26a6dd68f78fd3453ce79f32ecb33e7fd087d39bfeb978342fb73ac986cd4f54edd0dc902601dc
 
-RUN apt-get update -y && apt-get install -y software-properties-common python-software-properties
+RUN apt-get update -y && apt-get install -y software-properties-common
 
 RUN apt-add-repository ppa:phalcon/stable && apt-get update -y
 
