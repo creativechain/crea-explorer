@@ -84,25 +84,25 @@ def process_block(block, blockid):
 def save_convert(op, block, blockid):
     convert = op.copy()
     _id = str(blockid) + '/' + str(op['requestid'])
-    convert.update_one({
+    convert.update({
         '_id': _id,
         '_ts': datetime.strptime(block['timestamp'], "%Y-%m-%dT%H:%M:%S"),
         'amount': float(convert['amount'].split()[0]),
         'type': convert['amount'].split()[1]
     })
     queue_update_account(op['owner'])
-    db.convert.update_one({'_id': _id}, convert, upsert=True)
+    db.convert.update_one({'_id': _id}, { '$set': convert }, upsert=True)
 
 def save_transfer(op, block, blockid):
     transfer = op.copy()
     _id = str(blockid) + '/' + op['from'] + '/' + op['to']
-    transfer.update_one({
+    transfer.update({
         '_id': _id,
         '_ts': datetime.strptime(block['timestamp'], "%Y-%m-%dT%H:%M:%S"),
         'amount': float(transfer['amount'].split()[0]),
         'type': transfer['amount'].split()[1]
     })
-    db.transfer.update_one({'_id': _id}, transfer, upsert=True)
+    db.transfer.update_one({'_id': _id}, { '$set': transfer }, upsert=True)
     queue_update_account(op['from'])
     if op['from'] != op['to']:
         queue_update_account(op['to'])
@@ -110,12 +110,12 @@ def save_transfer(op, block, blockid):
 def save_curation_reward(op, block, blockid):
     reward = op.copy()
     _id = str(blockid) + '/' + op['curator'] + '/' + op['comment_author'] + '/' + op['comment_permlink']
-    reward.update_one({
+    reward.update({
         '_id': _id,
         '_ts': datetime.strptime(block['timestamp'], "%Y-%m-%dT%H:%M:%S"),
         'reward': float(reward['reward'].split()[0])
     })
-    db.curation_reward.update_one({'_id': _id}, reward, upsert=True)
+    db.curation_reward.update_one({'_id': _id}, {'$set': reward}, upsert=True)
     queue_update_account(op['curator'])
 
 def save_author_reward(op, block, blockid):
@@ -130,20 +130,20 @@ def save_author_reward(op, block, blockid):
             comment['json_metadata']['app'] = str(comment['json_metadata']['app'])
         parts = comment['json_metadata']['app'].split('/')
         if len(parts) > 1:
-          reward.update_one({
+          reward.update({
             'app_name': parts[0],
             'app_version': parts[1]
           })
     _id = str(blockid) + '/' + op['author'] + '/' + op['permlink']
     # Update the reward
-    reward.update_one({
+    reward.update({
         '_id': _id,
         '_ts': datetime.strptime(block['timestamp'], "%Y-%m-%dT%H:%M:%S")
     })
     for key in ['vesting_payout']:
         reward[key] = float(reward[key].split()[0])
     # Save the reward
-    db.author_reward.update_one({'_id': _id}, reward, upsert=True)
+    db.author_reward.update_one({'_id': _id}, { '$set': reward }, upsert=True)
     # Save the reward on the comment
     db.comment.update_one({
       '_id': comment_id
@@ -156,12 +156,12 @@ def save_author_reward(op, block, blockid):
 def save_vesting_deposit(op, block, blockid):
     vesting = op.copy()
     _id = str(blockid) + '/' + op['from'] + '/' + op['to']
-    vesting.update_one({
+    vesting.update({
         '_id': _id,
         '_ts': datetime.strptime(block['timestamp'], "%Y-%m-%dT%H:%M:%S"),
         'amount': float(vesting['amount'].split()[0])
     })
-    db.vesting_deposit.update_one({'_id': _id}, vesting, upsert=True)
+    db.vesting_deposit.update_one({'_id': _id}, { '$set': vesting }, upsert=True)
     queue_update_account(op['from'])
     if op['from'] != op['to']:
         queue_update_account(op['to'])
@@ -169,13 +169,13 @@ def save_vesting_deposit(op, block, blockid):
 def save_vesting_withdraw(op, block, blockid):
     vesting = op.copy()
     _id = str(blockid) + '/' + op['from_account'] + '/' + op['to_account']
-    vesting.update_one({
+    vesting.update({
         '_id': _id,
         '_ts': datetime.strptime(block['timestamp'], "%Y-%m-%dT%H:%M:%S")
     })
     for key in ['deposited', 'withdrawn']:
         vesting[key] = float(vesting[key].split()[0])
-    db.vesting_withdraw.update_one({'_id': _id}, vesting, upsert=True)
+    db.vesting_withdraw.update_one({'_id': _id}, { '$set': vesting}, upsert=True)
     queue_update_account(op['from_account'])
     if op['from_account'] != op['to_account']:
         queue_update_account(op['to_account'])
@@ -207,7 +207,7 @@ def save_feed_publish(op, block, blockid):
     for key in ['base', 'quote']:
         doc['exchange_rate'][key] = float(doc['exchange_rate'][key].split()[0])
 
-    db.feed_publish.update_one(query, doc, upsert=True)
+    db.feed_publish.update_one(query, { '$set': doc}, upsert=True)
 
 def save_follow(data, op, block, blockid):
     doc = data[1].copy()
@@ -221,7 +221,7 @@ def save_follow(data, op, block, blockid):
           '_block': blockid,
           '_ts': datetime.strptime(block['timestamp'], "%Y-%m-%dT%H:%M:%S"),
       })
-      db.follow.update_one(query, doc, upsert=True)
+      db.follow.update_one(query, { '$set': doc}, upsert=True)
       queue_update_account(doc['follower'])
       if doc['follower'] != doc['following']:
           queue_update_account(doc['following'])
@@ -241,7 +241,7 @@ def save_benefactor_reward(op, block, blockid):
         'crea_reward': float(doc['crea_payout'].split()[0]),
         'vesting_reward': float(doc['vesting_payout'].split()[0])
     })
-    db.benefactor_reward.update_one(query, doc, upsert=True)
+    db.benefactor_reward.update_one(query, {'$set': doc}, upsert=True)
 
 def save_reblog(data, op, block, blockid):
     if len(data) > 1:
@@ -256,7 +256,7 @@ def save_reblog(data, op, block, blockid):
                 '_block': blockid,
                 '_ts': datetime.strptime(block['timestamp'], "%Y-%m-%dT%H:%M:%S"),
             })
-            db.reblog.update_one(query, doc, upsert=True)
+            db.reblog.update_one(query, { '$set': doc}, upsert=True)
 
 def save_block(block, blockid):
     doc = block.copy()
@@ -264,8 +264,8 @@ def save_block(block, blockid):
         '_id': blockid,
         '_ts': datetime.strptime(doc['timestamp'], "%Y-%m-%dT%H:%M:%S"),
     })
-    db.block.update_one({'_id': blockid}, doc, upsert=True)
-    db.block_30d.update_one({'_id': blockid}, doc, upsert=True)
+    db.block.update_one({'_id': blockid}, {'$set': doc}, upsert=True)
+    db.block_30d.update_one({'_id': blockid}, {'$set': doc}, upsert=True)
 
 def save_pow(op, block, blockid):
     _id = "unknown"
@@ -279,16 +279,16 @@ def save_pow(op, block, blockid):
         '_ts': datetime.strptime(block['timestamp'], "%Y-%m-%dT%H:%M:%S"),
         'block': blockid,
     })
-    db.pow.update_one({'_id': _id}, doc, upsert=True)
+    db.pow.update_one({'_id': _id}, {'$set': doc}, upsert=True)
 
 def save_vote(op, block, blockid):
     vote = op.copy()
     _id = str(blockid) + '/' + op['voter'] + '/' + op['author'] + '/' + op['permlink']
-    vote.update_one({
+    vote.update({
         '_id': _id,
         '_ts': datetime.strptime(block['timestamp'], "%Y-%m-%dT%H:%M:%S")
     })
-    db.vote.update_one({'_id': _id}, vote, upsert=True)
+    db.vote.update_one({'_id': _id}, {'$set': vote}, upsert=True)
 
 def save_witness_vote(op, block, blockid):
     witness_vote = op.copy()
@@ -297,10 +297,10 @@ def save_witness_vote(op, block, blockid):
         'account': witness_vote['account'],
         'witness': witness_vote['witness']
     }
-    witness_vote.update_one({
+    witness_vote.update({
         '_ts': datetime.strptime(block['timestamp'], "%Y-%m-%dT%H:%M:%S")
     })
-    db.witness_vote.update_one(query, witness_vote, upsert=True)
+    db.witness_vote.update_one(query, {'$set': witness_vote}, upsert=True)
     queue_update_account(witness_vote['account'])
     if witness_vote['account'] != witness_vote['witness']:
         queue_update_account(witness_vote['witness'])
@@ -319,16 +319,16 @@ def update_comment(author, permlink, op=None, block=None, blockid=None):
       diffid = str(blockid) + '/' + op['author'] + '/' + op['permlink']
       diff = op.copy()
       query = {'_id': diffid}
-      diff.update_one({
+      diff.update({
         '_id': diffid,
         '_ts': datetime.strptime(block['timestamp'], "%Y-%m-%dT%H:%M:%S"),
         'block': int(blockid),
       })
-      db.comment_diff.update_one(query, diff, upsert=True)
+      db.comment_diff.update_one(query, {'$set': diff}, upsert=True)
 
     # get the post as it currently exists
     comment = stm.rpc.get_content(author, permlink).copy()
-    comment.update_one({
+    comment.update({
         '_id': _id,
     })
 
@@ -385,7 +385,7 @@ def load_accounts():
     pprint("[CREASCAN] - Loading all accounts")
     for account in db.account.find():
         if 'vesting_shares' in account:
-            mvest_per_account.update_one({account['name']: account['vesting_shares']})
+            mvest_per_account.update({account['name']: account['vesting_shares']})
 
 def queue_update_account(account_name):
     # pprint("Queue Update: " + account_name)
@@ -439,12 +439,12 @@ def update_account(account_name):
     account['total_balance'] = account['balance'] + account['savings_balance']
     account['total_cbd_balance'] = account['cbd_balance'] + account['savings_cbd_balance']
     # Update our current info about the account
-    mvest_per_account.update_one({account['name']: account['vesting_shares']})
+    mvest_per_account.update({account['name']: account['vesting_shares']})
     # Save current state of account
     account['scanned'] = datetime.now()
     if '_dirty' in account:
         del account['_dirty']
-    db.account.update_one({'_id': account_name}, account, upsert=True)
+    db.account.update_one({'_id': account_name}, {'$set': account}, upsert=True)
 
 def update_queue():
     # -- Process Queue

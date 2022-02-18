@@ -28,7 +28,7 @@ def load_accounts():
     pprint("CrearyDB - Loading mvest per account")
     for account in db.account.find():
         if "name" in account.keys():
-            mvest_per_account.update_one({account['name']: account['vesting_shares']})
+            mvest_per_account.update({account['name']: account['vesting_shares']})
 
 def update_fund_history():
     pprint("[CREASCAN] - Update Fund History")
@@ -129,9 +129,11 @@ def update_history():
       'key': 'users',
       'date': today,
     }, {
-      'key': 'users',
-      'date': today,
-      'value': len(users)
+      '$set': {
+        'key': 'users',
+        'date': today,
+        'value': len(users)
+      }
     }, upsert=True)
     sys.stdout.flush()
 
@@ -177,14 +179,14 @@ def update_history():
         account['total_balance'] = account['balance'] + account['savings_balance']
         account['total_cbd_balance'] = account['cbd_balance'] + account['savings_cbd_balance']
         # Update our current info about the account
-        mvest_per_account.update_one({account['name']: account['vesting_shares']})
+        mvest_per_account.update({account['name']: account['vesting_shares']})
         # Save current state of account
         account['scanned'] = datetime.now()
-        db.account.update_one({'_id': user}, account, upsert=True)
+        db.account.update_one({'_id': user}, {'$set' : account}, upsert=True)
         # Create our Snapshot dict
         wanted_keys = ['name', 'proxy_witness', 'activity_shares', 'average_bandwidth', 'savings_balance', 'balance', 'comment_count', 'curation_rewards', 'lifetime_vote_count', 'next_vesting_withdrawal', 'reputation', 'post_bandwidth', 'post_count', 'posting_rewards', 'to_withdraw', 'vesting_balance', 'vesting_shares', 'vesting_withdraw_rate', 'voting_power', 'withdraw_routes', 'withdrawn', 'witnesses_voted_for']
         snapshot = dict((k, account[k]) for k in wanted_keys if k in account)
-        snapshot.update_one({
+        snapshot.update({
           'account': user,
           'date': today,
           'followers': len(account['followers']),
@@ -194,7 +196,7 @@ def update_history():
         db.account_history.update_one({
           'account': user,
           'date': today
-        }, snapshot, upsert=True)
+        }, { '$set': snapshot }, upsert=True)
 
 def update_stats():
   pprint("updating stats");

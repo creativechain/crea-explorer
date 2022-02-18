@@ -44,7 +44,7 @@ def check_misses():
                 # Update the misses in memory
                 misses[owner] = witness['total_missed']
         else:
-            misses.update_one({owner: witness['total_missed']})
+            misses.update({owner: witness['total_missed']})
 
 
 
@@ -60,7 +60,7 @@ def update_witnesses():
         for key in ['virtual_last_update', 'virtual_position', 'virtual_scheduled_time', 'votes']:
             user[key] = float(user[key])
         # Save current state of account
-        db.witness.update_one({'_id': user['owner']}, user, upsert=True)
+        db.witness.update_one({'_id': user['owner']}, {'$set': user}, upsert=True)
         # Create our Snapshot dict
         snapshot = user.copy()
         _id = user['owner'] + '|' + now.strftime('%Y%m%d')
@@ -69,7 +69,7 @@ def update_witnesses():
           'created': scantime
         })
         # Save Snapshot in Database
-        db.witness_history.update_one({'_id': _id}, snapshot, upsert=True)
+        db.witness_history.update_one({'_id': _id}, {'$set': snapshot}, upsert=True)
 
 def run():
     update_witnesses()
