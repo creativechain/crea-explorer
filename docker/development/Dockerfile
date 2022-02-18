@@ -5,7 +5,7 @@ ENV fpm_conf /etc/php/7.4/fpm/php-fpm.conf
 ENV composer_hash 795f976fe0ebd8b75f26a6dd68f78fd3453ce79f32ecb33e7fd087d39bfeb978342fb73ac986cd4f54edd0dc902601dc
 
 RUN apt-get update -y && apt-get install -y software-properties-common
-RUN apt-get install php-dev libmcrypt-dev gcc make autoconf libc-dev pkg-config
+RUN apt-get install -y php-dev libmcrypt-dev gcc make autoconf libc-dev pkg-config
 RUN pecl install mcrypt-1.0.1
 #RUN apt-add-repository ppa:phalcon/stable && apt-get update -y
 
