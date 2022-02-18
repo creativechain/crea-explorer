@@ -90,8 +90,8 @@ RUN mkdir -p /run/php &&\
     ln -s /etc/php/7.4/fpm/php.ini /etc/php/7.4/fpm/conf.d/php.ini && \
     find /etc/php/7.4/fpm/conf.d/ -name "*.ini" -exec sed -i -re 's/^(\s*)#(.*)/\1;\2/g' {} \; && \
     sed -i -e "s/memory_limit = 128M/memory_limit = 512M/" /etc/php/7.4/fpm/conf.d/php.ini &&\
-    echo "extension=phalcon.so" > /etc/php/7.4/fpm/conf.d/30-phalcon.ini && \
-    echo "extension=phalcon.so" > /etc/php/7.4/cli/conf.d/30-phalcon.ini && \
+#    echo "extension=phalcon.so" > /etc/php/7.4/fpm/conf.d/30-phalcon.ini && \
+#    echo "extension=phalcon.so" > /etc/php/7.4/cli/conf.d/30-phalcon.ini && \
     echo "extension=mcrypt.so" > /etc/php/7.4/fpm/conf.d/30-mcrypt.ini && \
     echo "extension=mcrypt.so" > /etc/php/7.4/cli/conf.d/30-mcrypt.ini
 
