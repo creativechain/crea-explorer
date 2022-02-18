@@ -44,8 +44,6 @@ RUN apt-get install -y bash \
     mkdir -p /var/www/app && \
     mkdir -p /run/nginx && \
     mkdir -p /var/log/supervisor
- \
-
 
 RUN pecl install mcrypt-1.0.4
 
