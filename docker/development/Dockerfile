@@ -92,7 +92,7 @@ RUN mkdir -p /run/php &&\
     echo "extension=phalcon.so" > /etc/php/7.4/fpm/conf.d/30-phalcon.ini && \
     echo "extension=phalcon.so" > /etc/php/7.4/cli/conf.d/30-phalcon.ini && \
     echo "extension=mcrypt.so" > /etc/php/7.4/fpm/conf.d/30-mcrypt.ini && \
-    echo "extension=mcrypt.so" > /etc/php/7.4/cli/conf.d/30-mcrypt.ini && \
+    echo "extension=mcrypt.so" > /etc/php/7.4/cli/conf.d/30-mcrypt.ini
 
 # Add Scripts
 ADD scripts/start.sh /start.sh
