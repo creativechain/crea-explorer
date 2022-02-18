@@ -31,7 +31,7 @@ RUN apt-get install -y bash \
     php7.4-json \
     php7.4-phar \
     php7.4-dom \
-    php7.4-phalcon \
+#    php7.4-phalcon \
     php7.4-zip \
     php-xdebug \
     php7.4-mbstring \
@@ -66,6 +66,9 @@ RUN apt-get update && apt-get install -y php-pear libcurl4-openssl-dev pkg-confi
 
 RUN apt-get install -y memcached php-memcached
 
+RUN add-apt-repository ppa:ondrej/php
+RUN apt-get install -y php-phalcon3
+
 # tweak php-fpm config
 RUN mkdir -p /run/php &&\
     sed -i -e "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g" ${php_conf} && \
@@ -90,8 +93,8 @@ RUN mkdir -p /run/php &&\
     ln -s /etc/php/7.4/fpm/php.ini /etc/php/7.4/fpm/conf.d/php.ini && \
     find /etc/php/7.4/fpm/conf.d/ -name "*.ini" -exec sed -i -re 's/^(\s*)#(.*)/\1;\2/g' {} \; && \
     sed -i -e "s/memory_limit = 128M/memory_limit = 512M/" /etc/php/7.4/fpm/conf.d/php.ini &&\
-    echo "extension=php_phalcon.so" > /etc/php/7.4/fpm/conf.d/30-phalcon.ini && \
-    echo "extension=php_phalcon.so" > /etc/php/7.4/cli/conf.d/30-phalcon.ini && \
+    echo "extension=phalcon.so" > /etc/php/7.4/fpm/conf.d/30-phalcon.ini && \
+    echo "extension=phalcon.so" > /etc/php/7.4/cli/conf.d/30-phalcon.ini && \
     echo "extension=mcrypt.so" > /etc/php/7.4/fpm/conf.d/30-mcrypt.ini && \
     echo "extension=mcrypt.so" > /etc/php/7.4/cli/conf.d/30-mcrypt.ini
 
