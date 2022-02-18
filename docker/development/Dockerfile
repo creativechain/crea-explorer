@@ -59,7 +59,7 @@ RUN mkdir -p /etc/nginx/sites-available/ && \
     rm -Rf /var/www/*
 RUN ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/default.conf
 
-RUN apt-get update && apt-get install -y php-pear libcurl4-openssl-dev pkg-config libssl-dev libsslcommon2-dev && \
+RUN apt-get update && apt-get install -y php-pear libcurl4-openssl-dev pkg-config libssl-dev && \
     pecl install mongodb && \
     echo "extension=mongodb.so" > /etc/php/7.4/fpm/conf.d/30-mongo.ini && \
     echo "extension=mongodb.so" > /etc/php/7.4/cli/conf.d/30-mongo.ini
