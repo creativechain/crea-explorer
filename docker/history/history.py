@@ -28,7 +28,7 @@ def load_accounts():
     pprint("CrearyDB - Loading mvest per account")
     for account in db.account.find():
         if "name" in account.keys():
-            mvest_per_account.update({account['name']: account['vesting_shares']})
+            mvest_per_account.update_one({account['name']: account['vesting_shares']})
 
 def update_fund_history():
     pprint("[CREASCAN] - Update Fund History")
@@ -59,7 +59,7 @@ def update_props_history():
 
     props['crea_per_mvests'] = props['total_vesting_fund_crea'] / props['total_vesting_shares'] * 1000000
 
-    db.status.update({
+    db.status.update_one({
       '_id': 'crea_per_mvests'
     }, {
       '$set': {
@@ -68,7 +68,7 @@ def update_props_history():
       }
     }, upsert=True)
 
-    db.status.update({
+    db.status.update_one({
       '_id': 'props'
     }, {
       '$set': {
@@ -125,7 +125,7 @@ def update_history():
 
     pprint("[CREASCAN] - Update History (" + str(len(users)) + " accounts)")
     # Snapshot User Count
-    db.statistics.update({
+    db.statistics.update_one({
       'key': 'users',
       'date': today,
     }, {
@@ -177,21 +177,21 @@ def update_history():
         account['total_balance'] = account['balance'] + account['savings_balance']
         account['total_cbd_balance'] = account['cbd_balance'] + account['savings_cbd_balance']
         # Update our current info about the account
-        mvest_per_account.update({account['name']: account['vesting_shares']})
+        mvest_per_account.update_one({account['name']: account['vesting_shares']})
         # Save current state of account
         account['scanned'] = datetime.now()
-        db.account.update({'_id': user}, account, upsert=True)
+        db.account.update_one({'_id': user}, account, upsert=True)
         # Create our Snapshot dict
         wanted_keys = ['name', 'proxy_witness', 'activity_shares', 'average_bandwidth', 'savings_balance', 'balance', 'comment_count', 'curation_rewards', 'lifetime_vote_count', 'next_vesting_withdrawal', 'reputation', 'post_bandwidth', 'post_count', 'posting_rewards', 'to_withdraw', 'vesting_balance', 'vesting_shares', 'vesting_withdraw_rate', 'voting_power', 'withdraw_routes', 'withdrawn', 'witnesses_voted_for']
         snapshot = dict((k, account[k]) for k in wanted_keys if k in account)
-        snapshot.update({
+        snapshot.update_one({
           'account': user,
           'date': today,
           'followers': len(account['followers']),
           'following': len(account['following']),
         })
         # Save Snapshot in Database
-        db.account_history.update({
+        db.account_history.update_one({
           'account': user,
           'date': today
         }, snapshot, upsert=True)
@@ -221,10 +221,10 @@ def update_stats():
     }
   ])
   data = list(results)[0]['tx']
-  db.status.update({'_id': 'transactions-24h'}, {'$set': {'data' : data}}, upsert=True)
+  db.status.update_one({'_id': 'transactions-24h'}, {'$set': {'data' : data}}, upsert=True)
   now = datetime.now().date()
   today = datetime.combine(now, datetime.min.time())
-  db.tx_history.update({
+  db.tx_history.update_one({
     'timeframe': '24h',
     'date': today
   }, {'$set': {'data': data}}, upsert=True)
@@ -251,9 +251,9 @@ def update_stats():
     }
   ])
   try:
-    db.status.update({'_id': 'transactions-1h'}, {'$set': {'data' : list(results)[0]['tx']}}, upsert=True)
+    db.status.update_one({'_id': 'transactions-1h'}, {'$set': {'data' : list(results)[0]['tx']}}, upsert=True)
   except IndexError:
-    db.status.update({'_id': 'transactions-1h'}, {'$set': {'data' : 0}}, upsert=True)
+    db.status.update_one({'_id': 'transactions-1h'}, {'$set': {'data' : 0}}, upsert=True)
 
   # Calculate Operations
   results = db.block_30d.aggregate([
@@ -280,10 +280,10 @@ def update_stats():
     }
   ])
   data = list(results)[0]['tx']
-  db.status.update({'_id': 'operations-24h'}, {'$set': {'data' : data}}, upsert=True)
+  db.status.update_one({'_id': 'operations-24h'}, {'$set': {'data' : data}}, upsert=True)
   now = datetime.now().date()
   today = datetime.combine(now, datetime.min.time())
-  db.op_history.update({
+  db.op_history.update_one({
     'timeframe': '24h',
     'date': today
   }, {'$set': {'data': data}}, upsert=True)
@@ -312,9 +312,9 @@ def update_stats():
     }
   ])
   try:
-    db.status.update({'_id': 'operations-1h'}, {'$set': {'data' : list(results)[0]['tx']}}, upsert=True)
+    db.status.update_one({'_id': 'operations-1h'}, {'$set': {'data' : list(results)[0]['tx']}}, upsert=True)
   except:
-    db.status.update({'_id': 'operations-1h'}, {'$set': {'data' : 0}}, upsert=True)
+    db.status.update_one({'_id': 'operations-1h'}, {'$set': {'data' : 0}}, upsert=True)
 
 def update_clients():
   try:
@@ -401,10 +401,10 @@ def update_clients():
     pprint("complete")
     sys.stdout.flush()
     data = list(results)
-    db.status.update({'_id': 'clients-snapshot'}, {'$set': {'data' : data}}, upsert=True)
+    db.status.update_one({'_id': 'clients-snapshot'}, {'$set': {'data' : data}}, upsert=True)
     now = datetime.now().date()
     today = datetime.combine(now, datetime.min.time())
-    db.clients_history.update({
+    db.clients_history.update_one({
       'date': today
     }, {'$set': {'data': data}}, upsert=True)
     pass
