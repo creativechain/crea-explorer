@@ -44,7 +44,7 @@ services:
       - /data/db:/data/db
     # ports:
     #   - "27017:27017"
-    command: --smallfiles --rest
+    command: --smallfiles
 
 networks:
     dockernet:
