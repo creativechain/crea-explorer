@@ -5,7 +5,8 @@ ENV fpm_conf /etc/php/7.4/fpm/php-fpm.conf
 ENV composer_hash 795f976fe0ebd8b75f26a6dd68f78fd3453ce79f32ecb33e7fd087d39bfeb978342fb73ac986cd4f54edd0dc902601dc
 
 RUN apt-get update -y && apt-get install -y software-properties-common
-
+RUN apt-get install php-dev libmcrypt-dev gcc make autoconf libc-dev pkg-config
+RUN pecl install mcrypt-1.0.1
 #RUN apt-add-repository ppa:phalcon/stable && apt-get update -y
 
 RUN apt-get install -y bash \
@@ -18,7 +19,7 @@ RUN apt-get install -y bash \
     git \
     php7.4-dev \
     php7.4-fpm \
-    php7.4-mcrypt \
+#    php7.4-mcrypt \
     php7.4-ctype \
     php7.4-gd \
     php7.4-intl \
@@ -89,7 +90,9 @@ RUN mkdir -p /run/php &&\
     find /etc/php/7.4/fpm/conf.d/ -name "*.ini" -exec sed -i -re 's/^(\s*)#(.*)/\1;\2/g' {} \; && \
     sed -i -e "s/memory_limit = 128M/memory_limit = 512M/" /etc/php/7.4/fpm/conf.d/php.ini &&\
     echo "extension=phalcon.so" > /etc/php/7.4/fpm/conf.d/30-phalcon.ini && \
-    echo "extension=phalcon.so" > /etc/php/7.4/cli/conf.d/30-phalcon.ini
+    echo "extension=phalcon.so" > /etc/php/7.4/cli/conf.d/30-phalcon.ini && \
+    echo "extension=mcrypt.so" > /etc/php/7.4/fpm/conf.d/30-mcrypt.ini && \
+    echo "extension=mcrypt.so" > /etc/php/7.4/cli/conf.d/30-mcrypt.ini && \
 
 # Add Scripts
 ADD scripts/start.sh /start.sh
