@@ -41,7 +41,7 @@ def update_fund_history():
     for key in ['last_update']:
         fund[key] = datetime.strptime(fund[key], "%Y-%m-%dT%H:%M:%S")
 
-    db.funds_history.insert(fund)
+    db.funds_history.insert_one(fund)
 
 def update_props_history():
     pprint("[CREASCAN] - Update Global Properties")
@@ -77,7 +77,7 @@ def update_props_history():
       }
     }, upsert=True)
 
-    db.props_history.insert(props)
+    db.props_history.insert_one(props)
 
 def update_tx_history():
     pprint("[CREASCAN] - Update Transaction History")
@@ -93,7 +93,7 @@ def update_tx_history():
         '$lte': today + timedelta(1)
       }
     }
-    count = db.block_30d.count(query)
+    count = db.block_30d.count_documents(query)
 
     pprint(count)
 

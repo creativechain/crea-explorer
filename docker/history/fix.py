@@ -23,7 +23,7 @@ if __name__ == '__main__':
       del newDocument['_id']
       pprint("Adding new record for account " + newDocument['account'])
       pprint("Removing ID " + record['_id'])
-      db.account_history.insert(newDocument)
+      db.account_history.insert_one(newDocument)
       db.account_history.remove({'_id': record['_id']})
       sys.stdout.flush()
     except OSError as err:

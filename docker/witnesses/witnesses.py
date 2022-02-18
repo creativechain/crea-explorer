@@ -40,7 +40,7 @@ def check_misses():
                   'increase': witness['total_missed'] - misses[owner],
                   'total': witness['total_missed']
                 }
-                db.witness_misses.insert(record)
+                db.witness_misses.insert_one(record)
                 # Update the misses in memory
                 misses[owner] = witness['total_missed']
         else:

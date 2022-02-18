@@ -459,7 +459,11 @@ def update_queue():
         'created': {'$gt': max_date},
         'scanned': {'$lt': scan_ignore},
     }).sort([('scanned', 1)]).limit(queue_length)
-    pprint("[Queue] Comments - " + str(queue_length) + " of " + str(queue.count()))
+    count = db.comment.count_documents({
+      'created': {'$gt': max_date},
+      'scanned': {'$lt': scan_ignore},
+    })
+    pprint("[Queue] Comments - " + str(queue_length) + " of " + str(count))
     for item in queue:
         update_comment(item['author'], item['permlink'])
 
@@ -476,7 +480,19 @@ def update_queue():
           '$gt': 0
         }
     }).limit(queue_length)
-    pprint("[Queue] Past Payouts - " + str(queue_length) + " of " + str(queue.count()))
+    count = db.comment.count_documents({
+      'cashout_time': {
+        '$lt': datetime.now()
+      },
+        'mode': {
+        '$in': ['first_payout', 'second_payout']
+      },
+        'depth': 0,
+        'pending_payout_value': {
+        '$gt': 0
+      }
+    })
+    pprint("[Queue] Past Payouts - " + str(queue_length) + " of " + str(count))
     for item in queue:
         update_comment(item['author'], item['permlink'])
     # -- Process Queue - Dirty Accounts
@@ -484,7 +500,11 @@ def update_queue():
     queue = db.account.find({
         '_dirty': True
     }).limit(queue_length)
-    pprint("[Queue] Updating Accounts - " + str(queue_length) + " of " + str(queue.count()))
+    count = db.account.count_documents({
+      '_dirty': True
+    })
+
+    pprint("[Queue] Updating Accounts - " + str(queue_length) + " of " + str(count))
     for item in queue:
         update_account(item['_id'])
     pprint("[Queue] Done")
