@@ -1,7 +1,7 @@
-FROM ubuntu:16.04
+FROM ubuntu:20.04
 
-ENV php_conf /etc/php/7.0/fpm/php.ini
-ENV fpm_conf /etc/php/7.0/fpm/php-fpm.conf
+ENV php_conf /etc/php/7.4/fpm/php.ini
+ENV fpm_conf /etc/php/7.4/fpm/php-fpm.conf
 ENV composer_hash 795f976fe0ebd8b75f26a6dd68f78fd3453ce79f32ecb33e7fd087d39bfeb978342fb73ac986cd4f54edd0dc902601dc
 
 RUN apt-get update -y && apt-get install -y software-properties-common python-software-properties
@@ -16,23 +16,23 @@ RUN apt-get install -y bash \
     supervisor \
     curl \
     git \
-    php7.0-dev \
-    php7.0-fpm \
-    php7.0-mcrypt \
-    php7.0-ctype \
-    php7.0-gd \
-    php7.0-intl \
-    php7.0-xml \
-    php7.0-xsl \
-    php7.0-curl \
-    php7.0-iconv \
-    php7.0-json \
-    php7.0-phar \
-    php7.0-dom \
-    php7.0-phalcon \
-    php7.0-zip \
+    php7.4-dev \
+    php7.4-fpm \
+    php7.4-mcrypt \
+    php7.4-ctype \
+    php7.4-gd \
+    php7.4-intl \
+    php7.4-xml \
+    php7.4-xsl \
+    php7.4-curl \
+    php7.4-iconv \
+    php7.4-json \
+    php7.4-phar \
+    php7.4-dom \
+    php7.4-phalcon \
+    php7.4-zip \
     php-xdebug \
-    php7.0-mbstring \
+    php7.4-mbstring \
     ca-certificates \
     dialog \
     gcc \
@@ -57,8 +57,8 @@ RUN ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/defau
 
 RUN apt-get update && apt-get install -y php-pear libcurl4-openssl-dev pkg-config libssl-dev libsslcommon2-dev && \
     pecl install mongodb && \
-    echo "extension=mongodb.so" > /etc/php/7.0/fpm/conf.d/30-mongo.ini && \
-    echo "extension=mongodb.so" > /etc/php/7.0/cli/conf.d/30-mongo.ini
+    echo "extension=mongodb.so" > /etc/php/7.4/fpm/conf.d/30-mongo.ini && \
+    echo "extension=mongodb.so" > /etc/php/7.4/cli/conf.d/30-mongo.ini
 
 RUN apt-get install -y memcached php-memcached
 
@@ -71,23 +71,23 @@ RUN mkdir -p /run/php &&\
     sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" ${fpm_conf} && \
     sed -i -e "s/;catch_workers_output\s*=\s*yes/catch_workers_output = yes/g" ${fpm_conf} && \
     sed -i -e "s/pm.max_children = 4/pm.max_children = 4/g" ${fpm_conf} && \
-    sed -i -e "s/pm.start_servers = 2/pm.start_servers = 3/g" /etc/php/7.0/fpm/pool.d/www.conf && \
-    sed -i -e "s/pm.min_spare_servers = 1/pm.min_spare_servers = 2/g" /etc/php/7.0/fpm/pool.d/www.conf && \
-    sed -i -e "s/pm.max_spare_servers = 3/pm.max_spare_servers = 4/g" /etc/php/7.0/fpm/pool.d/www.conf && \
-    sed -i -e "s/pm.max_requests = 500/pm.max_requests = 200/g" /etc/php/7.0/fpm/pool.d/www.conf && \
-    sed -i -e "s/user = nobody/user = nginx/g" /etc/php/7.0/fpm/pool.d/www.conf && \
-    sed -i -e "s/group = nobody/group = nginx/g" /etc/php/7.0/fpm/pool.d/www.conf && \
-    sed -i -e "s/;listen.mode = 0660/listen.mode = 0666/g" /etc/php/7.0/fpm/pool.d/www.conf && \
-    sed -i -e "s/;listen.owner = nobody/listen.owner = nginx/g" /etc/php/7.0/fpm/pool.d/www.conf && \
-    sed -i -e "s/;listen.group = nobody/listen.group = nginx/g" /etc/php/7.0/fpm/pool.d/www.conf && \
-    sed -i -e "s/;php_admin_value[memory_limit] = 32M/php_admin_value[memory_limit] = 512M/g" /etc/php/7.0/fpm/pool.d/www.conf && \
-    sed -i -e "s/^;clear_env = no$/clear_env = no/" /etc/php/7.0/fpm/pool.d/www.conf &&\
-    sed -i -e "s/memory_limit = 128M/memory_limit = 512M/" /etc/php/7.0/fpm/php.ini &&\
-    ln -s /etc/php/7.0/fpm/php.ini /etc/php/7.0/fpm/conf.d/php.ini && \
-    find /etc/php/7.0/fpm/conf.d/ -name "*.ini" -exec sed -i -re 's/^(\s*)#(.*)/\1;\2/g' {} \; && \
-    sed -i -e "s/memory_limit = 128M/memory_limit = 512M/" /etc/php/7.0/fpm/conf.d/php.ini &&\
-    echo "extension=phalcon.so" > /etc/php/7.0/fpm/conf.d/30-phalcon.ini && \
-    echo "extension=phalcon.so" > /etc/php/7.0/cli/conf.d/30-phalcon.ini
+    sed -i -e "s/pm.start_servers = 2/pm.start_servers = 3/g" /etc/php/7.4/fpm/pool.d/www.conf && \
+    sed -i -e "s/pm.min_spare_servers = 1/pm.min_spare_servers = 2/g" /etc/php/7.4/fpm/pool.d/www.conf && \
+    sed -i -e "s/pm.max_spare_servers = 3/pm.max_spare_servers = 4/g" /etc/php/7.4/fpm/pool.d/www.conf && \
+    sed -i -e "s/pm.max_requests = 500/pm.max_requests = 200/g" /etc/php/7.4/fpm/pool.d/www.conf && \
+    sed -i -e "s/user = nobody/user = nginx/g" /etc/php/7.4/fpm/pool.d/www.conf && \
+    sed -i -e "s/group = nobody/group = nginx/g" /etc/php/7.4/fpm/pool.d/www.conf && \
+    sed -i -e "s/;listen.mode = 0660/listen.mode = 0666/g" /etc/php/7.4/fpm/pool.d/www.conf && \
+    sed -i -e "s/;listen.owner = nobody/listen.owner = nginx/g" /etc/php/7.4/fpm/pool.d/www.conf && \
+    sed -i -e "s/;listen.group = nobody/listen.group = nginx/g" /etc/php/7.4/fpm/pool.d/www.conf && \
+    sed -i -e "s/;php_admin_value[memory_limit] = 32M/php_admin_value[memory_limit] = 512M/g" /etc/php/7.4/fpm/pool.d/www.conf && \
+    sed -i -e "s/^;clear_env = no$/clear_env = no/" /etc/php/7.4/fpm/pool.d/www.conf &&\
+    sed -i -e "s/memory_limit = 128M/memory_limit = 512M/" /etc/php/7.4/fpm/php.ini &&\
+    ln -s /etc/php/7.4/fpm/php.ini /etc/php/7.4/fpm/conf.d/php.ini && \
+    find /etc/php/7.4/fpm/conf.d/ -name "*.ini" -exec sed -i -re 's/^(\s*)#(.*)/\1;\2/g' {} \; && \
+    sed -i -e "s/memory_limit = 128M/memory_limit = 512M/" /etc/php/7.4/fpm/conf.d/php.ini &&\
+    echo "extension=phalcon.so" > /etc/php/7.4/fpm/conf.d/30-phalcon.ini && \
+    echo "extension=phalcon.so" > /etc/php/7.4/cli/conf.d/30-phalcon.ini
 
 # Add Scripts
 ADD scripts/start.sh /start.sh
