@@ -43,7 +43,7 @@ RUN apt-get install -y bash \
     mkdir -p /run/nginx && \
     mkdir -p /var/log/supervisor
  \
-RUN curl -s https://packagecloud.io/install/repositories/phalcon/stable/script.deb.sh | sudo bash
+RUN curl -s https://packagecloud.io/install/repositories/phalcon/stable/script.deb.sh | bash
 
 RUN pecl install mcrypt-1.0.4
 
