@@ -64,7 +64,7 @@ RUN apt-get update && apt-get install -y php-pear libcurl4-openssl-dev pkg-confi
     echo "extension=mongodb.so" > /etc/php/7.4/fpm/conf.d/30-mongo.ini && \
     echo "extension=mongodb.so" > /etc/php/7.4/cli/conf.d/30-mongo.ini
 
-RUN apt-get install -y memcached php-memcached
+RUN apt-get install -y memcached php-memcached re2c
 
 #RUN add-apt-repository ppa:ondrej/php
 RUN pecl install phalcon-4.1.2
