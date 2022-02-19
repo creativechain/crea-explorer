@@ -356,7 +356,7 @@ def update_comment(author, permlink, op=None, block=None, blockid=None):
     comment['scanned'] = datetime.now()
     results = db.comment.update_one({'_id': _id}, {'$set': comment}, upsert=True)
 
-    if comment['depth'] > 0 and not results['updatedExisting'] and comment['url'] != '':
+    if comment['depth'] > 0 and not results.updatedExisting and comment['url'] != '':
         url = comment['url'].split('#')[0]
         parts = url.split('/')
         original_id = parts[2].replace('@', '') + '/' + parts[3]
