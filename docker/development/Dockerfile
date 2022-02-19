@@ -67,7 +67,7 @@ RUN apt-get update && apt-get install -y php-pear libcurl4-openssl-dev pkg-confi
 RUN apt-get install -y memcached php-memcached re2c
 
 #RUN add-apt-repository ppa:ondrej/php
-RUN pecl install phalcon-4.1.2
+RUN pecl install phalcon-4.1.0
 #RUN cp /usr/lib/php/20180731/phalcon.so /usr/lib/php/20190902/phalcon.so
 
 # tweak php-fpm config
